@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="RSA 复习—阮一峰日志学习笔记1. RSA算法产生的背景:1976年以前，所有的加密方法都是同一种模式： 对称加密算法 （1）甲方选择某一种加密规则，对信息进行加密；（2）乙方使用同一种规则，对信息进行解密。  弱点： 甲方必须把加密规则告诉乙方，否则无法解密。传递密钥的安全性无法保证，一旦传递过程中，加密规则被截获就失去了加密的意义。  这时，新的加密方法便应运而生： 非对称加密算法 （1）乙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto·RSA算法入门之原理学习">
+<meta property="og:url" content="http://example.com/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Harry0597の博客">
+<meta property="og:description" content="RSA 复习—阮一峰日志学习笔记1. RSA算法产生的背景:1976年以前，所有的加密方法都是同一种模式： 对称加密算法 （1）甲方选择某一种加密规则，对信息进行加密；（2）乙方使用同一种规则，对信息进行解密。  弱点： 甲方必须把加密规则告诉乙方，否则无法解密。传递密钥的安全性无法保证，一旦传递过程中，加密规则被截获就失去了加密的意义。  这时，新的加密方法便应运而生： 非对称加密算法 （1）乙">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D=p%5E%7Bk%7D(1-%5Cfrac%7B1%7D%7Bp%7D)">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYfw*AMG5vKwgtJQ2X3Pm*PUmaApuae8k9nBEz3hNDdZe.74sRH7dY0RnQsCLf*oRkyD5O0faWB2DtjtGtKoH.Q!/b&bo=0wAoAAAAAAADF8k!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcUrRQo*.8wP1Z3cw8so21Vt3k.JBMlJ5a0WM1VT.FVx5NhCX3W9hg8O0t9Tmq7lRElhd4ZoC6qQTv6v*9BrOlVE!/b&bo=cwEoAAAAAAADF2g!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNGPk.hVsDnxxV6UPBntFg59KrmvXkKLql82UyaHByYRCKPq5GYT*TXzq3zPY2ADlvA!/b&bo=NQI8AAAAAAADFzk!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNHzQYPyxfy1h8009CpdMVxqJzvOML*SQCX3EoF0PaLUmaxA1k5iOanIioe0v3inRqw!/b&bo=sgE8AAAAAAADF70!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNEDBWQUQi6tV18.XY*D3F7jYwye6qEt5uul56Yym0hCoRn0ta5W5ojlWMMLvXGNApg!/b&bo=hwI8AAAAAAADF4s!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcVfwBprH1UhtYUERICYZnDD0xqDsqNohTlqll73gt2X.IufR2h9rLDIKBuW4N9GhqJ91iJ8R1WkY3gsLvrVUNFk!/b&bo=UAE8AAAAAAADF18!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcdyCb3JzIOWog8CzpCt9v4J0*Jd5YW5T*rg0eeMrbvqoLuE0ZW*6P4fGI3CQfqUS2NBiuyAcJsPR*g8j3zN*6PQ!/b&bo=*wAoAAAAAAADF.U!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcdyCb3JzIOWog8CzpCt9v4LhM5r6MhCVnNt9Mk2GxH5xG08N6FMtAA*w7JUBrzOTCjCN13nvwKSgTGQvPDXyros!/b&bo=7AAoAAAAAAADF*Y!&rf=viewer_4">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20c%20=%20m%5E%7Be%7Dmod(n)">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20m%20=%20c%5E%7Bd%7D%20mod(n)">
+<meta property="article:published_time" content="2021-12-08T12:28:14.000Z">
+<meta property="article:modified_time" content="2021-12-08T12:49:12.768Z">
+<meta property="article:author" content="Harry0597">
+<meta property="article:tag" content="Crypto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D">
+
+<link rel="canonical" href="http://example.com/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Crypto·RSA算法入门之原理学习 | Harry0597の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Harry0597の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">初学者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-favorite">
+
+    <a href="/favorite/" rel="section"><i class="fa-star fa-fw"></i>收藏夹</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry0597の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Crypto·RSA算法入门之原理学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-08 20:28:14 / 修改时间：20:49:12" itemprop="dateCreated datePublished" datetime="2021-12-08T20:28:14+08:00">2021-12-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="RSA-复习—阮一峰日志学习笔记"><a href="#RSA-复习—阮一峰日志学习笔记" class="headerlink" title="RSA 复习—阮一峰日志学习笔记"></a>RSA 复习—阮一峰日志学习笔记</h1><h2 id="1-RSA算法产生的背景"><a href="#1-RSA算法产生的背景" class="headerlink" title="1. RSA算法产生的背景:"></a>1. RSA算法产生的背景:</h2><p>1976年以前，所有的加密方法都是同一种模式：</p>
+<h3 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E5%AF%B9%E7%AD%89%E5%8A%A0%E5%AF%86">对称加密算法</a></h3><blockquote>
+<p>（1）甲方选择某一种加密规则，对信息进行加密；<br>（2）乙方使用同一种规则，对信息进行解密。</p>
+</blockquote>
+<h4 id="弱点："><a href="#弱点：" class="headerlink" title="弱点："></a>弱点：</h4><blockquote>
+<p>甲方必须把加密规则告诉乙方，否则无法解密。<br><strong>传递密钥</strong>的<strong>安全性无法保证</strong>，一旦传递过程中，加密规则被截获就失去了加密的意义。</p>
+</blockquote>
+<p>这时，新的加密方法便应运而生：</p>
+<h3 id="非对称加密算法"><a href="#非对称加密算法" class="headerlink" title="非对称加密算法"></a>非对称加密算法</h3><blockquote>
+<p>（1）乙方生成两把密钥（<strong>公钥</strong>和<strong>私钥</strong>）。<br><strong>公钥</strong>是<strong>公开</strong>的，任何人都可以获得，<strong>私钥</strong>则是<strong>保密</strong>的。<br>（2）甲方获取乙方的公钥，然后用它对信息加密。<br>（3）乙方得到加密后的信息，用私钥解密。</p>
+</blockquote>
+<p>此时，乙方只要公布他的公钥，甲方就可以通过公钥对发送的信息进行加密然后将密文给到乙方。奇妙的地方在于，以世界目前算力，只有乙方用手上的私钥才能解密获得明文，而<strong>解密的钥匙没有经过传递</strong>，安全性得到了保障。</p>
+<p><strong>RSA算法属于非对称密码</strong>。</p>
+<hr>
+<hr>
+<h2 id="2-数学知识储备"><a href="#2-数学知识储备" class="headerlink" title="2. 数学知识储备"></a>2. 数学知识储备</h2><h3 id="·互质关系"><a href="#·互质关系" class="headerlink" title="·互质关系"></a>·<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E4%BA%92%E8%B3%AA">互质关系</a></h3><blockquote>
+<p>如果两个正整数，<strong>除了1</strong>以外，<strong>没有其他公因子</strong>，我们就称这两个数是互质关系（coprime）。<br>比如，15和32没有公因子，所以它们是互质关系。这说明，不是质数也可以构成互质关系。</p>
+</blockquote>
+<h4 id="互质结论"><a href="#互质结论" class="headerlink" title="互质结论:"></a>互质结论:</h4><blockquote>
+<ol>
+<li>任意两个质数构成互质关系，比如13和61。</li>
+<li>一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系，比如3和10。</li>
+<li>如果两个数之中，较大的那个数是质数，则两者构成互质关系，比如97和57。</li>
+<li>1和任意一个自然数是都是互质关系，比如1和99。</li>
+<li>p是大于1的整数，则p和p-1构成互质关系，比如57和56。</li>
+<li>p是大于1的奇数，则p和p-2构成互质关系，比如17和15。</li>
+</ol>
+</blockquote>
+<hr>
+<p>以上<em>看过一遍，理解就好，<strong>不需要刻意记忆</strong>。</em></p>
+<p>以下<em>要求<strong>理解记忆</strong>，越熟练越好！</em></p>
+<hr>
+<h3 id="·欧拉函数"><a href="#·欧拉函数" class="headerlink" title="·欧拉函数"></a>·欧拉函数</h3><h4 id="引入："><a href="#引入：" class="headerlink" title="引入："></a>引入：</h4><blockquote>
+<p>　　　　任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p>
+</blockquote>
+<p>计算这个值的方法就叫做<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0">欧拉函数</a>，以φ(n)表示。在1到8之中，与8形成互质关系的是1、3、5、7，所以 φ(n) = 4.</p>
+<p><em>φ(n) 计算公式需要一步步讨论。</em></p>
+<h4 id="讨论："><a href="#讨论：" class="headerlink" title="讨论："></a>讨论：</h4><ol>
+<li><p><em>如果n=1，则 φ(1) = 1 。因为1与任何数（包括自身）都构成互质关系。</em></p>
+</li>
+<li><p><em>如果n是质数，则 φ(n)=n-1 。因为质数与小于它的每一个数，都构成互质关系。比如5与1、2、3、4都构成互质关系。</em></p>
+</li>
+<li><p><em>如果n是质数的某一个次方，即 n = pk (p为质数，k为大于等于1的整数)，则:</em></p>
+<p><img src="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D" alt="qwe"></p>
+</li>
+</ol>
+<blockquote>
+<p><em>比如 φ(8) = φ(23) =23 - 22 = 8 -4 = 4。</em></p>
+<p><em>这是因为只有当一个数不包含质数p，才可能与n互质。而包含质数p的数一共有pk-1个，即1×p、2×p、3×p、…、pk-1×p，把它们去除，剩下的就是与n互质的数。</em></p>
+<p><em>上面的式子还可以写成下面的形式：</em></p>
+<p><img src="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D=p%5E%7Bk%7D(1-%5Cfrac%7B1%7D%7Bp%7D)" alt="gs2"></p>
+<p><em>可以看出，上面的第2种情况是 k=1 时的特例。</em></p>
+</blockquote>
+<ol>
+<li><p><em>如果n可以分解成两个互质的整数之积</em>，<strong>n = p1 × p2</strong>，<em>则</em>：</p>
+<p><strong>φ(n) = φ(p1p2) = φ(p1)φ(p2)</strong></p>
+</li>
+</ol>
+<blockquote>
+<p>即积的欧拉函数等于各个因子的欧拉函数之积。比如，φ(56)=φ(8×7)=φ(8)×φ(7)=4×6=24。</p>
+<p>这一条的证明要用到<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">“中国剩余定理”</a>，这里就不展开了</p>
+</blockquote>
+<ol>
+<li><p><em>因为任意一个大于1的正整数，都可以写成一系列质数的积。</em></p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYfw*AMG5vKwgtJQ2X3Pm*PUmaApuae8k9nBEz3hNDdZe.74sRH7dY0RnQsCLf*oRkyD5O0faWB2DtjtGtKoH.Q!/b&bo=0wAoAAAAAAADF8k!&rf=viewer_4" alt="img"></p>
+</li>
+</ol>
+<blockquote>
+<p><em>根据第4条的结论，得到</em>:</p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcUrRQo*.8wP1Z3cw8so21Vt3k.JBMlJ5a0WM1VT.FVx5NhCX3W9hg8O0t9Tmq7lRElhd4ZoC6qQTv6v*9BrOlVE!/b&bo=cwEoAAAAAAADF2g!&rf=viewer_4" alt="img"></p>
+<p><em>再根据第3条的结论，得到:</em></p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNGPk.hVsDnxxV6UPBntFg59KrmvXkKLql82UyaHByYRCKPq5GYT*TXzq3zPY2ADlvA!/b&bo=NQI8AAAAAAADFzk!&rf=viewer_4" alt="img"></p>
+</blockquote>
+<p><em>也就等于</em><br><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNHzQYPyxfy1h8009CpdMVxqJzvOML*SQCX3EoF0PaLUmaxA1k5iOanIioe0v3inRqw!/b&bo=sgE8AAAAAAADF70!&rf=viewer_4" alt="img"></p>
+<p><em>这就是</em><strong>欧拉函数的通用计算公式</strong></p>
+<blockquote>
+<p>比如，1323的欧拉函数，计算过程如下：</p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNEDBWQUQi6tV18.XY*D3F7jYwye6qEt5uul56Yym0hCoRn0ta5W5ojlWMMLvXGNApg!/b&bo=hwI8AAAAAAADF4s!&rf=viewer_4" alt="img"></p>
+</blockquote>
+<hr>
+<h3 id="·欧拉定理"><a href="#·欧拉定理" class="headerlink" title="·欧拉定理"></a>·欧拉定理</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p><strong>如果两个正整数a和n互质，则n的欧拉函数 φ(n) 可以让下面的等式成立：</strong></p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcVfwBprH1UhtYUERICYZnDD0xqDsqNohTlqll73gt2X.IufR2h9rLDIKBuW4N9GhqJ91iJ8R1WkY3gsLvrVUNFk!/b&bo=UAE8AAAAAAADF18!&rf=viewer_4" alt="img"></p>
+<h4 id="注：补充知识—同余"><a href="#注：补充知识—同余" class="headerlink" title="注：补充知识—同余"></a>注：补充知识—<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%90%8C%E4%BD%99%E5%BC%8F/6024642?fr=aladdin">同余</a></h4><blockquote>
+<p>同余可理解为，a的phi(n)次方除n的余数 = 1除n的余数（就是1）</p>
+</blockquote>
+<p><em>也就是说，a的φ(n)次方被n除的余数为1。或者说，a的φ(n)次方减去1，可以被n整除。比如，3和7互质，而7的欧拉函数φ(7)等于6，所以3的6次方（729）减去1，可以被7整除（728/7=104）。</em></p>
+<h4 id="欧拉定理特殊情况"><a href="#欧拉定理特殊情况" class="headerlink" title="欧拉定理特殊情况"></a>欧拉定理特殊情况</h4><p><strong>假设正整数a与质数p互质，因为质数p的φ(p)等于p-1，则欧拉定理可以写成</strong></p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcdyCb3JzIOWog8CzpCt9v4J0*Jd5YW5T*rg0eeMrbvqoLuE0ZW*6P4fGI3CQfqUS2NBiuyAcJsPR*g8j3zN*6PQ!/b&bo=*wAoAAAAAAADF.U!&rf=viewer_4" alt="img"></p>
+<p>这就是著名的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><strong>费马小定理</strong></a>。它是欧拉定理的特例。</p>
+<hr>
+<h3 id="·模反元素"><a href="#·模反元素" class="headerlink" title="·模反元素"></a>·模反元素</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p><strong>如果两个正整数a和n互质，那么一定可以找到整数b，使得 ab-1 被n整除，或者说ab被n除的余数是1。</strong></p>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcdyCb3JzIOWog8CzpCt9v4LhM5r6MhCVnNt9Mk2GxH5xG08N6FMtAA*w7JUBrzOTCjCN13nvwKSgTGQvPDXyros!/b&bo=7AAoAAAAAAADF*Y!&rf=viewer_4" alt="img"></p>
+<p><strong>这时，b就叫做a的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0">“模反元素”</a>。</strong></p>
+<blockquote>
+<p>比如，3和11互质，那么3的模反元素就是4，因为 (3 × 4)-1 可以被11整除。显然，模反元素不止一个， 4加减11的整数倍都是3的模反元素 {…,-18,-7,4,15,26,…}，即如果b是a的模反元素，则 b+kn 都是a的模反元素。</p>
+</blockquote>
+<hr>
+<hr>
+<h2 id="3-RSA加解密"><a href="#3-RSA加解密" class="headerlink" title="3. RSA加解密"></a>3. RSA加解密</h2><h3 id="·密钥生成的步骤"><a href="#·密钥生成的步骤" class="headerlink" title="·密钥生成的步骤"></a><strong>·密钥生成的步骤</strong></h3><blockquote>
+<p><strong>第一步，随机选择两个不相等的质数p和q。</strong><br>·比如乙方选择了61和53。</p>
+<p><strong>第二步，计算p和q的乘积n。</strong><br>·n = 61×53 = 3233</p>
+<p><strong>第三步，计算n的欧拉函数φ(n)。</strong><br>·φ(n) = (p-1)(q-1)<br>​·φ(3233) = 60×52 = 3120</p>
+<p><strong>第四步，随机选择一个整数e，条件是1&lt; e &lt; φ(n)，且e与φ(n) 互质。</strong><br>·乙方从1到3120选择了 17（实际应用中，<strong>常选65537</strong>）</p>
+<p><strong>第五步，计算e对于φ(n)的模反元素d。</strong><br>·所谓<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0">“模反元素”</a>就是指有一个整数d，可以使得ed被φ(n)除的余数为1<br>​·ed ≡ 1 (mod φ(n)) 等价于 ed - 1 = kφ(n) 等价于 ex + φ(n)y = 1 等价于 17x + 3120y = 1<br>​·用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95">“扩展欧几里得算法”</a>求解*（具体代码看<a target="_blank" rel="noopener" href="http://ctf.nefu.edu.cn/bbs/d/78-rsa-writeup">RSA WriteUP</a>），得：(x,y)=(2753,-15)，即 d=2753。</p>
+<p><strong>第六步，n和e为公钥，n和d为私钥。</strong><br>· 知道n,e为公钥（公布出去）,n和d为私钥（自己藏着）。</p>
+</blockquote>
+<h3 id="·加密和解密"><a href="#·加密和解密" class="headerlink" title="·加密和解密"></a><strong>·加密和解密</strong></h3><blockquote>
+<p><strong>（1）加密要用公钥 (n,e)</strong></p>
+<p> ·甲方拿到n,e 。要将明文65加密成密文（<strong>m为明文，c为密文</strong>）</p>
+<p> ·利用公式（<strong>mod（n）是除于n取余数的意思</strong>）</p>
+<p> <img src="https://latex.codecogs.com/gif.latex?%5Cbg_white%20c%20=%20m%5E%7Be%7Dmod(n)" alt="This is the rendered form of the equation. You can not edit this directly. Right click will give you the option to save the image, and in most browsers you can drag the image onto your desktop or another program."></p>
+<p> ·得：c = 2790</p>
+<p><strong>（2）解密要用私钥(n,d)</strong></p>
+<p> ·乙方收到密文m，自己手里有公钥，当然也有密钥n，d</p>
+<p> ·利用公式</p>
+<p> <img src="https://latex.codecogs.com/gif.latex?%5Cbg_white%20m%20=%20c%5E%7Bd%7D%20mod(n)" alt="This "></p>
+<p> ·得：m = 65 ，则<strong>RSA算法加解密原理到此结束</strong></p>
+</blockquote>
+<hr>
+<hr>
+<h3 id="4-CTF中RSA算法题"><a href="#4-CTF中RSA算法题" class="headerlink" title="4. CTF中RSA算法题"></a>4. CTF中RSA算法题</h3><h3 id="·需要安装的第三方库"><a href="#·需要安装的第三方库" class="headerlink" title="·需要安装的第三方库"></a><strong>·需要安装的第三方库</strong></h3><p><strong>解题一般用python，这里需要安装两个库（*pycryptodome*、*gmpy2*）</strong></p>
+<p>在pycharm的下方Terminal中分别输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodome</span><br><span class="line">pip install gmpy2</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Crypto/" rel="tag"># Crypto</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/" rel="prev" title="Crypto·Py3编码">
+      <i class="fa fa-chevron-left"></i> Crypto·Py3编码
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA-%E5%A4%8D%E4%B9%A0%E2%80%94%E9%98%AE%E4%B8%80%E5%B3%B0%E6%97%A5%E5%BF%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">RSA 复习—阮一峰日志学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-RSA%E7%AE%97%E6%B3%95%E4%BA%A7%E7%94%9F%E7%9A%84%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">1. RSA算法产生的背景:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">对称加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%B1%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">弱点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">非对称加密算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数学知识储备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">·互质关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%92%E8%B4%A8%E7%BB%93%E8%AE%BA"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">互质结论:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">·欧拉函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">引入：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%EF%BC%9A"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">讨论：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.3.</span> <span class="nav-text">·欧拉定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%EF%BC%9A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E2%80%94%E5%90%8C%E4%BD%99"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">注：补充知识—同余</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">欧拉定理特殊情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.4.</span> <span class="nav-text">·模反元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-RSA%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">3. RSA加解密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.3.1.</span> <span class="nav-text">·密钥生成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">·加密和解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-CTF%E4%B8%ADRSA%E7%AE%97%E6%B3%95%E9%A2%98"><span class="nav-number">1.3.3.</span> <span class="nav-text">4. CTF中RSA算法题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">1.3.4.</span> <span class="nav-text">·需要安装的第三方库</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Harry0597</p>
+  <div class="site-description" itemprop="description">Pondering'll do you wonders.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harry0597</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
