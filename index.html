@@ -153,6 +153,208 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/09/Misc%C2%B7buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry0597の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/09/Misc%C2%B7buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Misc·buu刷题记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-09 10:58:12 / 修改时间：11:09:05" itemprop="dateCreated datePublished" datetime="2021-12-09T10:58:12+08:00">2021-12-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Misc·buu题解及工具下载"><a href="#Misc·buu题解及工具下载" class="headerlink" title="Misc·buu题解及工具下载"></a>Misc·buu题解及工具下载</h1><h2 id="1-Misc工具–zsteg"><a href="#1-Misc工具–zsteg" class="headerlink" title="1. Misc工具–zsteg"></a>1. Misc工具–zsteg</h2><h3 id="·简介"><a href="#·简介" class="headerlink" title="·简介"></a>·简介</h3><blockquote>
+<p>zsteg 是Github上开源的<strong>PNG</strong>、<strong>BMP</strong>文件<strong>隐写爆破</strong>工具</p>
+</blockquote>
+<h3 id="·安装"><a href="#·安装" class="headerlink" title="·安装"></a>·安装</h3><p><strong>终端</strong>依次输入:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zed-0xff/zsteg</span><br><span class="line"><span class="built_in">cd</span> zsteg/</span><br><span class="line">gem install zsteg</span><br></pre></td></tr></table></figure>
+
+<p>若提示<strong>权限不够</strong>，终端输入:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<p>如果下的太慢了，<strong>换源</strong>（<strong>终端</strong>依次输入:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources --add https://gems.ruby-china.com/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
+
+<h3 id="·使用"><a href="#·使用" class="headerlink" title="·使用"></a>·使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -a file_path</span><br></pre></td></tr></table></figure>
+
+<h3 id="·-效果图"><a href="#·-效果图" class="headerlink" title="· 效果图"></a>· 效果图</h3><p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mce5Ro9REz5tEqwJEdRmdorweoecax4nllCdFRWongj19mPI7hD4hLGdB5MpXcHBAriN1mtAzNRHbkFKX3htKLnU!/b&bo=ogZmAwAAAAADR6M!&rf=viewer_4" alt="img"></p>
+<p>（题源：2021春秋杯秋季赛勇者赛道·Misc·**helloshark</p>
+<h2 id="2-Misc工具–foremsot"><a href="#2-Misc工具–foremsot" class="headerlink" title="2. Misc工具–foremsot"></a>2. Misc工具–foremsot</h2><h3 id="·简介-1"><a href="#·简介-1" class="headerlink" title="·简介"></a>·简介</h3><blockquote>
+<p>同binwalk(Kali自带)功能一样，具有拆分隐藏文件的功能，不同在于自动生成并放入output文件夹中</p>
+</blockquote>
+<h3 id="·安装-1"><a href="#·安装-1" class="headerlink" title="·安装"></a>·安装</h3><p><strong>终端</strong>输入:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install foremost</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若提示:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>则要更新了，输入：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>最后检查安装是否成功，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost -h</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210203220402585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzU2MzU0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="·使用-1"><a href="#·使用-1" class="headerlink" title="·使用"></a>·使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost file_path</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-Misc·N种方法解决"><a href="#3-Misc·N种方法解决" class="headerlink" title="3.Misc·N种方法解决"></a>3.Misc·N种方法解决</h2><h4 id="·题目"><a href="#·题目" class="headerlink" title="·题目"></a>·题目</h4><blockquote>
+<p>下载后得到key.exe</p>
+</blockquote>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>从简到难，string key.exe</li>
+</ul>
+<blockquote>
+<p>data:image/jpg;base64,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</p>
+</blockquote>
+<ul>
+<li><p>密码手看到base64，兴奋。之后网页解码不给力，用python3跑了下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b64 = <span class="string">b&#x27;iVBORw0KGgoAAAANSUhEUgAAAIUAAACFCAYAAAB12js8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAArZSURBVHhe7ZKBitxIFgTv/396Tx564G1UouicKg19hwPCDcrMJ9m7/7n45zfdxe5Z3sJ7prHbf9rXO3P4lLvYPctbeM80dvtP+3pnDp9yF7tneQvvmcZu/2lf78zhU+5i9yxv4T3T2O0/7eud68OT2H3LCft0l/ae9ZlTo+23pPvX7/rwJHbfcsI+3aW9Z33m1Gj7Len......U5ErkJggg==&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(b64))</span><br><span class="line"><span class="comment"># b&#x27;\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x85\x00\x00\x00\x85\x08\x06\x00\x00\x00u\xda;&lt;\x00\x00\x00\x01sRG...\xc2\r\xca\xcc\&#x27;\xd9\x...ffi_\xef\xcc\xe1S\xeeb\xf7,o\xe1=\xd3\xd8\xed?\xed\xeb\x9d\....\x7f\x1a\xbe\xdf$\x96\x1b\xb6\xb7\x9c\x9c\xe8_\xbf\xeb\xc3\x93\xd8&#125;\xcb\x9f\x86\xef7\x89\xe5\x86\xed-\&#x27;\&#x27;\xfa\xd7\xef\xfa\xf0$v\xdf\xf2\xa7\xe1\xfbMb\xb9a&#123;\xcb\xc9\x89\xfe\xf5\xbb&gt;&lt;\x89\xdd\xb7\xfci\xf...x00IEND\xaeB`\x82&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>看到了PNG，高兴。其后如何也得不到下一步思路，看题解后，<strong>开了眼了</strong>🤔</p>
+</li>
+<li><p><strong>将第一步string内容完整复制到网页端</strong>,得到二维码，扫码即得flag。</p>
+</li>
+</ul>
+<h2 id="4-Misc·LSB"><a href="#4-Misc·LSB" class="headerlink" title="4. Misc·LSB"></a>4. Misc·LSB</h2><h3 id="·题目-1"><a href="#·题目-1" class="headerlink" title="·题目"></a>·题目</h3><blockquote>
+<p>题目说的明显，<strong>LSB隐写</strong>，有过多博客对此解释、教学，在此不赘述</p>
+</blockquote>
+<h3 id="·要点"><a href="#·要点" class="headerlink" title="·要点"></a>·要点</h3><ul>
+<li>导出时候记得选 <strong>Save Bin</strong></li>
+</ul>
+<h2 id="5-ARCHPR-下载｜注册"><a href="#5-ARCHPR-下载｜注册" class="headerlink" title="5. ARCHPR 下载｜注册"></a>5. ARCHPR 下载｜注册</h2><h3 id="·-提示"><a href="#·-提示" class="headerlink" title="· 提示"></a>· 提示</h3><blockquote>
+<p>若是<strong>英文</strong>界面，则看<strong>大致位置</strong>也能完成注册</p>
+</blockquote>
+<h3 id="·-下载"><a href="#·-下载" class="headerlink" title="· 下载"></a>· 下载</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.icloud.com.cn/iclouddrive/0sDdf9kTxVd5HcJ-9VFBp5-zA#ARCHPR">ARCHPR下载链接</a></p>
+</blockquote>
+<h3 id="·-注册码："><a href="#·-注册码：" class="headerlink" title="· 注册码："></a>· 注册码：</h3><blockquote>
+<p><strong>ARCHPRP-GSVMT-66892-GKVMB-52992</strong></p>
+</blockquote>
+<h3 id="·-注册步骤"><a href="#·-注册步骤" class="headerlink" title="· 注册步骤"></a>· 注册步骤</h3><ol>
+<li>下载后解压，打开软件</li>
+</ol>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceLOXqJUoW9gi4Wtdz4ZUODu5X8h1h91UnOIbDgXakz0GNDHCzCPRI*6OjlEghtUFPSrUJnXdJPeVD*xmsVEyos!/b&bo=NgQcAwAAAAADNz8!&rf=viewer_4" alt="img"></p>
+<ol start="2">
+<li><p>输入注册码（ ARCHPRP-GSVMT-66892-GKVMB-52992 ）</p>
+<p><img src="http://www.aichunjing.com/d/file/2018-12-26/7e858299fd1a5d0d016a11d5a9b48050.jpg" alt="img"></p>
+</li>
+<li><p>注册完成</p>
+<p><img src="http://www.aichunjing.com/d/file/2018-12-26/2fecbb201779f872a51ab6f35dda1d59.jpg" alt="img"></p>
+</li>
+</ol>
+<h3 id="·-修改语言"><a href="#·-修改语言" class="headerlink" title="· 修改语言"></a>· 修改语言</h3><blockquote>
+<p><del>眼瞎找了一宿</del>,option选项卡里选language为简体中文</p>
+</blockquote>
+<ul>
+<li>option选项卡</li>
+</ul>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYbP4vBhKWZ7y2piI9p0s3WVEEM5YjPSJdB7N6D1GNs3XCxb7QmVI5I3bkrQqVfDDk6xW.hfoMtkqg7Fmgz4WGY!/b&bo=hAJ2AgAAAAADN.A!&rf=viewer_4" alt="img"></p>
+<ul>
+<li>语言设置</li>
+</ul>
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYbP4vBhKWZ7y2piI9p0s3Wp5TnGZXGnA5sfj4bbKmqB80z446jg9Z9vtz8hrjbnIxLGKASVi.ZINJ9dxnqGeC4!/b&bo=iAJ2AgAAAAADN.w!&rf=viewer_4" alt="img"></p>
+<p><strong>大功告成！</strong></p>
+<h2 id="6-BUU·Misc·爱因斯坦"><a href="#6-BUU·Misc·爱因斯坦" class="headerlink" title="6. BUU·Misc·爱因斯坦"></a>6. BUU·Misc·爱因斯坦</h2><h3 id="·题解"><a href="#·题解" class="headerlink" title="·题解"></a>·题解</h3><blockquote>
+<ul>
+<li><p>打开后,看到爱因斯坦图片</p>
+</li>
+<li><p>strings 后看到有东西</p>
+</li>
+<li><p>binwalk -e 拆开</p>
+</li>
+<li><p>得到flag.txt、加密压缩包</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="·困惑："><a href="#·困惑：" class="headerlink" title="·困惑："></a>·困惑：</h3><blockquote>
+<p>以为是明文攻击，压缩后说文件太小，无法进行明文攻击。</p>
+</blockquote>
+<h3 id="·醍醐灌顶"><a href="#·醍醐灌顶" class="headerlink" title="·醍醐灌顶"></a>·醍醐灌顶</h3><blockquote>
+<p><strong>属性 -&gt; 详细信息 -&gt; 备注</strong> 里有东西，可以拿来做压缩包密码的尝试，bingo！ </p>
+</blockquote>
+<h3 id="·总结"><a href="#·总结" class="headerlink" title="·总结"></a>·总结</h3><blockquote>
+<p><strong>strings != 属性</strong></p>
+</blockquote>
+<h2 id="7-FLAG"><a href="#7-FLAG" class="headerlink" title="7. FLAG"></a>7. FLAG</h2><h3 id="·-题解"><a href="#·-题解" class="headerlink" title="· 题解"></a>· 题解</h3><blockquote>
+<p>打开后binwalk -e，获得29.zilp,没思路了</p>
+</blockquote>
+<h3 id="·醍醐灌顶-1"><a href="#·醍醐灌顶-1" class="headerlink" title="·醍醐灌顶"></a>·醍醐灌顶</h3><blockquote>
+<p>LSB藏了ZIP文件，bin下来后解压，以txt打开解压文件，搜索即可</p>
+</blockquote>
+<h3 id="·总结-1"><a href="#·总结-1" class="headerlink" title="·总结"></a>·总结</h3><blockquote>
+<p><strong>zsteg的file显示要注重！！！</strong></p>
+</blockquote>
+<p>![image-20211130164205567](/Users/wenhui/Library/Application Support/typora-user-images/image-20211130164205567.png)</p>
+<h2 id="8-D盾安装"><a href="#8-D盾安装" class="headerlink" title="8.D盾安装"></a>8.D盾安装</h2><h3 id="·-简介"><a href="#·-简介" class="headerlink" title="· 简介"></a>· 简介</h3><blockquote>
+<p> 『D盾_防火墙』专为IIS设计的一个主动防御的保护软件,以内外保护的方式 防止网站和服务器给入侵。用于<strong>网页数据文件夹</strong></p>
+</blockquote>
+<h3 id="·-下载-1"><a href="#·-下载-1" class="headerlink" title="· 下载"></a>· 下载</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.d99net.net/">D盾下载</a></p>
+</blockquote>
+<p><img src="http://tva1.sinaimg.cn/large/007svEDHly1gkfh2i22ekj30n50g4q3i.jpg" alt="img"></p>
+<h3 id="·注意事项"><a href="#·注意事项" class="headerlink" title="·注意事项"></a>·注意事项</h3><blockquote>
+<p>虚拟机win需要把<strong>待扫描的文件夹</strong>放入<strong>c盘</strong>，总之<strong>不要在mac盘</strong></p>
+</blockquote>
+<h2 id="9-RouterPassView-安装"><a href="#9-RouterPassView-安装" class="headerlink" title="9. RouterPassView 安装"></a>9. RouterPassView 安装</h2><h3 id="·-简介-1"><a href="#·-简介-1" class="headerlink" title="· 简介"></a>· 简介</h3><blockquote>
+<p>RouterPassView是一个找回路由器密码的工具，用于<strong>bin后缀文件</strong></p>
+</blockquote>
+<h3 id="·-下载-2"><a href="#·-下载-2" class="headerlink" title="· 下载"></a>· 下载</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.onlinedown.net/soft/104401.htm">RouterPassView下载</a></p>
+</blockquote>
+<p><img src="https://src.onlinedown.net/d/file/p/2019-11-21/9d1a4a677a621f68a440a50bbf7365c1.jpg" alt="RouterPassView截图"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/09/Mac%20Terminal%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -589,12 +791,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
