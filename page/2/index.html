@@ -20,47 +20,30 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="RSA 复习—阮一峰日志学习笔记1. RSA算法产生的背景:1976年以前，所有的加密方法都是同一种模式： 对称加密算法 （1）甲方选择某一种加密规则，对信息进行加密；（2）乙方使用同一种规则，对信息进行解密。  弱点： 甲方必须把加密规则告诉乙方，否则无法解密。传递密钥的安全性无法保证，一旦传递过程中，加密规则被截获就失去了加密的意义。  这时，新的加密方法便应运而生： 非对称加密算法 （1）乙">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Crypto·RSA算法入门之原理学习">
-<meta property="og:url" content="https://harry0597.com/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/index.html">
+  <meta name="description" content="Pondering&#39;ll do you wonders.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Harry0597の博客">
+<meta property="og:url" content="https://harry0597.com/page/2/index.html">
 <meta property="og:site_name" content="Harry0597の博客">
-<meta property="og:description" content="RSA 复习—阮一峰日志学习笔记1. RSA算法产生的背景:1976年以前，所有的加密方法都是同一种模式： 对称加密算法 （1）甲方选择某一种加密规则，对信息进行加密；（2）乙方使用同一种规则，对信息进行解密。  弱点： 甲方必须把加密规则告诉乙方，否则无法解密。传递密钥的安全性无法保证，一旦传递过程中，加密规则被截获就失去了加密的意义。  这时，新的加密方法便应运而生： 非对称加密算法 （1）乙">
+<meta property="og:description" content="Pondering&#39;ll do you wonders.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D=p%5E%7Bk%7D(1-%5Cfrac%7B1%7D%7Bp%7D)">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYfw*AMG5vKwgtJQ2X3Pm*PUmaApuae8k9nBEz3hNDdZe.74sRH7dY0RnQsCLf*oRkyD5O0faWB2DtjtGtKoH.Q!/b&bo=0wAoAAAAAAADF8k!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcUrRQo*.8wP1Z3cw8so21Vt3k.JBMlJ5a0WM1VT.FVx5NhCX3W9hg8O0t9Tmq7lRElhd4ZoC6qQTv6v*9BrOlVE!/b&bo=cwEoAAAAAAADF2g!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNGPk.hVsDnxxV6UPBntFg59KrmvXkKLql82UyaHByYRCKPq5GYT*TXzq3zPY2ADlvA!/b&bo=NQI8AAAAAAADFzk!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNHzQYPyxfy1h8009CpdMVxqJzvOML*SQCX3EoF0PaLUmaxA1k5iOanIioe0v3inRqw!/b&bo=sgE8AAAAAAADF70!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mceR7hTaMu3uxIf*pzdRWUNEDBWQUQi6tV18.XY*D3F7jYwye6qEt5uul56Yym0hCoRn0ta5W5ojlWMMLvXGNApg!/b&bo=hwI8AAAAAAADF4s!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcVfwBprH1UhtYUERICYZnDD0xqDsqNohTlqll73gt2X.IufR2h9rLDIKBuW4N9GhqJ91iJ8R1WkY3gsLvrVUNFk!/b&bo=UAE8AAAAAAADF18!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcdyCb3JzIOWog8CzpCt9v4J0*Jd5YW5T*rg0eeMrbvqoLuE0ZW*6P4fGI3CQfqUS2NBiuyAcJsPR*g8j3zN*6PQ!/b&bo=*wAoAAAAAAADF.U!&rf=viewer_4">
-<meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcdyCb3JzIOWog8CzpCt9v4LhM5r6MhCVnNt9Mk2GxH5xG08N6FMtAA*w7JUBrzOTCjCN13nvwKSgTGQvPDXyros!/b&bo=7AAoAAAAAAADF*Y!&rf=viewer_4">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20c%20=%20m%5E%7Be%7Dmod(n)">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20m%20=%20c%5E%7Bd%7D%20mod(n)">
-<meta property="article:published_time" content="2021-12-08T12:28:14.000Z">
-<meta property="article:modified_time" content="2021-12-09T03:41:03.192Z">
 <meta property="article:author" content="Harry0597">
-<meta property="article:tag" content="Crypto">
-<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://latex.codecogs.com/gif.latex?%5Cbg_white%20%5Cphi(p%5E%7Bk%7D)=p%5E%7Bk%7D-p%5E%7Bk-1%7D">
 
-<link rel="canonical" href="https://harry0597.com/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">
+<link rel="canonical" href="https://harry0597.com/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Crypto·RSA算法入门之原理学习 | Harry0597の博客</title>
+  <title>Harry0597の博客</title>
   
 
 
@@ -195,10 +178,118 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2021/12/09/Mac%20Terminal%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_2550.JPG">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry0597の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/09/Mac%20Terminal%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Mac Terminal入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-09 10:43:23 / 修改时间：10:45:12" itemprop="dateCreated datePublished" datetime="2021-12-09T10:43:23+08:00">2021-12-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
 
     
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Mac-Terminal-basics-tutorial"><a href="#Mac-Terminal-basics-tutorial" class="headerlink" title="Mac Terminal basics tutorial"></a>Mac Terminal basics tutorial</h1><h2 id="·Code-form"><a href="#·Code-form" class="headerlink" title="·Code form"></a>·Code form</h2><p><img src="https://cdn.sspai.com/2018/07/11/e2b9dacea1df4a1045546ff298a08c50.png" alt="img"></p>
+<hr>
+<h2 id="·Basic-code"><a href="#·Basic-code" class="headerlink" title="·Basic code"></a>·Basic code</h2><ol>
+<li><h3 id="echo-｜-Print"><a href="#echo-｜-Print" class="headerlink" title="echo ｜ Print"></a>echo ｜ Print</h3></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, world!&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><h3 id="About-file"><a href="#About-file" class="headerlink" title="About file"></a>About file</h3><p>· <strong>pwd | show current path</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+
+<p>· <strong>cd | change the path</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Users/wenhui/Desktop</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.sspai.com/2018/07/05/8d0427a0705812a7d1e7611041f0e9b6.gif" alt="拖入快速提取路径"></p>
+<p>!:  u can <strong>drug</strong> it into Terminal to get  the file path directly. </p>
+<p>· <strong>ls</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -R </span><br><span class="line"><span class="comment"># List all subfolders</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="clear-｜-Clear-screen"><a href="#clear-｜-Clear-screen" class="headerlink" title="clear  ｜ Clear screen"></a>clear  ｜ Clear screen</h3></li>
+<li><h3 id="sudo-Get-administrator-privileges"><a href="#sudo-Get-administrator-privileges" class="headerlink" title="sudo | Get administrator privileges"></a>sudo | Get administrator privileges</h3></li>
+<li><h3 id="man-XXX-Learn-the-useage-of-XXX"><a href="#man-XXX-Learn-the-useage-of-XXX" class="headerlink" title="man XXX | Learn the useage of XXX"></a>man XXX | Learn the useage of XXX</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.sspai.com/2018/07/05/0cf24c3eea3cda8441e4d4565cfc7dde.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="man"></h3><p>!: Press <strong>q</strong> to exit</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3></li>
+<li><h3 id="caffeinate-Keep-mac-work"><a href="#caffeinate-Keep-mac-work" class="headerlink" title="caffeinate | Keep mac work"></a>caffeinate | Keep mac work</h3><p><img src="https://cdn.sspai.com/2018/07/05/492e9c629f9a436bf5eb901dcff1faec.png" alt="img"></p>
+<p>!: Press <strong>^Control -C</strong> to stop</p>
+</li>
+<li><h3 id="killall-XXX-Kill-XXX"><a href="#killall-XXX-Kill-XXX" class="headerlink" title="killall XXX | Kill XXX"></a>killall XXX | Kill XXX</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall WeChat </span><br></pre></td></tr></table></figure></li>
+<li><h3 id="defaults"><a href="#defaults" class="headerlink" title="defaults"></a>defaults</h3><p>· Screencapture type</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.screencapture <span class="built_in">type</span> jpg</span><br><span class="line"><span class="comment"># -&gt; JPEG</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.screencapture <span class="built_in">type</span> png</span><br><span class="line"><span class="comment"># -&gt; PNG</span></span><br></pre></td></tr></table></figure>
+
+<p>· show / Hide Folder</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span>; killall Finder</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span>; killall Finder</span><br></pre></td></tr></table></figure>
+
+<p>!: <strong>ls -a</strong> also can be used to show hide folders</p>
+<p>​     · Dock</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dock persistent-apps -array-add <span class="string">&#x27;&#123;&quot;tile-type&quot;=&quot;spacer-tile&quot;;&#125;&#x27;</span>; killall Dock</span><br><span class="line"><span class="comment"># Add a blank boundary symbol</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="为程序栏加分界符"></p>
+<p>!; When u find there are too many symbols in Dock, u can <strong>delete</strong> it just by <strong>dragging</strong>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults delete com.apple.dock; killall Dock</span><br><span class="line"><span class="comment"># Restore Dock to factory settings</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg" alt="img"></p>
+</li>
+<li><h3 id="amazing-echo"><a href="#amazing-echo" class="headerlink" title="amazing echo"></a>amazing echo</h3></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner -w 80 0HB</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcX0BNK3pjcJhOngJrWUCYRnMOVF6TX5VQtOFZpfj4j7lrwiGG5km*zBr83hbBQqmiRKC4Dt3NeJPCMS0Wihvlrg!/b&bo=OAQLBQAAAAADV0A!&rf=viewer_4" alt="ae"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -214,9 +305,10 @@
       <meta itemprop="name" content="Harry0597の博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Crypto·RSA算法入门之原理学习
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Crypto·RSA算法入门之原理学习</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -246,7 +338,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="RSA-复习—阮一峰日志学习笔记"><a href="#RSA-复习—阮一峰日志学习笔记" class="headerlink" title="RSA 复习—阮一峰日志学习笔记"></a>RSA 复习—阮一峰日志学习笔记</h1><h2 id="1-RSA算法产生的背景"><a href="#1-RSA算法产生的背景" class="headerlink" title="1. RSA算法产生的背景:"></a>1. RSA算法产生的背景:</h2><p>1976年以前，所有的加密方法都是同一种模式：</p>
+          <h1 id="RSA-复习—阮一峰日志学习笔记"><a href="#RSA-复习—阮一峰日志学习笔记" class="headerlink" title="RSA 复习—阮一峰日志学习笔记"></a>RSA 复习—阮一峰日志学习笔记</h1><h2 id="1-RSA算法产生的背景"><a href="#1-RSA算法产生的背景" class="headerlink" title="1. RSA算法产生的背景:"></a>1. RSA算法产生的背景:</h2><p>1976年以前，所有的加密方法都是同一种模式：</p>
 <h3 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E5%AF%B9%E7%AD%89%E5%8A%A0%E5%AF%86">对称加密算法</a></h3><blockquote>
 <p>（1）甲方选择某一种加密规则，对信息进行加密；<br>（2）乙方使用同一种规则，对信息进行解密。</p>
 </blockquote>
@@ -375,55 +467,114 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodome</span><br><span class="line">pip install gmpy2</span><br></pre></td></tr></table></figure>
 
 
+      
     </div>
 
     
     
     
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>Harry0597
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://harry0597.com/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/" title="Crypto·RSA算法入门之原理学习">https://harry0597.com/2021/12/08/Crypto·RSA原理学习/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Crypto/" rel="tag"># Crypto</a>
-              <a href="/tags/CTF/" rel="tag"># CTF</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/" rel="prev" title="Crypto·Py3编码">
-      <i class="fa fa-chevron-left"></i> Crypto·Py3编码
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/09/Mac%20Terminal%E5%85%A5%E9%97%A8/" rel="next" title="Mac Terminal入门">
-      Mac Terminal入门 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_2550.JPG">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry0597の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">Crypto·Py3编码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-08 19:15:51" itemprop="dateCreated datePublished" datetime="2021-12-08T19:15:51+08:00">2021-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-09 11:36:08" itemprop="dateModified" datetime="2021-12-09T11:36:08+08:00">2021-12-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CTF特训营-·-编码"><a href="#CTF特训营-·-编码" class="headerlink" title="CTF特训营 · 编码"></a>CTF特训营 · 编码</h1><h2 id="Py3-解决历史遗留问题"><a href="#Py3-解决历史遗留问题" class="headerlink" title="Py3 解决历史遗留问题"></a>Py3 解决历史遗留问题</h2><h3 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1. 字符串"></a>1. 字符串</h3><ul>
+<li>初级</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;flag&#x27;</span></span><br><span class="line">hex_a = a.encode().<span class="built_in">hex</span>()  <span class="comment"># encode转字节型后再转十六进制</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>中等</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">a = binascii.hexlify(<span class="string">b&#x27;flag&#x27;</span>)  <span class="comment"># 字符串转字节转十六进制</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">num = <span class="number">584734024210391580014049650557280915516226103165</span></span><br><span class="line">a = <span class="built_in">hex</span>(num)[<span class="number">2</span>:]  <span class="comment"># 十六进制，去0x</span></span><br><span class="line">a = binascii.unhexlify(a)  <span class="comment"># 十六进制转字节型</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>高级</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">num = <span class="number">584734024210391580014049650557280915516226103165</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(num))</span><br><span class="line"><span class="built_in">print</span>(bytes_to_long(<span class="string">b&#x27;flag(123)&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-字符"><a href="#2-字符" class="headerlink" title="2. 字符"></a>2. 字符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)  <span class="comment"># ‘a’的十进制的ascii码 </span></span><br><span class="line">a = <span class="string">b&#x27;a&#x27;</span>.<span class="built_in">hex</span>() <span class="comment"># &#x27;a&#x27;的十六进制adcii码</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-整数"><a href="#3-整数" class="headerlink" title="3.整数"></a>3.整数</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">a</span> = hex(<span class="number">123</span>)</span><br><span class="line"><span class="attr">b</span> = bin(<span class="number">789</span>)</span><br><span class="line"><span class="attr">c</span> = oct(<span class="number">101</span>)</span><br><span class="line"><span class="attr">d</span> = int(<span class="string">&#x27;666c&#x27;</span>, <span class="number">16</span>) </span><br></pre></td></tr></table></figure>
+
+<h2 id="Base-转码"><a href="#Base-转码" class="headerlink" title="Base 转码"></a>Base 转码</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(base64.b32encode(b<span class="string">&#x27;flag&#x27;</span>)</span></span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(base64.b64decode(<span class="string">&#x27;QVNU&#x27;</span>)</span></span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
@@ -475,7 +626,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA-%E5%A4%8D%E4%B9%A0%E2%80%94%E9%98%AE%E4%B8%80%E5%B3%B0%E6%97%A5%E5%BF%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">RSA 复习—阮一峰日志学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-RSA%E7%AE%97%E6%B3%95%E4%BA%A7%E7%94%9F%E7%9A%84%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">1. RSA算法产生的背景:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">对称加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%B1%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">弱点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">非对称加密算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数学知识储备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">·互质关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%92%E8%B4%A8%E7%BB%93%E8%AE%BA"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">互质结论:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">·欧拉函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">引入：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%EF%BC%9A"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">讨论：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.3.</span> <span class="nav-text">·欧拉定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%EF%BC%9A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E2%80%94%E5%90%8C%E4%BD%99"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">注：补充知识—同余</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">欧拉定理特殊情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.4.</span> <span class="nav-text">·模反元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-RSA%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">3. RSA加解密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.3.1.</span> <span class="nav-text">·密钥生成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">·加密和解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-CTF%E4%B8%ADRSA%E7%AE%97%E6%B3%95%E9%A2%98"><span class="nav-number">1.3.3.</span> <span class="nav-text">4. CTF中RSA算法题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%C2%B7%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">1.3.4.</span> <span class="nav-text">·需要安装的第三方库</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
