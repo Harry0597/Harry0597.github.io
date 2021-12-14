@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Mac Terminal basics tutorial·Code form  ·Basic code echo ｜ Print  12echo &quot;Hello, world!&quot;   About file· pwd | show current path 1pwd  · cd | change the path 1cd &#x2F;Users&#x2F;wenhui&#x2F;Desktop   !:  u">
+  <meta name="description" content="Mac Terminal basics tutorial·Code form  ·Basic code echo ｜ Print  echo &quot;Hello, world!&quot;   About file· pwd | show current path pwd  · cd | change the path cd &#x2F;Users&#x2F;wenhui&#x2F;Desktop   !:  u can">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac Terminal入门">
 <meta property="og:url" content="https://harry0597.com/2021/12/09/Mac%20Terminal%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Harry0597の博客">
-<meta property="og:description" content="Mac Terminal basics tutorial·Code form  ·Basic code echo ｜ Print  12echo &quot;Hello, world!&quot;   About file· pwd | show current path 1pwd  · cd | change the path 1cd &#x2F;Users&#x2F;wenhui&#x2F;Desktop   !:  u">
+<meta property="og:description" content="Mac Terminal basics tutorial·Code form  ·Basic code echo ｜ Print  echo &quot;Hello, world!&quot;   About file· pwd | show current path pwd  · cd | change the path cd &#x2F;Users&#x2F;wenhui&#x2F;Desktop   !:  u can">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.sspai.com/2018/07/11/e2b9dacea1df4a1045546ff298a08c50.png">
 <meta property="og:image" content="https://cdn.sspai.com/2018/07/05/8d0427a0705812a7d1e7611041f0e9b6.gif">
@@ -208,19 +208,22 @@
 <h2 id="·Basic-code"><a href="#·Basic-code" class="headerlink" title="·Basic code"></a>·Basic code</h2><ol>
 <li><h3 id="echo-｜-Print"><a href="#echo-｜-Print" class="headerlink" title="echo ｜ Print"></a>echo ｜ Print</h3></li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, world!&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">echo &quot;Hello, world!&quot;
+</code></pre>
 <ol start="2">
 <li><h3 id="About-file"><a href="#About-file" class="headerlink" title="About file"></a>About file</h3><p>· <strong>pwd | show current path</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">pwd
+</code></pre>
 <p>· <strong>cd | change the path</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Users/wenhui/Desktop</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">cd /Users/wenhui/Desktop
+</code></pre>
 <p><img src="https://cdn.sspai.com/2018/07/05/8d0427a0705812a7d1e7611041f0e9b6.gif" alt="拖入快速提取路径"></p>
 <p>!:  u can <strong>drug</strong> it into Terminal to get  the file path directly. </p>
 <p>· <strong>ls</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -R </span><br><span class="line"><span class="comment"># List all subfolders</span></span><br></pre></td></tr></table></figure></li>
+<pre><code class="bash">ls -R 
+# List all subfolders
+</code></pre>
+</li>
 <li><h3 id="clear-｜-Clear-screen"><a href="#clear-｜-Clear-screen" class="headerlink" title="clear  ｜ Clear screen"></a>clear  ｜ Clear screen</h3></li>
 <li><h3 id="sudo-Get-administrator-privileges"><a href="#sudo-Get-administrator-privileges" class="headerlink" title="sudo | Get administrator privileges"></a>sudo | Get administrator privileges</h3></li>
 <li><h3 id="man-XXX-Learn-the-useage-of-XXX"><a href="#man-XXX-Learn-the-useage-of-XXX" class="headerlink" title="man XXX | Learn the useage of XXX"></a>man XXX | Learn the useage of XXX</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.sspai.com/2018/07/05/0cf24c3eea3cda8441e4d4565cfc7dde.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="man"></h3><p>!: Press <strong>q</strong> to exit</p>
@@ -228,31 +231,37 @@
 <li><h3 id="caffeinate-Keep-mac-work"><a href="#caffeinate-Keep-mac-work" class="headerlink" title="caffeinate | Keep mac work"></a>caffeinate | Keep mac work</h3><p><img src="https://cdn.sspai.com/2018/07/05/492e9c629f9a436bf5eb901dcff1faec.png" alt="img"></p>
 <p>!: Press <strong>^Control -C</strong> to stop</p>
 </li>
-<li><h3 id="killall-XXX-Kill-XXX"><a href="#killall-XXX-Kill-XXX" class="headerlink" title="killall XXX | Kill XXX"></a>killall XXX | Kill XXX</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall WeChat </span><br></pre></td></tr></table></figure></li>
+<li><h3 id="killall-XXX-Kill-XXX"><a href="#killall-XXX-Kill-XXX" class="headerlink" title="killall XXX | Kill XXX"></a>killall XXX | Kill XXX</h3><pre><code class="bash">killall WeChat 
+</code></pre>
+</li>
 <li><h3 id="defaults"><a href="#defaults" class="headerlink" title="defaults"></a>defaults</h3><p>· Screencapture type</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.screencapture <span class="built_in">type</span> jpg</span><br><span class="line"><span class="comment"># -&gt; JPEG</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.screencapture <span class="built_in">type</span> png</span><br><span class="line"><span class="comment"># -&gt; PNG</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">defaults write com.apple.screencapture type jpg
+# -&gt; JPEG
+</code></pre>
+<pre><code class="bash">defaults write com.apple.screencapture type png
+# -&gt; PNG
+</code></pre>
 <p>· show / Hide Folder</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span>; killall Finder</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span>; killall Finder</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">defaults write com.apple.finder AppleShowAllFiles -bool true; killall Finder
+</code></pre>
+<pre><code class="bash">defaults write com.apple.finder AppleShowAllFiles -bool false; killall Finder
+</code></pre>
 <p>!: <strong>ls -a</strong> also can be used to show hide folders</p>
 <p>​     · Dock</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dock persistent-apps -array-add <span class="string">&#x27;&#123;&quot;tile-type&quot;=&quot;spacer-tile&quot;;&#125;&#x27;</span>; killall Dock</span><br><span class="line"><span class="comment"># Add a blank boundary symbol</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">defaults write com.apple.dock persistent-apps -array-add &#39;&#123;&quot;tile-type&quot;=&quot;spacer-tile&quot;;&#125;&#39;; killall Dock
+# Add a blank boundary symbol
+</code></pre>
 <p><img src="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="为程序栏加分界符"></p>
 <p>!; When u find there are too many symbols in Dock, u can <strong>delete</strong> it just by <strong>dragging</strong>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults delete com.apple.dock; killall Dock</span><br><span class="line"><span class="comment"># Restore Dock to factory settings</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">defaults delete com.apple.dock; killall Dock
+# Restore Dock to factory settings
+</code></pre>
 <p><img src="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg" alt="img"></p>
 </li>
 <li><h3 id="amazing-echo"><a href="#amazing-echo" class="headerlink" title="amazing echo"></a>amazing echo</h3></li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner -w 80 0HB</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">banner -w 80 0HB
+</code></pre>
 <p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcX0BNK3pjcJhOngJrWUCYRnMOVF6TX5VQtOFZpfj4j7lrwiGG5km*zBr83hbBQqmiRKC4Dt3NeJPCMS0Wihvlrg!/b&bo=OAQLBQAAAAADV0A!&rf=viewer_4" alt="ae"></p>
 
     </div>

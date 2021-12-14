@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Misc·buu题解及工具下载1. Misc工具–zsteg·简介 zsteg 是Github上开源的PNG、BMP文件隐写爆破工具  ·安装终端依次输入: 123git clone https:&#x2F;&#x2F;github.com&#x2F;zed-0xff&#x2F;zstegcd zsteg&#x2F;gem install zsteg  若提示权限不够，终端输入: 1sudo su  如果下的太慢了，换源（终端依次输入: 123g">
+  <meta name="description" content="Misc·buu题解及工具下载1. Misc工具–zsteg·简介 zsteg 是Github上开源的PNG、BMP文件隐写爆破工具  ·安装终端依次输入: git clone https:&#x2F;&#x2F;github.com&#x2F;zed-0xff&#x2F;zsteg cd zsteg&#x2F; gem install zsteg  若提示权限不够，终端输入: sudo su  如果下的太慢了，换源（终端依次输入: gem so">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Misc·buu刷题记录">
 <meta property="og:url" content="https://harry0597.com/2021/12/09/Misc%C2%B7buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Harry0597の博客">
-<meta property="og:description" content="Misc·buu题解及工具下载1. Misc工具–zsteg·简介 zsteg 是Github上开源的PNG、BMP文件隐写爆破工具  ·安装终端依次输入: 123git clone https:&#x2F;&#x2F;github.com&#x2F;zed-0xff&#x2F;zstegcd zsteg&#x2F;gem install zsteg  若提示权限不够，终端输入: 1sudo su  如果下的太慢了，换源（终端依次输入: 123g">
+<meta property="og:description" content="Misc·buu题解及工具下载1. Misc工具–zsteg·简介 zsteg 是Github上开源的PNG、BMP文件隐写爆破工具  ·安装终端依次输入: git clone https:&#x2F;&#x2F;github.com&#x2F;zed-0xff&#x2F;zsteg cd zsteg&#x2F; gem install zsteg  若提示权限不够，终端输入: sudo su  如果下的太慢了，换源（终端依次输入: gem so">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mce5Ro9REz5tEqwJEdRmdorweoecax4nllCdFRWongj19mPI7hD4hLGdB5MpXcHBAriN1mtAzNRHbkFKX3htKLnU!/b&bo=ogZmAwAAAAADR6M!&rf=viewer_4">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210203220402585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzU2MzU0OA==,size_16,color_FFFFFF,t_70">
@@ -211,42 +211,44 @@
 <p>zsteg 是Github上开源的<strong>PNG</strong>、<strong>BMP</strong>文件<strong>隐写爆破</strong>工具</p>
 </blockquote>
 <h3 id="·安装"><a href="#·安装" class="headerlink" title="·安装"></a>·安装</h3><p><strong>终端</strong>依次输入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zed-0xff/zsteg</span><br><span class="line"><span class="built_in">cd</span> zsteg/</span><br><span class="line">gem install zsteg</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">git clone https://github.com/zed-0xff/zsteg
+cd zsteg/
+gem install zsteg
+</code></pre>
 <p>若提示<strong>权限不够</strong>，终端输入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo su
+</code></pre>
 <p>如果下的太慢了，<strong>换源</strong>（<strong>终端</strong>依次输入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources --add https://gems.ruby-china.com/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
-
-<h3 id="·使用"><a href="#·使用" class="headerlink" title="·使用"></a>·使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -a file_path</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">gem sources --remove https://rubygems.org/
+gem sources --add https://gems.ruby-china.com/
+gem sources -l
+</code></pre>
+<h3 id="·使用"><a href="#·使用" class="headerlink" title="·使用"></a>·使用</h3><pre><code class="bash">zsteg -a file_path
+</code></pre>
 <h3 id="·-效果图"><a href="#·-效果图" class="headerlink" title="· 效果图"></a>· 效果图</h3><p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mce5Ro9REz5tEqwJEdRmdorweoecax4nllCdFRWongj19mPI7hD4hLGdB5MpXcHBAriN1mtAzNRHbkFKX3htKLnU!/b&bo=ogZmAwAAAAADR6M!&rf=viewer_4" alt="img"></p>
 <p>（题源：2021春秋杯秋季赛勇者赛道·Misc·**helloshark</p>
 <h2 id="2-Misc工具–foremsot"><a href="#2-Misc工具–foremsot" class="headerlink" title="2. Misc工具–foremsot"></a>2. Misc工具–foremsot</h2><h3 id="·简介-1"><a href="#·简介-1" class="headerlink" title="·简介"></a>·简介</h3><blockquote>
 <p>同binwalk(Kali自带)功能一样，具有拆分隐藏文件的功能，不同在于自动生成并放入output文件夹中</p>
 </blockquote>
 <h3 id="·安装-1"><a href="#·安装-1" class="headerlink" title="·安装"></a>·安装</h3><p><strong>终端</strong>输入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install foremost</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">apt-get install foremost
+</code></pre>
 <ul>
 <li>若提示:</li>
 </ul>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E: Unable <span class="keyword">to</span> fetch <span class="keyword">some</span> archives, maybe <span class="built_in">run</span> apt-<span class="keyword">get</span> update <span class="keyword">or</span> <span class="keyword">try</span> <span class="keyword">with</span> <span class="comment">--fix-missing?</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+</code></pre>
 <ul>
 <li>则要更新了，输入：</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">apt-get update
+</code></pre>
 <p>最后检查安装是否成功，输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost -h</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">foremost -h
+</code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20210203220402585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzU2MzU0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="·使用-1"><a href="#·使用-1" class="headerlink" title="·使用"></a>·使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost file_path</span><br></pre></td></tr></table></figure>
-
-
-
+<h3 id="·使用-1"><a href="#·使用-1" class="headerlink" title="·使用"></a>·使用</h3><pre><code class="bash">foremost file_path
+</code></pre>
 <h2 id="3-Misc·N种方法解决"><a href="#3-Misc·N种方法解决" class="headerlink" title="3.Misc·N种方法解决"></a>3.Misc·N种方法解决</h2><h4 id="·题目"><a href="#·题目" class="headerlink" title="·题目"></a>·题目</h4><blockquote>
 <p>下载后得到key.exe</p>
 </blockquote>
@@ -258,7 +260,14 @@
 </blockquote>
 <ul>
 <li><p>密码手看到base64，兴奋。之后网页解码不给力，用python3跑了下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b64 = <span class="string">b&#x27;iVBORw0KGgoAAAANSUhEUgAAAIUAAACFCAYAAAB12js8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAArZSURBVHhe7ZKBitxIFgTv/396Tx564G1UouicKg19hwPCDcrMJ9m7/7n45zfdxe5Z3sJ7prHbf9rXO3P4lLvYPctbeM80dvtP+3pnDp9yF7tneQvvmcZu/2lf78zhU+5i9yxv4T3T2O0/7eud68OT2H3LCft0l/ae9ZlTo+23pPvX7/rwJHbfcsI+3aW9Z33m1Gj7Len......U5ErkJggg==&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(b64))</span><br><span class="line"><span class="comment"># b&#x27;\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x85\x00\x00\x00\x85\x08\x06\x00\x00\x00u\xda;&lt;\x00\x00\x00\x01sRG...\xc2\r\xca\xcc\&#x27;\xd9\x...ffi_\xef\xcc\xe1S\xeeb\xf7,o\xe1=\xd3\xd8\xed?\xed\xeb\x9d\....\x7f\x1a\xbe\xdf$\x96\x1b\xb6\xb7\x9c\x9c\xe8_\xbf\xeb\xc3\x93\xd8&#125;\xcb\x9f\x86\xef7\x89\xe5\x86\xed-\&#x27;\&#x27;\xfa\xd7\xef\xfa\xf0$v\xdf\xf2\xa7\xe1\xfbMb\xb9a&#123;\xcb\xc9\x89\xfe\xf5\xbb&gt;&lt;\x89\xdd\xb7\xfci\xf...x00IEND\xaeB`\x82&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<pre><code class="python">import base64
+
+
+b64 = b&#39;iVBORw0KGgoAAAANSUhEUgAAAIUAAACFCAYAAAB12js8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAArZSURBVHhe7ZKBitxIFgTv/396Tx564G1UouicKg19hwPCDcrMJ9m7/7n45zfdxe5Z3sJ7prHbf9rXO3P4lLvYPctbeM80dvtP+3pnDp9yF7tneQvvmcZu/2lf78zhU+5i9yxv4T3T2O0/7eud68OT2H3LCft0l/ae9ZlTo+23pPvX7/rwJHbfcsI+3aW9Z33m1Gj7Len......U5ErkJggg==&#39;
+print(base64.b64decode(b64))
+# b&#39;\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x85\x00\x00\x00\x85\x08\x06\x00\x00\x00u\xda;&lt;\x00\x00\x00\x01sRG...\xc2\r\xca\xcc\&#39;\xd9\x...ffi_\xef\xcc\xe1S\xeeb\xf7,o\xe1=\xd3\xd8\xed?\xed\xeb\x9d\....\x7f\x1a\xbe\xdf$\x96\x1b\xb6\xb7\x9c\x9c\xe8_\xbf\xeb\xc3\x93\xd8&#125;\xcb\x9f\x86\xef7\x89\xe5\x86\xed-\&#39;\&#39;\xfa\xd7\xef\xfa\xf0$v\xdf\xf2\xa7\xe1\xfbMb\xb9a&#123;\xcb\xc9\x89\xfe\xf5\xbb&gt;&lt;\x89\xdd\xb7\xfci\xf...x00IEND\xaeB`\x82&#39;
+</code></pre>
+</li>
 <li><p>看到了PNG，高兴。其后如何也得不到下一步思路，看题解后，<strong>开了眼了</strong>🤔</p>
 </li>
 <li><p><strong>将第一步string内容完整复制到网页端</strong>,得到二维码，扫码即得flag。</p>
