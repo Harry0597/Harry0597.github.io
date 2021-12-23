@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Crypto学习总结与规划</title>
+      <link href="/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/"/>
+      <url>/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="自我总结"><a href="#自我总结" class="headerlink" title="自我总结"></a>自我总结</h1><h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>这一学期在实验室学到了很多…</p><ul><li>什么是CTF</li><li>CTF·Crypto</li><li>Markdown</li><li>TCP/IP</li><li>个人博客</li><li>……</li></ul><p>在我看来，到目前为止最大的收获反倒不是具体涨了多少知识，而是多了一种<strong>可能性</strong>，一种<strong>氛围</strong>。</p><p>不只是停留在好奇、观望的层面，实验室的存在，让我有了学习任何知识的可能与决心。</p><p>通过每次例会复盘每次学习，通过讨论、学习、打比赛（受虐阶段）大家凝聚起来，实验室提供的优秀学习环境衍生出的良好氛围让我受益匪浅，能够持续的学习下去。</p><h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><h3 id="学习方面"><a href="#学习方面" class="headerlink" title="学习方面"></a>学习方面</h3><ol><li><strong>方向</strong>混乱，对整个知识体系没有概念。</li><li>学习现代密码进度缓慢，<strong>安排</strong>不合理。</li><li>对当下CTF<strong>比赛所需</strong>要的能力、知识没有清晰的了解、明确的规划</li></ol><h3 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h3><ol><li><strong>小组学习制度</strong>没有落实下来，与大家少了交流学习的机会</li><li>长期<strong>茫然</strong>导致学习CTF的欲望衰退</li><li>正儿八经的CTF比赛<strong>没什么产出</strong></li></ol><h2 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h2><blockquote><p>昨日，听了前CTFer、现网安从业者Xenny的<a href="https://www.bilibili.com/video/BV1MB4y1K78r">学习经历</a>，有以下启发。</p><script src="/js/youtube-autoresizer.js"></script></blockquote><iframe width="800" height="450" src="https://www.bilibili.com/video/BV1MB4y1K78r" frameborder="0" allowfullscreen></iframe><h3 id="思想层面——定位"><a href="#思想层面——定位" class="headerlink" title="思想层面——定位"></a>思想层面——定位</h3><h4 id="定位团队"><a href="#定位团队" class="headerlink" title="定位团队"></a>定位团队</h4><p>从意识上开始有正确认知，调动主观能动性。</p><p>定位学校的CTF团队的位置。</p><p>是有着科学安排、严格训练的CTF强校的强队，还是将成未成的团队？</p><p>自然，前者只需要跟着学习、训练就够。但倘若是后者，就得更多思考，对自己要有更多的要求、计划。</p><h4 id="定位自己"><a href="#定位自己" class="headerlink" title="定位自己"></a>定位自己</h4><p>知识永远有新的。</p><p>这要求我们定位出自己的位置。清晰的了解到自己的知识、能力在哪一个阶段，能解出什么题。</p><p>若是随意的、漫无目的的学，知识永远不会成体系。</p><h4 id="定位他人"><a href="#定位他人" class="headerlink" title="定位他人"></a>定位他人</h4><p>一个原则，<strong>个人发展大于团队发展。</strong></p><p>怪矛盾的一件事情</p><p>大意是：</p><p>自己可以因为热爱而为CTF全力以赴、牺牲些什么，但不能把自己的追求强加给别人。</p><p>尊重他人的选择。</p><h3 id="执行层面——积累"><a href="#执行层面——积累" class="headerlink" title="执行层面——积累"></a>执行层面——积累</h3><blockquote><p>同时针对<strong>寒假</strong>与未来<strong>在校的CTF学习</strong></p></blockquote><h4 id="积累原理"><a href="#积累原理" class="headerlink" title="积累原理"></a>积累原理</h4><p>勤奋<strong>抓底层逻辑</strong></p><p>对于新鲜事物的学习，不以利用为最终目标，要知其所以然，多解释为什么。</p><p>这样，才能做到量变引起质变，才能有所突破。</p><h4 id="积累内容"><a href="#积累内容" class="headerlink" title="积累内容"></a>积累内容</h4><p>找到方向一致的伙伴，成立方向定位足够准确的小组，<strong>落实小组学习</strong>。</p><p>小组定好学习目标，每周进行出题交互，交换思路。</p><p>Github开仓库/BBS，对每周每月的小组学习内容进行存贮。</p><p>最后所有方向的小组学习内容汇总，方便组员复习，后人学习。</p><p>每一学期复盘会清楚地知道学了些什么，有什么可以改进的地方。</p><h4 id="积累经验"><a href="#积累经验" class="headerlink" title="积累经验"></a>积累经验</h4><p>积极参与各大赛事，<strong>做题认认真真地做</strong>，复盘必不可少。</p><p> 关于复盘，要求个人写出详细的Wp，，最后与各大博客的、官方的对比学习，针对弱题目，再对此进行复盘。</p><h1 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h1><h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><p>《数论》</p><p>《近世代数基础》</p><h2 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h2><p>《CTF特训营》</p><p>《密码学原理与应用》</p><p><a href="https://ctf-wiki.org/crypto/introduction/">CTF·Wiki·Crypto</a></p><p><a href="https://www.zhihu.com/question/36289177/answer/70140709">一个月入门密码训练</a></p><p>（完）</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Crypto </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>机械制图拾遗</title>
       <link href="/2021/12/21/%E6%9C%BA%E6%A2%B0%E5%88%B6%E5%9B%BE%E6%8B%BE%E9%81%97/"/>
       <url>/2021/12/21/%E6%9C%BA%E6%A2%B0%E5%88%B6%E5%9B%BE%E6%8B%BE%E9%81%97/</url>
@@ -46,7 +65,7 @@
       <link href="/2021/12/18/%E6%9D%82%E8%AE%B0%E4%B8%80/"/>
       <url>/2021/12/18/%E6%9D%82%E8%AE%B0%E4%B8%80/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="今天是空闲的"><a href="#今天是空闲的" class="headerlink" title="今天是空闲的"></a>今天是空闲的</h1><p>  <strong>十二月十八日</strong>是CET-4即四级考试的日子。</p><p>  为了提供场地，图书馆、丹青楼（教学楼）都被征用了。</p><p>  紧锣密鼓的，人群在窜动。</p><p>  清晨八点半考点报道，晌午十一点二十便结束了。</p><p>  时间是撞上了，刚刚好吃上口热饭。</p><hr><h1 id="考的并不理想"><a href="#考的并不理想" class="headerlink" title="考的并不理想"></a>考的并不理想</h1><p>  “没有安排好来。”</p><p>  走在路上，我在想着这个问题。</p><p>  不同于刚来时，无方向可寻的迷茫，而是方向有些多了，学业繁重而热情分散。</p><p>  或许最大的困惑，是<strong>自学</strong>大学学科<strong>缺乏</strong>了<strong>科学安排与节奏感</strong>，学业显得极端繁重。</p><p>  连基本学科内容都准备的匆忙，何况这有多次机会的四级呢？</p><p>  <strong>我在逃避，但确实在往前走</strong>，路过文法学院。</p><p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcXwZ62ogyeL*IljBkwngA5IrsAaa68CDSmNdrk.OUomtpPliMccqL*tEHC6yGXOWEcLBsh92fqbLWLtPHkrWXpg!/b&bo=oAU4BAAAAAABN4k!&rf=viewer_4" alt="对街“松鼠乐”"></p><hr><h1 id="天晴雪明"><a href="#天晴雪明" class="headerlink" title="天晴雪明"></a>天晴雪明</h1><p>  再走几步，就到俭德（食堂名）了。</p><p>  或许，我本该有些忧愁的。</p><p>  <strong>但还有机会。</strong></p><p>  还有试错的机会，并不是庆幸，用“下次”来麻痹自己。</p><p>  而是，为这自由本能的向往。</p><blockquote><p><strong>It’s my own design</strong><br><strong>It’s my own remorse</strong><br><strong>Acting on your best behavior</strong><br><strong>Turn your back on mother nature</strong><br>                               – 《Born To Fire》</p></blockquote><p>  诚然，选择了报名，却没有充分准备无疑是过错。</p><p>  但然后呢？</p><p>  我没有失去自己最纯粹的追求，走过的每一步都无愧于心。</p><p>  我收获的不止是失败。</p><p>  <strong>属于自己的人生，完全由自己设计，为此负担所有责任。</strong></p><hr><h1 id="到食堂了"><a href="#到食堂了" class="headerlink" title="到食堂了"></a>到食堂了</h1><p>  点下了菜。</p><p>  哈哈，吃的不是果蔬肉蛋，而是<strong>人间烟火！</strong></p><p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYbP4vBhKWZ7y2piI9p0s3URt5AgNj*oAHK9VR0ADvRIbDWVFklqWr4ffAfxPXvfAXwUkJW3kUFk*w6PWk9PGWI!/b&bo=4AVOAwAAAAABJ6g!&rf=viewer_4" alt="黑椒肥牛饭"></p><p>  不用多想，吃下这口热饭。</p><p>  挺起胸膛，堂堂正正的。</p><h1 id="趁脑子发热，我们要不顾一切。"><a href="#趁脑子发热，我们要不顾一切。" class="headerlink" title="趁脑子发热，我们要不顾一切。"></a>趁脑子发热，我们要不顾一切。</h1>        <div id="aplayer-PIqZSTyd" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">            <pre class="aplayer-lrc-content"></pre>        </div>        <script>          var ap = new APlayer({            element: document.getElementById("aplayer-PIqZSTyd"),            narrow: false,            autoplay: true,            showlrc: false,            music: {              title: "Born To Fire",              author: "艾福杰尼",              url: "http://r4ay0wyvy.hn-bkt.clouddn.com/艾福杰尼%20-%20Born%20To%20Fire.mp3",              pic: "http://r4ay0wyvy.hn-bkt.clouddn.com/test.png",              lrc: ""            }          });          window.aplayers || (window.aplayers = []);          window.aplayers.push(ap);        </script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="今天是空闲的"><a href="#今天是空闲的" class="headerlink" title="今天是空闲的"></a>今天是空闲的</h1><p>  <strong>十二月十八日</strong>是CET-4即四级考试的日子。</p><p>  为了提供场地，图书馆、丹青楼（教学楼）都被征用了。</p><p>  紧锣密鼓的，人群在窜动。</p><p>  清晨八点半考点报道，晌午十一点二十便结束了。</p><p>  时间是撞上了，刚刚好吃上口热饭。</p><hr><h1 id="考的并不理想"><a href="#考的并不理想" class="headerlink" title="考的并不理想"></a>考的并不理想</h1><p>  “没有安排好来。”</p><p>  走在路上，我在想着这个问题。</p><p>  不同于刚来时，无方向可寻的迷茫，而是方向有些多了，学业繁重而热情分散。</p><p>  或许最大的困惑，是<strong>自学</strong>大学学科<strong>缺乏</strong>了<strong>科学安排与节奏感</strong>，学业显得极端繁重。</p><p>  连基本学科内容都准备的匆忙，何况这有多次机会的四级呢？</p><p>  <strong>我在逃避，但确实在往前走</strong>，路过文法学院。</p><p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcXwZ62ogyeL*IljBkwngA5IrsAaa68CDSmNdrk.OUomtpPliMccqL*tEHC6yGXOWEcLBsh92fqbLWLtPHkrWXpg!/b&bo=oAU4BAAAAAABN4k!&rf=viewer_4" alt="对街“松鼠乐”"></p><hr><h1 id="天晴雪明"><a href="#天晴雪明" class="headerlink" title="天晴雪明"></a>天晴雪明</h1><p>  再走几步，就到俭德（食堂名）了。</p><p>  或许，我本该有些忧愁的。</p><p>  <strong>但还有机会。</strong></p><p>  还有试错的机会，并不是庆幸，用“下次”来麻痹自己。</p><p>  而是，为这自由本能的向往。</p><blockquote><p><strong>It’s my own design</strong><br><strong>It’s my own remorse</strong><br><strong>Acting on your best behavior</strong><br><strong>Turn your back on mother nature</strong><br>                               – 《Born To Fire》</p></blockquote><p>  诚然，选择了报名，却没有充分准备无疑是过错。</p><p>  但然后呢？</p><p>  我没有失去自己最纯粹的追求，走过的每一步都无愧于心。</p><p>  我收获的不止是失败。</p><p>  <strong>属于自己的人生，完全由自己设计，为此负担所有责任。</strong></p><hr><h1 id="到食堂了"><a href="#到食堂了" class="headerlink" title="到食堂了"></a>到食堂了</h1><p>  点下了菜。</p><p>  哈哈，吃的不是果蔬肉蛋，而是<strong>人间烟火！</strong></p><p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcYbP4vBhKWZ7y2piI9p0s3URt5AgNj*oAHK9VR0ADvRIbDWVFklqWr4ffAfxPXvfAXwUkJW3kUFk*w6PWk9PGWI!/b&bo=4AVOAwAAAAABJ6g!&rf=viewer_4" alt="黑椒肥牛饭"></p><p>  不用多想，吃下这口热饭。</p><p>  挺起胸膛，堂堂正正的。</p><h1 id="趁脑子发热，我们要不顾一切。"><a href="#趁脑子发热，我们要不顾一切。" class="headerlink" title="趁脑子发热，我们要不顾一切。"></a>趁脑子发热，我们要不顾一切。</h1>        <div id="aplayer-jOulpqDe" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">            <pre class="aplayer-lrc-content"></pre>        </div>        <script>          var ap = new APlayer({            element: document.getElementById("aplayer-jOulpqDe"),            narrow: false,            autoplay: true,            showlrc: false,            music: {              title: "Born To Fire",              author: "艾福杰尼",              url: "http://r4ay0wyvy.hn-bkt.clouddn.com/艾福杰尼%20-%20Born%20To%20Fire.mp3",              pic: "http://r4ay0wyvy.hn-bkt.clouddn.com/test.png",              lrc: ""            }          });          window.aplayers || (window.aplayers = []);          window.aplayers.push(ap);        </script>]]></content>
       
       
       
@@ -111,8 +130,6 @@
             
             <tag> Crypto </tag>
             
-            <tag> CTF </tag>
-            
         </tags>
       
     </entry>
@@ -129,8 +146,6 @@
       
       
         <tags>
-            
-            <tag> CTF </tag>
             
             <tag> Misc </tag>
             
@@ -172,8 +187,6 @@
             
             <tag> Crypto </tag>
             
-            <tag> CTF </tag>
-            
         </tags>
       
     </entry>
@@ -192,8 +205,6 @@
         <tags>
             
             <tag> Crypto </tag>
-            
-            <tag> CTF </tag>
             
         </tags>
       
