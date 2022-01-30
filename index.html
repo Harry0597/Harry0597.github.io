@@ -190,6 +190,275 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_2550.JPG">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/" class="post-title-link" itemprop="url">Crypto · LFSR初探</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-30 09:26:16 / 修改时间：09:35:41" itemprop="dateCreated datePublished" datetime="2022-01-30T09:26:16+08:00">2022-01-30</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LFSR"><a href="#LFSR" class="headerlink" title="LFSR"></a>LFSR</h1><blockquote>
+<p>即<strong>线性反馈移位寄存器</strong>，一个LFSR由若干个<strong>时钟存储元件（触发器）</strong>和一个<strong>反馈路径</strong>组成。</p>
+</blockquote>
+<p><strong>几个概念</strong></p>
+<ul>
+<li><p>LFSR作用</p>
+<p>产生长伪随机序列，通常为<strong>二进制</strong></p>
+</li>
+<li><p>存储元件（触发器）</p>
+<p>存储数据的一个概念，知道可以<strong>存数据</strong>即可。</p>
+</li>
+<li><p>反馈路径</p>
+<p>计算移位寄存器中某些触发器的<strong>XOR和</strong>，并将其传递。</p>
+</li>
+<li><p>度</p>
+<p>LFSR由若干时钟存储元件（触发器）组成，而<strong>存储元件的个数</strong>就是LFSR的度。</p>
+</li>
+</ul>
+<h2 id="简单LFSR"><a href="#简单LFSR" class="headerlink" title="简单LFSR"></a>简单LFSR</h2><p> 考虑<strong>度m=3</strong>、拥有三个触发器的FF2、FF1和FF0，且反馈路径如下</p>
+<p><img src="https://harry0597.com/uPic/image-20220129224436460.png" alt="image-20220129224436460"></p>
+<p>让我们来看看它究竟是如何运作的，又有什么性质。</p>
+<ol>
+<li><p>假设初始状态为：S2=1, S1=0, S0=0 ；<strong>最右位</strong>的FF0往外<strong>输出</strong></p>
+</li>
+<li><p>在每一个时间单位下，内部状态位<strong>向右移动</strong>一位</p>
+<p>从左往右看</p>
+<ul>
+<li>原先S2的值（1）给到 FF1</li>
+<li>原先S1的值（0）给到 FF0</li>
+<li>原先S0的值（0）和 原先S1的值（0）异或后（得到1）给到 FF2</li>
+<li>原先S0的值（0）输出，LFSR得到数据 0</li>
+</ul>
+</li>
+<li><p>多次移位后，得到数据</p>
+<table>
+<thead>
+<tr>
+<th>Clk</th>
+<th>FF2</th>
+<th>FF1</th>
+<th>FF0=si</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>可见，LFSR从第6个时间周期后开始重复，这意味此LFSR周期长度为7</p>
+<p>接下来，我们试着用一个简单的公式来描述此过程。</p>
+<p>$$ S3 ≡ S1 + S0 \mod 2$$</p>
+<p>$$ S4 ≡ S2 + S1 \mod 2$$</p>
+<p>$$ S5 ≡ S3 + S2 \mod 2$$</p>
+<p>$$ …$$</p>
+<p>其中 Si 就是第i次输出的数据，<strong>i从0开始</strong></p>
+<p>而这里的S3其实就是第2步中FF2获得的值，右移了几次所输出的</p>
+<p>不难归纳出输出位的计算公式为：</p>
+<p>$$ S_{i+3} ≡ S_{i+1} + S_i \mod 2$$</p>
+<p>其中，i = 0, 1, 2…</p>
+<blockquote>
+<p>通过以上这个简单例子，我们便知晓了LFSR的<strong>大致流程</strong>与<strong>具有周期</strong>这个性质。</p>
+</blockquote>
+<p>接下来，向现实迈进！</p>
+<h2 id="LFSR通用形式"><a href="#LFSR通用形式" class="headerlink" title="LFSR通用形式"></a>LFSR通用形式</h2><p>考虑一个度为m的LFSR通用形式。</p>
+<p>还得再提一个概念</p>
+<ul>
+<li><p>反馈系数</p>
+<p>某条反馈路径是否活跃取决于反馈系数P0, P1, …, Pm-1</p>
+<ul>
+<li>若Pi = 1，此反馈是活跃的</li>
+<li>若Pi = 0，对应触发器的输出将不会被反馈</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://harry0597.com/uPic/image-20220129235107589.png" alt="image-20220129235107589"></p>
+<p>反馈系数很好理解。</p>
+<p>在简单LFSR只异或、移位的基础上，多乘一个系数P罢了。</p>
+<p>例如，对于 Sm-1  在一个周期内</p>
+<ol>
+<li>它的值除了给到下一个触发器</li>
+<li>此外，还有条支路，导致 Sm-1 需要去乘 Pm-1，再异或</li>
+</ol>
+<p>此时可见，若Pm-1 = 0，乘后得到的结果就是0，0再去与其他值异或，对异或的结果不造成影响。</p>
+<p><strong>接下来我们再对其具体性质进行剖析。</strong></p>
+<p>假设这个LFSR初始加载的值为S0, …, Sm-1, 则LFSR的<strong>下一个输出位Sm</strong>，可表示为：</p>
+<p>$$S_m ≡ S_{m-1}P_{m-1} +···+ S_1P_1 + S_0P_0 \mod 2$$</p>
+<p>再下一个输出位：</p>
+<p>$$S_{m+1} ≡ S_{m}P_{m-1} +···+ S_2P_1 + S_1P_0 \mod 2$$</p>
+<p>归纳，可得：</p>
+<p>$$S_{i+m} ≡ \sum_{j=0}^{m-1} P_{j}·S_{i+j} \mod 2; S_i, P_j∈{0, 1}; i = 0, 1, 2, …$$</p>
+<blockquote>
+<p>为什么下一位输出是Sm，可以试着理解下</p>
+</blockquote>
+<p>接下来介绍的概念，虽未见其作用，但终究决定拓展开来。</p>
+<p>在<strong>简单LFSR</strong>的例子中，我们知道了<strong>周期性</strong></p>
+<p><strong>问：度为m的LFSR可以产生 最大的 不重复序列长度是多少？</strong></p>
+<p>答案是显而易见的</p>
+<blockquote>
+<p>度为m的LFSR可以产生的最大序列长度为$ 2^m-1 $ </p>
+</blockquote>
+<p>一言以蔽之</p>
+<ul>
+<li><p>LFSR的输出由m个内部寄存器状态唯一确定</p>
+</li>
+<li><p>给定某个状态，也能确定下一个状态</p>
+</li>
+</ul>
+<p>所以，只要LFSR 回到 从前有过的任何一个状态，它将立即开始重复。</p>
+<p>因此，问<strong>最大序列长度</strong> 就是 问<strong>最小正周期</strong> 也相当于 问<strong>m个寄存器能有多少个非零状态</strong>，自然是$ 2^m-1 $</p>
+<p>注：<strong>必须排除所有为零的状态。</strong>若某LFSR状态为全零，输出值将一直为0，谈周期性没意义。</p>
+<h3 id="本原多项式"><a href="#本原多项式" class="headerlink" title="本原多项式"></a>本原多项式</h3><p>LFSR还可以用<strong>多项式表达</strong>：</p>
+<p>$$ P(x)=x^m+P_{m-1}x^{m-1}+…+P_1x+P_0 $$</p>
+<p>最大长度LFSR（周期为$ 2^m-1 $）拥有所谓的<strong>本原多项式</strong></p>
+<blockquote>
+<p>本原多项式是一种特殊的<strong>不可约分多项式</strong>，因子除了1就是多项式本身，此特性便利计算。</p>
+</blockquote>
+<p>而对于同一个度m，可能存在多个本原多项式。</p>
+<p>可见表格，其中（0, 1, 2）表示$1+ x + x^2$ ; (0, 2, 5)表示$ 1 + x^2 + x^5 $</p>
+<p>那么，再对照多项式表达，便可知道对应反馈系数P的取值。</p>
+<p><img src="https://harry0597.com/uPic/image-20220130085403095.png" alt="最大长度LFSR对应的本原多项式"></p>
+<h3 id="LFSR-·-已知明文攻击"><a href="#LFSR-·-已知明文攻击" class="headerlink" title="LFSR · 已知明文攻击"></a>LFSR · 已知明文攻击</h3><p>如果将LFSR当作序列密码使用，密钥K就是反馈系数向量（Pm-1, …, P1, P0）</p>
+<p>若知道某些明文与对应的密文，便可发起攻击。</p>
+<p>这里假设已经知道度m（不知道的话，可以一个个值爆破出来</p>
+<p><strong>理一下已知参数</strong></p>
+<ul>
+<li><p>度： m</p>
+</li>
+<li><p>已知明文： x0, x1, …, x2m-1</p>
+</li>
+<li><p>对应密文： y0, y1, …, y2m-1</p>
+</li>
+</ul>
+<p><strong>第一步，异或得到2m个密钥序列位</strong></p>
+<p>$$ S_i ≡ x_i + y_i \mod 2; i=0, 1, …, 2m-1 $$</p>
+<p><strong>第二步，找出反馈系数Pi（密钥）</strong></p>
+<p>依据先前讨论，有 S 与 P 关系如下：</p>
+<p>$$S_{i+m} ≡ \sum_{j=0}^{m-1} P_{j}·S_{i+j} \mod 2; S_i, P_j∈{0, 1}; i = 0, 1, 2, …$$</p>
+<p>所以，得到：</p>
+<p>$$ i=0, S_m ≡ P_{m-1}S_{m-1}+…+P_1S_1+P_0S_0 $$</p>
+<p>$$ i=0, S_{m+1} ≡ P_{m-1}S_{m}+…+P_1S_2+P_0S_1 $$</p>
+<p>$$ … $$</p>
+<p>$$ i=m-1, S_{2m-1} ≡ P_{m-1}S_{2m-2}+…+P_1S_m+P_0S_{m-1} $$</p>
+<p>现在，咱有了m个未知数（P0, P1, …, Pm-1）的m个线性等式</p>
+<p>可利用高斯消去、矩阵求逆等方法来解此线性等式系统</p>
+<p><strong>思路通而题可做矣</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://harry0597.com/2022/01/24/2022%E5%8D%8E%E4%B8%BAHWS%E9%80%89%E6%8B%94%E8%B5%9BWP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -213,10 +482,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-24 23:42:17 / 修改时间：23:44:57" itemprop="dateCreated datePublished" datetime="2022-01-24T23:42:17+08:00">2022-01-24</time>
+              <time title="创建时间：2022-01-24 23:42:17" itemprop="dateCreated datePublished" datetime="2022-01-24T23:42:17+08:00">2022-01-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-30 09:28:34" itemprop="dateModified" datetime="2022-01-30T09:28:34+08:00">2022-01-30</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -243,90 +518,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="2022华为HWS选拔赛WP"><a href="#2022华为HWS选拔赛WP" class="headerlink" title="2022华为HWS选拔赛WP"></a>2022华为HWS选拔赛WP</h1><h2 id="1-个人信息"><a href="#1-个人信息" class="headerlink" title="1. 个人信息"></a>1. 个人信息</h2><p>名称：Hakkar0597</p>
-<p>排名：104</p>
-<h2 id="2-解题情况"><a href="#2-解题情况" class="headerlink" title="2. 解题情况"></a>2. 解题情况</h2><p>一道Misc，总三道</p>
-<p>两道Crypto，总三道</p>
-<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcVfwBprH1UhtYUERICYZnDCJgOeLZHvesUKE3j3Pm11afJcOfNvKG92javayqZncLID56icLQyBlNkNb.1*cy.o!/b&bo=AAKsAQAAAAADJ60!&rf=viewer_4" alt="答题情况"></p>
-<h2 id="3-具体WP"><a href="#3-具体WP" class="headerlink" title="3. 具体WP"></a>3. 具体WP</h2><h3 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a><strong>MISC</strong></h3><h4 id="题目一名称：badPDF"><a href="#题目一名称：badPDF" class="headerlink" title="题目一名称：badPDF"></a>题目一名称：badPDF</h4><p>不会。</p>
-<p>找到了网上的PDF有关题解，发现2020年华为HWS选拔赛曾出过。</p>
-<p>细看是原题复现（一点没变）。<br><a target="_blank" rel="noopener" href="https://zyazhb.github.io/2020/08/16/ctf-hws/#fakepdf">ZYA’s Writeup</a>关于此题讲解的透彻，只差最后对VBScript语言的调试。</p>
-<p>因为Mac端没找到合适的，最后选择了粗略学习此语言后，用Python</p>
-<h5 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h5><p>Cat 这个lnk文件，发现命令。</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\R</span>1dP?YWindows??:?dP?Y*WindowsV1dP?ZSystem32??:?dP?Z*?System32R2?t=!b cmd.exe??F??F?*uxcmd.exeJ-Ip??C:<span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\c</span>md.exe!..<span class="symbol">\.</span>.<span class="symbol">\.</span>.</span><br><span class="line"></span><br><span class="line"><span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\c</span>md.exe?/c copy &quot;20200308-sitrep-48-covid-19.pdf.lnk&quot; <span class="variable">%tmp%</span><span class="symbol">\\</span>g4ZokyumBB2gDn.tmp /y&amp;for /r C:<span class="symbol">\\</span>Windows<span class="symbol">\\</span>System32<span class="symbol">\\</span> <span class="variable">%i in (*ertu*.exe) do copy %</span>i <span class="variable">%tmp%</span><span class="symbol">\\</span>msoia.exe /y&amp;findstr.exe &quot;TVNDRgAAAA&quot; <span class="variable">%tmp%</span><span class="symbol">\\</span>g4ZokyumBB2gDn.tmp&gt;<span class="variable">%tmp%</span><span class="symbol">\\</span>cSi1r0uywDNvDu.tmp&amp;<span class="variable">%tmp%</span><span class="symbol">\\</span>msoia.exe -decode <span class="variable">%tmp%</span><span class="symbol">\\</span>cSi1r0uywDNvDu.tmp <span class="variable">%tmp%</span><span class="symbol">\\</span>oGhPGUDC03tURV.tmp&amp;expand <span class="variable">%tmp%</span><span class="symbol">\\</span>oGhPGUDC03tURV.tmp -F:* <span class="variable">%tmp%</span> &amp;wscript <span class="variable">%tmp%</span><span class="symbol">\\</span>9sOXN6Ltf0afe7.js.pdf?<span class="variable">%SystemRoot%</span><span class="symbol">\s</span>ystem32<span class="symbol">\c</span>md.exe<span class="variable">%SystemRoot%</span><span class="symbol">\s</span>ystem32<span class="symbol">\c</span>md.exe?<span class="variable">%?</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h5><p>%tmp%目录中 发现了过程</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">findstr.exe <span class="string">&quot;TVNDRgAAAA&quot;</span> g4ZokyumBB2gDn.tmp &gt;<span class="number">00hululu</span></span><br><span class="line"></span><br><span class="line">.<span class="string">\msoia.exe</span> -decode .<span class="string">\00hululu</span> <span class="number">11hahaha</span></span><br><span class="line"></span><br><span class="line">expand .<span class="string">\11hahaha</span> -F:* ./</span><br></pre></td></tr></table></figure>
-
-<h5 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h5><p>执行命令后，产生了9sOXN6Ltf0afe7.js；20200308-sitrep-48-covid-19.pdf；cSi1r0uywDNvDu.tmp</p>
-<p>将生成的cSi1r0uywDNvDu.tmp的内容base64后Winrar解压开来，得到：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?xml version=&#x27;1.0&#x27;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">stylesheet</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span> <span class="attr">xmlns:ms</span>=<span class="string">&quot;urn:schemas-microsoft-com:xslt&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:user</span>=<span class="string">&quot;placeholder&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">version</span>=<span class="string">&quot;1.0&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">method</span>=<span class="string">&quot;text&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">ms:script</span> <span class="attr">implements-prefix</span>=<span class="string">&quot;user&quot;</span> <span class="attr">language</span>=<span class="string">&quot;VBScript&quot;</span>&gt;</span></span><br><span class="line"> &lt;![CDATA[</span><br><span class="line"> rBOH7OLTCVxzkH = HrtvBsRh3gNUbe(&quot;676d60667a64333665326564333665326564333665326536653265643336656564333665327c&quot;):</span><br><span class="line"> execute(rBOH7OLTCVxzkH):</span><br><span class="line">                       function HrtvBsRh3gNUbe(bhhz6HalbOkrki):</span><br><span class="line">                                              for rBOH7OLTCVxzkH= 1 to len(bhhz6HalbOkrki) step 2:</span><br><span class="line">                                                                     HrtvBsRh3gNUbe = HrtvBsRh3gNUbe &amp; chr(asc(chr(&quot;&amp;h&quot; &amp; mid(bhhz6HalbOkrki,rBOH7OLTCVxzkH,2)))xor 1):</span><br><span class="line">                                                                     next:</span><br><span class="line">                       end function:</span><br><span class="line"> ]]&gt; <span class="tag">&lt;/<span class="name">ms:script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">stylesheet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="步骤四"><a href="#步骤四" class="headerlink" title="步骤四"></a>步骤四</h5><p>对其中VBScript语言学习后，意识到只是异或即可解开，编写脚本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> a2b_hex</span><br><span class="line"></span><br><span class="line">c = <span class="string">&quot;676d60667a64333665326564333665326564333665326536653265643336656564333665327c&quot;</span></span><br><span class="line"></span><br><span class="line">s = <span class="built_in">str</span>(a2b_hex(c))[<span class="number">2</span>:-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="built_in">ord</span>(i) ^ <span class="number">1</span>), end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">  </span><br><span class="line"><span class="comment"># flag&#123;e27d3de27d3de27d3d7d3de27dde27d3&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>昨天半夜，无意间点开blog的about，发现是<strong>学长</strong>！</p>
-<p>NEFU，YYDS！</p>
-<h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a><strong>Crypto</strong></h3><h4 id="题目一名称：babyrsa"><a href="#题目一名称：babyrsa" class="headerlink" title="题目一名称：babyrsa"></a>题目一名称：babyrsa</h4><h5 id="步骤一-1"><a href="#步骤一-1" class="headerlink" title="步骤一"></a>步骤一</h5><p>将enc文件加上后缀txt，看到chall中所打印的数据，得到N,e,c</p>
-<h5 id="步骤二-1"><a href="#步骤二-1" class="headerlink" title="步骤二"></a>步骤二</h5><p><strong>网页在线分解大素数N，获得p、q,计算欧拉函数（p-1）*（q-1），求逆元d，得解</strong></p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">import</span> gmpy2</span><br><span class="line">from Crypto.Util.number <span class="built_in">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="attr">p</span> = <span class="number">98197216341757567488149177586991336976901080454854408243068885480633972200382596026756300968618883148721598031574296054706280190113587145906781375704611841087782526897314537785060868780928063942914187241017272444601926795083433477673935377466676026146695321415853502288291409333200661670651818749836420808033</span></span><br><span class="line"></span><br><span class="line"><span class="attr">q</span> = <span class="number">133639826298015917901017908376475546339925646165363264658181838203059432536492968144231040597990919971381628901127402671873954769629458944972912180415794436700950304720548263026421362847590283353425105178540468631051824814390421486132775876582962969734956410033443729557703719598998956317920674659744121941513</span></span><br><span class="line"></span><br><span class="line"><span class="attr">n</span> = p*q</span><br><span class="line"></span><br><span class="line"><span class="attr">e</span> = <span class="number">2199344405076718723439776106818391416986774637417452818162477025957976213477191723664184407417234793814926418366905751689789699138123658292718951547073938244835923378103264574262319868072792187129755570696127796856136279813658923777933069924139862221947627969330450735758091555899551587605175567882253565613163972396640663959048311077691045791516671857020379334217141651855658795614761069687029140601439597978203375244243343052687488606544856116827681065414187957956049947143017305483200122033343857370223678236469887421261592930549136708160041001438350227594265714800753072939126464647703962260358930477570798420877</span></span><br><span class="line"></span><br><span class="line"><span class="attr">c</span> = <span class="number">1492164290534197296766878830710549288168716657792979479408332026408553210558539364503279432780006256047888761718878241924947937039103166564146378209168719163067531460700424309878383312837345239570897122826051628153030129647363574035072755426112229160684859510640271933580581310029921376842631120847546030843821787623965614564745724229763999106839802052036834811357341644073138100679508864747009014415530176077648226083725813290110828240582884113726976794751006967153951269748482024859714451264220728184903144004573228365893961477199925864862018084224563883101101842275596219857205470076943493098825250412323522013524</span></span><br><span class="line"></span><br><span class="line"><span class="attr">phi</span> = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="attr">d</span> = gmpy2.invert(e, phi)</span><br><span class="line"></span><br><span class="line"><span class="attr">m</span> = gmpy2.powmod(c, d, n)</span><br><span class="line"></span><br><span class="line">print(long_to_bytes(m))</span><br><span class="line"><span class="comment"># hwctf&#123;01d_Curs3_c4Me_Again&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="题目二名称：crypto-Elgamal"><a href="#题目二名称：crypto-Elgamal" class="headerlink" title="题目二名称：crypto_Elgamal"></a>题目二名称：crypto_Elgamal</h4><h5 id="步骤一-2"><a href="#步骤一-2" class="headerlink" title="步骤一"></a>步骤一</h5><p>典型的Elgamal算法，要求出A、B、q</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">s0</span> = <span class="number">543263588863771657634119</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">s1</span> = <span class="number">628899245716105951093835</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">s2</span> = <span class="number">78708024695487418261582</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">s3</span> = <span class="number">598971435111109998816796</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">s4</span> = <span class="number">789474285039501272453373</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">assert ( A * <span class="built_in">s0</span> + <span class="keyword">B </span>) % q == <span class="built_in">s1</span></span><br><span class="line"></span><br><span class="line">assert ( A * <span class="built_in">s1</span> + <span class="keyword">B </span>) % q == <span class="built_in">s2</span></span><br><span class="line"></span><br><span class="line">assert ( A * <span class="built_in">s2</span> + <span class="keyword">B </span>) % q == <span class="built_in">s3</span></span><br><span class="line"></span><br><span class="line">assert ( A * <span class="built_in">s3</span> + <span class="keyword">B </span>) % q == <span class="built_in">s4</span></span><br></pre></td></tr></table></figure>
-
-<p>用模运算有关知识尝试了一个上午，不会了，解不开。</p>
-<p><strong>伟大的lines指引我说</strong>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/superprintf/article/details/108964563">“线性同余”</a></p>
-<p>我悟。</p>
-<p><img src="https://img-blog.csdnimg.cn/20201008161432154.png#pic_center" alt="线性同余方程"></p>
-<table>
-<thead>
-<tr>
-<th>目的</th>
-<th>公式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1.Xn+1反推出Xn</td>
-<td>Xn=(a-1 (Xn+1 - b))%m</td>
-</tr>
-<tr>
-<td>2.求a</td>
-<td>a=((Xn+2-Xn+1)(Xn+1-Xn)-1)%m</td>
-</tr>
-<tr>
-<td>3.求b</td>
-<td>b=(Xn+1 - aXn)%m</td>
-</tr>
-<tr>
-<td>4.求m</td>
-<td>tn=Xn+1-Xn，m=gcd((tn+1tn-1 - tntn) , (tntn-2 - tn-1tn-1))</td>
-</tr>
-</tbody></table>
-<p><strong>对应关系：</strong></p>
-<p>a -&gt; A</p>
-<p>b -&gt; B</p>
-<p>m -&gt; q    </p>
-<p>t -&gt; s<br>根据性质，先求出q，后用q求出A、B;</p>
-<p>为了方便取值，我用n=2来进行运算</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s0 = <span class="number">543263588863771657634119</span></span><br><span class="line"></span><br><span class="line">s1 = <span class="number">628899245716105951093835</span></span><br><span class="line"></span><br><span class="line">s2 = <span class="number">78708024695487418261582</span></span><br><span class="line"></span><br><span class="line">s3 = <span class="number">598971435111109998816796</span></span><br><span class="line"></span><br><span class="line">s4 = <span class="number">789474285039501272453373</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">LCG算法，求q</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn=Xn+1-Xn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># m=gcd((tn+1tn-1 - tntn) , (tntn-2 - tn-1tn-1))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn+1 = Xn+2 - Xn+1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t2+1 = X2+2 - X2+1</span></span><br><span class="line"></span><br><span class="line">tnjia1 = s4 - s3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn-1 = Xn - Xn-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t2-1 = X2 - X2-1</span></span><br><span class="line"></span><br><span class="line">tnjian1 = s2 - s1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn = Xn+1 - Xn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t2 = X2+1 - X2</span></span><br><span class="line"></span><br><span class="line">tn = s3 - s2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn-2 = Xn-1 - Xn-2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t0 = s1 - s0</span></span><br><span class="line"></span><br><span class="line">tnjina2 = s1 - s0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">q = gmpy2.gcd((tnjia1 * tnjian1 - tn * tn), (tn * tnjina2 - tnjian1 * tnjian1))  <span class="comment"># q = 791763770658839585424113</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">求A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a = ((Xn+2-Xn+1)(Xn+1-Xn)-1)%m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A = ((s4-s3)* (s3-s2)-1  ) mod q</span></span><br><span class="line"></span><br><span class="line">inv = <span class="built_in">int</span>(gmpy2.invert(s3-s2, q))  <span class="comment"># 179550098159049266105992</span></span><br><span class="line"></span><br><span class="line">A = ((s4-s3)*inv) % q  <span class="comment"># 791763770658839585424113</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">求B</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># b = (Xn+1 - aXn)%m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># B = (s3 - A*s2)%q</span></span><br><span class="line"></span><br><span class="line">B = (s3 - A*s2) % q  <span class="comment"># 3035433788765894539799</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;A=&quot;</span>, A)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;B=&quot;</span>, B)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;q=&quot;</span>, q)</span><br></pre></td></tr></table></figure>
-
-<h5 id="步骤二-2"><a href="#步骤二-2" class="headerlink" title="步骤二"></a>步骤二</h5><p>参数齐全后，根据CTFwiki上的同类型题的现成代码解不开（<strong>95%相似度</strong>）</p>
-<p>在我犹豫与惆怅时</p>
-<p><strong>伟大的lines指引我说</strong>：<a target="_blank" rel="noopener" href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=mouse0333&logNo=221331160503">此处</a>(<strong>K-Pop forever!</strong></p>
-<p>利用A、B、q与已有的成熟Elgamal解法(稍加修改)，解出flag</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s0 = <span class="number">543263588863771657634119</span></span><br><span class="line"></span><br><span class="line">s1 = <span class="number">628899245716105951093835</span></span><br><span class="line"></span><br><span class="line">s2 = <span class="number">78708024695487418261582</span></span><br><span class="line"></span><br><span class="line">s3 = <span class="number">598971435111109998816796</span></span><br><span class="line"></span><br><span class="line">s4 = <span class="number">789474285039501272453373</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">LCG算法，求q</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn=Xn+1-Xn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># m=gcd((tn+1tn-1 - tntn) , (tntn-2 - tn-1tn-1))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn+1 = Xn+2 - Xn+1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t2+1 = X2+2 - X2+1</span></span><br><span class="line"></span><br><span class="line">tnjia1 = s4 - s3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn-1 = Xn - Xn-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t2-1 = X2 - X2-1</span></span><br><span class="line"></span><br><span class="line">tnjian1 = s2 - s1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn = Xn+1 - Xn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t2 = X2+1 - X2</span></span><br><span class="line"></span><br><span class="line">tn = s3 - s2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># tn-2 = Xn-1 - Xn-2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># t0 = s1 - s0</span></span><br><span class="line"></span><br><span class="line">tnjina2 = s1 - s0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">q = gmpy2.gcd((tnjia1 * tnjian1 - tn * tn), (tn * tnjina2 - tnjian1 * tnjian1))  <span class="comment"># q = 791763770658839585424113</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">求A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a = ((Xn+2-Xn+1)(Xn+1-Xn)-1)%m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A = ((s4-s3)* (s3-s2)-1  ) mod q</span></span><br><span class="line"></span><br><span class="line">inv = <span class="built_in">int</span>(gmpy2.invert(s3-s2, q))  <span class="comment"># 179550098159049266105992</span></span><br><span class="line"></span><br><span class="line">A = ((s4-s3)*inv) % q  <span class="comment"># 791763770658839585424113</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">求B</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># b = (Xn+1 - aXn)%m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># B = (s3 - A*s2)%q</span></span><br><span class="line"></span><br><span class="line">B = (s3 - A*s2) % q  <span class="comment"># 3035433788765894539799</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g = <span class="number">27642593390439430783453736408814717946185190497201679721975757020767271070510268596627490205095779429964809833535285315202625851326460572368018875381603399143376574281200028337681552876140857556460885848491160812604549770668188783258592940823128376128198726254875984002214053523752696104568469730021811399216</span></span><br><span class="line"></span><br><span class="line">h = <span class="number">54585833166051670245656045196940486576634589000609010947618047461787934106392112227019662788387352615714332234871251868259282522817042504587428441746855906297390193418159792477477443129333707197013251839952389651332058368911829464978546505729530760951698134101053626585254469108630886768357270544236516534904</span></span><br><span class="line"></span><br><span class="line">p = <span class="number">65211247300401312530078141569304950676358489059623557848188896752173856845051471066071652073612337629832155846984721797768267868868902023383604553319793550396610085424563231688918357710337401138108050205457200940158475922063279384491022916790549837379548978141370347556053597178221402425212594060342213485311</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c1 = <span class="number">60724920570148295800083597588524297283595971970237964464679084640302395172192639331196385150232229004030419122038089044697951208850497923486467859070476427472465291810423905736825272208842988090394035980454248119048131354993356125895595138979611664707727518852984351599604226889848831071126576874892808080133</span></span><br><span class="line"></span><br><span class="line">c2 = <span class="number">48616294792900599931167965577794374684760165574922600262773518630884983374432147726140430372696876107933565006549344582099592376234783044818320678499613925823621554608542446585829308488452057340023780821973913517239972817669309837103043456714481646128392677624092659929248296869048674230341175765084122344264</span></span><br><span class="line"></span><br><span class="line">c1_ = <span class="number">42875731538109170678735196002365281622531058597803022779529275736483962610547258618168523955709341579773947887175626960699426438456382655370090748369934296474999389316334717699127421889816721511602392591677377678759026657582648354688447456509292302633971842316239774410380221303269351351929586256938787054867</span></span><br><span class="line"></span><br><span class="line">c2_ = <span class="number">64829024929257668640929285124747107162970460545535885047576569803424908055130477684809317765011143527867645692710091307694839524199204611328374569742391489915929451079830143261799375621377093290249652912850024319433129432676683899459510155157108727860920017105870104383111111395351496171846620163716404148070</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># q is prime</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># g ** q % p == 1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">m_q = <span class="built_in">pow</span>(c2, q, p)</span><br><span class="line"></span><br><span class="line">m_A_1 = (<span class="built_in">pow</span>(c2, A, p) * gmpy2.invert(c2_, p) * <span class="built_in">pow</span>(h, B, p)) % p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">_, i, j = gmpy2.gcdext(A-<span class="number">1</span>, q)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">    tmp1 = <span class="built_in">pow</span>(m_A_1, i, p)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    tmp1 = gmpy2.invert(<span class="built_in">int</span>(<span class="built_in">pow</span>(m_A_1, -i, p)), p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> j &gt; <span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">    tmp2 = <span class="built_in">pow</span>(m_q, j, p)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    tmp2 = gmpy2.invert(<span class="built_in">int</span>(<span class="built_in">pow</span>(m_q, -j, p)), p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">m = (tmp1 * tmp2) % p</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))  <span class="comment"># b&#x27;flag&#123;19e9f185e6a680324cedd6e6d9382743&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="VBscript"><a href="#VBscript" class="headerlink" title="VBscript"></a>VBscript</h1><h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><ul>
-<li>for  i=X  to Y</li>
-<li>Next</li>
-<li>step</li>
-</ul>
-<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcXCNhkStuXmscCRo35.VoLdSv0btFWxReHt0XKpRleCuWo1zgvMFSMuqZfMVIrndkL2vFpVS6hS2BXq4Lu0T460!/b&bo=KgU2BAAAAAADNw8!&rf=viewer_4" alt="img"></p>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
-<li>赋值 定义了 函数返回值</li>
-</ul>
-<p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcXUBsBdNwdO2u196piYRqA4y67RGAS1Ux9xixJFh9IpUXopONsa2FUoC*2fBypu5fGQC9TYCxB49WHgJlGoy7zo!/b&bo=FQY4BAAAAAADNz0!&rf=viewer_4" alt="image-20220124154333389"></p>
-<h1 id="可惜，去不了华为学习"><a href="#可惜，去不了华为学习" class="headerlink" title="可惜，去不了华为学习"></a>可惜，去不了华为学习</h1><h1 id="业已尽力，冲！"><a href="#业已尽力，冲！" class="headerlink" title="业已尽力，冲！"></a>业已尽力，冲！</h1>
+          <p>2022.1.23与1.24两日于HWSCTF选拔赛中所产题解。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/24/2022%E5%8D%8E%E4%B8%BAHWS%E9%80%89%E6%8B%94%E8%B5%9BWP/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -421,96 +621,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2021/12/30/%E5%AF%92%E5%81%87%E4%BF%AE%E7%82%BC%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_2550.JPG">
-      <meta itemprop="name" content="Harry0597">
-      <meta itemprop="description" content="Pondering'll do you wonders.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/30/%E5%AF%92%E5%81%87%E4%BF%AE%E7%82%BC%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">寒假修炼记（二）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-30 14:15:14" itemprop="dateCreated datePublished" datetime="2021-12-30T14:15:14+08:00">2021-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-17 23:00:54" itemprop="dateModified" datetime="2022-01-17T23:00:54+08:00">2022-01-17</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>102k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:33</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>“匕首反握，杀死懒惰”，这里是自2022年1月5日开始的每日记录🐛</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/30/%E5%AF%92%E5%81%87%E4%BF%AE%E7%82%BC%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -578,7 +692,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -612,7 +726,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">4</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">4</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -644,7 +758,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">210k</span>
+    <span title="站点总字数">212k</span>
 </div>
 
         

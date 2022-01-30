@@ -21,20 +21,24 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="《CTF特训营》一书中Crypto方向里Py2与Py3编码差异问题解决。">
+  <meta name="description" content="LFSR 即线性反馈移位寄存器，一个LFSR由若干个时钟存储元件（触发器）和一个反馈路径组成。  几个概念  LFSR作用 产生长伪随机序列，通常为二进制  存储元件（触发器） 存储数据的一个概念，知道可以存数据即可。  反馈路径 计算移位寄存器中某些触发器的XOR和，并将其传递。  度 LFSR由若干时钟存储元件（触发器）组成，而存储元件的个数就是LFSR的度。   简单LFSR 考虑度m&#x3D;3、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Crypto·Py3编码">
-<meta property="og:url" content="https://harry0597.com/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:title" content="Crypto · LFSR初探">
+<meta property="og:url" content="https://harry0597.com/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
-<meta property="og:description" content="《CTF特训营》一书中Crypto方向里Py2与Py3编码差异问题解决。">
+<meta property="og:description" content="LFSR 即线性反馈移位寄存器，一个LFSR由若干个时钟存储元件（触发器）和一个反馈路径组成。  几个概念  LFSR作用 产生长伪随机序列，通常为二进制  存储元件（触发器） 存储数据的一个概念，知道可以存数据即可。  反馈路径 计算移位寄存器中某些触发器的XOR和，并将其传递。  度 LFSR由若干时钟存储元件（触发器）组成，而存储元件的个数就是LFSR的度。   简单LFSR 考虑度m&#x3D;3、">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-08T11:15:51.000Z">
-<meta property="article:modified_time" content="2021-12-23T14:28:49.991Z">
+<meta property="og:image" content="https://harry0597.com/uPic/image-20220129224436460.png">
+<meta property="og:image" content="https://harry0597.com/uPic/image-20220129235107589.png">
+<meta property="og:image" content="https://harry0597.com/uPic/image-20220130085403095.png">
+<meta property="article:published_time" content="2022-01-30T01:26:16.000Z">
+<meta property="article:modified_time" content="2022-01-30T01:35:41.811Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://harry0597.com/uPic/image-20220129224436460.png">
 
-<link rel="canonical" href="https://harry0597.com/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/">
+<link rel="canonical" href="https://harry0597.com/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/">
 
 
 <script id="page-configurations">
@@ -47,7 +51,7 @@
   };
 </script>
 
-  <title>Crypto·Py3编码 | Harry's Blog</title>
+  <title>Crypto · LFSR初探 | Harry's Blog</title>
   
 
 
@@ -194,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_2550.JPG">
@@ -207,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Crypto·Py3编码
+          Crypto · LFSR初探
         </h1>
 
         <div class="post-meta">
@@ -216,16 +220,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-08 19:15:51" itemprop="dateCreated datePublished" datetime="2021-12-08T19:15:51+08:00">2021-12-08</time>
+              <time title="创建时间：2022-01-30 09:26:16 / 修改时间：09:35:41" itemprop="dateCreated datePublished" datetime="2022-01-30T09:26:16+08:00">2022-01-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-23 22:28:49" itemprop="dateModified" datetime="2021-12-23T22:28:49+08:00">2021-12-23</time>
-              </span>
 
           
     <span>&emsp;</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
@@ -236,16 +234,15 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>691</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
-            <div class="post-description">《CTF特训营》一书中Crypto方向里Py2与Py3编码差异问题解决。</div>
 
         </div>
       </header>
@@ -256,31 +253,203 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="CTF特训营-·-编码"><a href="#CTF特训营-·-编码" class="headerlink" title="CTF特训营 · 编码"></a>CTF特训营 · 编码</h1><h2 id="Py3-解决历史遗留问题"><a href="#Py3-解决历史遗留问题" class="headerlink" title="Py3 解决历史遗留问题"></a>Py3 解决历史遗留问题</h2><h3 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1. 字符串"></a>1. 字符串</h3><ul>
-<li>初级</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;flag&#x27;</span></span><br><span class="line">hex_a = a.encode().<span class="built_in">hex</span>()  <span class="comment"># encode转字节型后再转十六进制</span></span><br></pre></td></tr></table></figure>
-
+        <h1 id="LFSR"><a href="#LFSR" class="headerlink" title="LFSR"></a>LFSR</h1><blockquote>
+<p>即<strong>线性反馈移位寄存器</strong>，一个LFSR由若干个<strong>时钟存储元件（触发器）</strong>和一个<strong>反馈路径</strong>组成。</p>
+</blockquote>
+<p><strong>几个概念</strong></p>
 <ul>
-<li>中等</li>
+<li><p>LFSR作用</p>
+<p>产生长伪随机序列，通常为<strong>二进制</strong></p>
+</li>
+<li><p>存储元件（触发器）</p>
+<p>存储数据的一个概念，知道可以<strong>存数据</strong>即可。</p>
+</li>
+<li><p>反馈路径</p>
+<p>计算移位寄存器中某些触发器的<strong>XOR和</strong>，并将其传递。</p>
+</li>
+<li><p>度</p>
+<p>LFSR由若干时钟存储元件（触发器）组成，而<strong>存储元件的个数</strong>就是LFSR的度。</p>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">a = binascii.hexlify(<span class="string">b&#x27;flag&#x27;</span>)  <span class="comment"># 字符串转字节转十六进制</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">num = <span class="number">584734024210391580014049650557280915516226103165</span></span><br><span class="line">a = <span class="built_in">hex</span>(num)[<span class="number">2</span>:]  <span class="comment"># 十六进制，去0x</span></span><br><span class="line">a = binascii.unhexlify(a)  <span class="comment"># 十六进制转字节型</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="简单LFSR"><a href="#简单LFSR" class="headerlink" title="简单LFSR"></a>简单LFSR</h2><p> 考虑<strong>度m=3</strong>、拥有三个触发器的FF2、FF1和FF0，且反馈路径如下</p>
+<p><img src="https://harry0597.com/uPic/image-20220129224436460.png" alt="image-20220129224436460"></p>
+<p>让我们来看看它究竟是如何运作的，又有什么性质。</p>
+<ol>
+<li><p>假设初始状态为：S2=1, S1=0, S0=0 ；<strong>最右位</strong>的FF0往外<strong>输出</strong></p>
+</li>
+<li><p>在每一个时间单位下，内部状态位<strong>向右移动</strong>一位</p>
+<p>从左往右看</p>
 <ul>
-<li>高级</li>
+<li>原先S2的值（1）给到 FF1</li>
+<li>原先S1的值（0）给到 FF0</li>
+<li>原先S0的值（0）和 原先S1的值（0）异或后（得到1）给到 FF2</li>
+<li>原先S0的值（0）输出，LFSR得到数据 0</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">num = <span class="number">584734024210391580014049650557280915516226103165</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(num))</span><br><span class="line"><span class="built_in">print</span>(bytes_to_long(<span class="string">b&#x27;flag(123)&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-字符"><a href="#2-字符" class="headerlink" title="2. 字符"></a>2. 字符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)  <span class="comment"># ‘a’的十进制的ascii码 </span></span><br><span class="line">a = <span class="string">b&#x27;a&#x27;</span>.<span class="built_in">hex</span>() <span class="comment"># &#x27;a&#x27;的十六进制adcii码</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-整数"><a href="#3-整数" class="headerlink" title="3.整数"></a>3.整数</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">a</span> = hex(<span class="number">123</span>)</span><br><span class="line"><span class="attr">b</span> = bin(<span class="number">789</span>)</span><br><span class="line"><span class="attr">c</span> = oct(<span class="number">101</span>)</span><br><span class="line"><span class="attr">d</span> = int(<span class="string">&#x27;666c&#x27;</span>, <span class="number">16</span>) </span><br></pre></td></tr></table></figure>
-
-<h2 id="Base-转码"><a href="#Base-转码" class="headerlink" title="Base 转码"></a>Base 转码</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(base64.b32encode(b<span class="string">&#x27;flag&#x27;</span>)</span></span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(base64.b64decode(<span class="string">&#x27;QVNU&#x27;</span>)</span></span>)</span><br></pre></td></tr></table></figure>
-
-
-
+</li>
+<li><p>多次移位后，得到数据</p>
+<table>
+<thead>
+<tr>
+<th>Clk</th>
+<th>FF2</th>
+<th>FF1</th>
+<th>FF0=si</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>可见，LFSR从第6个时间周期后开始重复，这意味此LFSR周期长度为7</p>
+<p>接下来，我们试着用一个简单的公式来描述此过程。</p>
+<p>$$ S3 ≡ S1 + S0 \mod 2$$</p>
+<p>$$ S4 ≡ S2 + S1 \mod 2$$</p>
+<p>$$ S5 ≡ S3 + S2 \mod 2$$</p>
+<p>$$ …$$</p>
+<p>其中 Si 就是第i次输出的数据，<strong>i从0开始</strong></p>
+<p>而这里的S3其实就是第2步中FF2获得的值，右移了几次所输出的</p>
+<p>不难归纳出输出位的计算公式为：</p>
+<p>$$ S_{i+3} ≡ S_{i+1} + S_i \mod 2$$</p>
+<p>其中，i = 0, 1, 2…</p>
+<blockquote>
+<p>通过以上这个简单例子，我们便知晓了LFSR的<strong>大致流程</strong>与<strong>具有周期</strong>这个性质。</p>
+</blockquote>
+<p>接下来，向现实迈进！</p>
+<h2 id="LFSR通用形式"><a href="#LFSR通用形式" class="headerlink" title="LFSR通用形式"></a>LFSR通用形式</h2><p>考虑一个度为m的LFSR通用形式。</p>
+<p>还得再提一个概念</p>
+<ul>
+<li><p>反馈系数</p>
+<p>某条反馈路径是否活跃取决于反馈系数P0, P1, …, Pm-1</p>
+<ul>
+<li>若Pi = 1，此反馈是活跃的</li>
+<li>若Pi = 0，对应触发器的输出将不会被反馈</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://harry0597.com/uPic/image-20220129235107589.png" alt="image-20220129235107589"></p>
+<p>反馈系数很好理解。</p>
+<p>在简单LFSR只异或、移位的基础上，多乘一个系数P罢了。</p>
+<p>例如，对于 Sm-1  在一个周期内</p>
+<ol>
+<li>它的值除了给到下一个触发器</li>
+<li>此外，还有条支路，导致 Sm-1 需要去乘 Pm-1，再异或</li>
+</ol>
+<p>此时可见，若Pm-1 = 0，乘后得到的结果就是0，0再去与其他值异或，对异或的结果不造成影响。</p>
+<p><strong>接下来我们再对其具体性质进行剖析。</strong></p>
+<p>假设这个LFSR初始加载的值为S0, …, Sm-1, 则LFSR的<strong>下一个输出位Sm</strong>，可表示为：</p>
+<p>$$S_m ≡ S_{m-1}P_{m-1} +···+ S_1P_1 + S_0P_0 \mod 2$$</p>
+<p>再下一个输出位：</p>
+<p>$$S_{m+1} ≡ S_{m}P_{m-1} +···+ S_2P_1 + S_1P_0 \mod 2$$</p>
+<p>归纳，可得：</p>
+<p>$$S_{i+m} ≡ \sum_{j=0}^{m-1} P_{j}·S_{i+j} \mod 2; S_i, P_j∈{0, 1}; i = 0, 1, 2, …$$</p>
+<blockquote>
+<p>为什么下一位输出是Sm，可以试着理解下</p>
+</blockquote>
+<p>接下来介绍的概念，虽未见其作用，但终究决定拓展开来。</p>
+<p>在<strong>简单LFSR</strong>的例子中，我们知道了<strong>周期性</strong></p>
+<p><strong>问：度为m的LFSR可以产生 最大的 不重复序列长度是多少？</strong></p>
+<p>答案是显而易见的</p>
+<blockquote>
+<p>度为m的LFSR可以产生的最大序列长度为$ 2^m-1 $ </p>
+</blockquote>
+<p>一言以蔽之</p>
+<ul>
+<li><p>LFSR的输出由m个内部寄存器状态唯一确定</p>
+</li>
+<li><p>给定某个状态，也能确定下一个状态</p>
+</li>
+</ul>
+<p>所以，只要LFSR 回到 从前有过的任何一个状态，它将立即开始重复。</p>
+<p>因此，问<strong>最大序列长度</strong> 就是 问<strong>最小正周期</strong> 也相当于 问<strong>m个寄存器能有多少个非零状态</strong>，自然是$ 2^m-1 $</p>
+<p>注：<strong>必须排除所有为零的状态。</strong>若某LFSR状态为全零，输出值将一直为0，谈周期性没意义。</p>
+<h3 id="本原多项式"><a href="#本原多项式" class="headerlink" title="本原多项式"></a>本原多项式</h3><p>LFSR还可以用<strong>多项式表达</strong>：</p>
+<p>$$ P(x)=x^m+P_{m-1}x^{m-1}+…+P_1x+P_0 $$</p>
+<p>最大长度LFSR（周期为$ 2^m-1 $）拥有所谓的<strong>本原多项式</strong></p>
+<blockquote>
+<p>本原多项式是一种特殊的<strong>不可约分多项式</strong>，因子除了1就是多项式本身，此特性便利计算。</p>
+</blockquote>
+<p>而对于同一个度m，可能存在多个本原多项式。</p>
+<p>可见表格，其中（0, 1, 2）表示$1+ x + x^2$ ; (0, 2, 5)表示$ 1 + x^2 + x^5 $</p>
+<p>那么，再对照多项式表达，便可知道对应反馈系数P的取值。</p>
+<p><img src="https://harry0597.com/uPic/image-20220130085403095.png" alt="最大长度LFSR对应的本原多项式"></p>
+<h3 id="LFSR-·-已知明文攻击"><a href="#LFSR-·-已知明文攻击" class="headerlink" title="LFSR · 已知明文攻击"></a>LFSR · 已知明文攻击</h3><p>如果将LFSR当作序列密码使用，密钥K就是反馈系数向量（Pm-1, …, P1, P0）</p>
+<p>若知道某些明文与对应的密文，便可发起攻击。</p>
+<p>这里假设已经知道度m（不知道的话，可以一个个值爆破出来</p>
+<p><strong>理一下已知参数</strong></p>
+<ul>
+<li><p>度： m</p>
+</li>
+<li><p>已知明文： x0, x1, …, x2m-1</p>
+</li>
+<li><p>对应密文： y0, y1, …, y2m-1</p>
+</li>
+</ul>
+<p><strong>第一步，异或得到2m个密钥序列位</strong></p>
+<p>$$ S_i ≡ x_i + y_i \mod 2; i=0, 1, …, 2m-1 $$</p>
+<p><strong>第二步，找出反馈系数Pi（密钥）</strong></p>
+<p>依据先前讨论，有 S 与 P 关系如下：</p>
+<p>$$S_{i+m} ≡ \sum_{j=0}^{m-1} P_{j}·S_{i+j} \mod 2; S_i, P_j∈{0, 1}; i = 0, 1, 2, …$$</p>
+<p>所以，得到：</p>
+<p>$$ i=0, S_m ≡ P_{m-1}S_{m-1}+…+P_1S_1+P_0S_0 $$</p>
+<p>$$ i=0, S_{m+1} ≡ P_{m-1}S_{m}+…+P_1S_2+P_0S_1 $$</p>
+<p>$$ … $$</p>
+<p>$$ i=m-1, S_{2m-1} ≡ P_{m-1}S_{2m-2}+…+P_1S_m+P_0S_{m-1} $$</p>
+<p>现在，咱有了m个未知数（P0, P1, …, Pm-1）的m个线性等式</p>
+<p>可利用高斯消去、矩阵求逆等方法来解此线性等式系统</p>
+<p><strong>思路通而题可做矣</strong></p>
 
     </div>
 
@@ -296,7 +465,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://harry0597.com/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/" title="Crypto·Py3编码">https://harry0597.com/2021/12/08/Crypto·Py3编码/</a>
+    <a href="https://harry0597.com/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/" title="Crypto · LFSR初探">https://harry0597.com/2022/01/30/LFSR初探/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -315,11 +484,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/" rel="next" title="Crypto·RSA算法入门之原理学习">
-      Crypto·RSA算法入门之原理学习 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/01/24/2022%E5%8D%8E%E4%B8%BAHWS%E9%80%89%E6%8B%94%E8%B5%9BWP/" rel="prev" title="2022华为HWS选拔赛WP">
+      <i class="fa fa-chevron-left"></i> 2022华为HWS选拔赛WP
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -383,7 +552,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CTF%E7%89%B9%E8%AE%AD%E8%90%A5-%C2%B7-%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">CTF特训营 · 编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Py3-%E8%A7%A3%E5%86%B3%E5%8E%86%E5%8F%B2%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">Py3 解决历史遗留问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AD%97%E7%AC%A6"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%95%B4%E6%95%B0"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.整数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Base-%E8%BD%AC%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">Base 转码</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LFSR"><span class="nav-number">1.</span> <span class="nav-text">LFSR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95LFSR"><span class="nav-number">1.1.</span> <span class="nav-text">简单LFSR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LFSR%E9%80%9A%E7%94%A8%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">LFSR通用形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%8E%9F%E5%A4%9A%E9%A1%B9%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">本原多项式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LFSR-%C2%B7-%E5%B7%B2%E7%9F%A5%E6%98%8E%E6%96%87%E6%94%BB%E5%87%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">LFSR · 已知明文攻击</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -571,6 +740,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
