@@ -215,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-30 09:26:16 / 修改时间：09:35:41" itemprop="dateCreated datePublished" datetime="2022-01-30T09:26:16+08:00">2022-01-30</time>
+              <time title="创建时间：2022-01-30 09:26:16 / 修改时间：09:57:09" itemprop="dateCreated datePublished" datetime="2022-01-30T09:26:16+08:00">2022-01-30</time>
             </span>
 
           <br>
@@ -262,7 +262,7 @@
 </li>
 </ul>
 <h2 id="简单LFSR"><a href="#简单LFSR" class="headerlink" title="简单LFSR"></a>简单LFSR</h2><p> 考虑<strong>度m=3</strong>、拥有三个触发器的FF2、FF1和FF0，且反馈路径如下</p>
-<p><img src="https://harry0597.com/uPic/image-20220129224436460.png" alt="image-20220129224436460"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220130095350383.png" alt="image-20220130095350383"></p>
 <p>让我们来看看它究竟是如何运作的，又有什么性质。</p>
 <ol>
 <li><p>假设初始状态为：S2=1, S1=0, S0=0 ；<strong>最右位</strong>的FF0往外<strong>输出</strong></p>
@@ -369,7 +369,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://harry0597.com/uPic/image-20220129235107589.png" alt="image-20220129235107589"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220130095532809.png" alt="image-20220130095532809"></p>
 <p>反馈系数很好理解。</p>
 <p>在简单LFSR只异或、移位的基础上，多乘一个系数P罢了。</p>
 <p>例如，对于 Sm-1  在一个周期内</p>
@@ -414,7 +414,7 @@
 <p>而对于同一个度m，可能存在多个本原多项式。</p>
 <p>可见表格，其中（0, 1, 2）表示$1+ x + x^2$ ; (0, 2, 5)表示$ 1 + x^2 + x^5 $</p>
 <p>那么，再对照多项式表达，便可知道对应反馈系数P的取值。</p>
-<p><img src="https://harry0597.com/uPic/image-20220130085403095.png" alt="最大长度LFSR对应的本原多项式"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220130095639887.png" alt="image-20220130095639887"></p>
 <h3 id="LFSR-·-已知明文攻击"><a href="#LFSR-·-已知明文攻击" class="headerlink" title="LFSR · 已知明文攻击"></a>LFSR · 已知明文攻击</h3><p>如果将LFSR当作序列密码使用，密钥K就是反馈系数向量（Pm-1, …, P1, P0）</p>
 <p>若知道某些明文与对应的密文，便可发起攻击。</p>
 <p>这里假设已经知道度m（不知道的话，可以一个个值爆破出来</p>
