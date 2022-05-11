@@ -23,7 +23,7 @@
 
   <meta name="description" content="讲解了 离散对数(DL)问题 | 基于DL问题的密钥交换(DH)协议 | 基于DH协议的Elgamal加密 以及 中间人攻击">
 <meta property="og:type" content="article">
-<meta property="og:title" content="离散对数 &amp; DH &amp; ElGamal">
+<meta property="og:title" content="离散对数 ｜ DH ｜ ElGamal">
 <meta property="og:url" content="https://harry0597.com/2022/05/11/%E7%A6%BB%E6%95%A3%C2%B7DH%C2%B7Elgamal/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
 <meta property="og:description" content="讲解了 离散对数(DL)问题 | 基于DL问题的密钥交换(DH)协议 | 基于DH协议的Elgamal加密 以及 中间人攻击">
@@ -33,8 +33,10 @@
 <meta property="og:image" content="http://mypictruebed.oss-cn-hangzhou.aliyuncs.com/img/DH%E5%8D%8F%E8%AE%AE%E5%8F%8AElGamal%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88%E7%9A%84%E5%AE%9E%E7%8E%B0-a4564ef7.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220511193333741.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220511190149188.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220511200814777.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220511200845472.png">
 <meta property="article:published_time" content="2022-05-11T11:19:44.000Z">
-<meta property="article:modified_time" content="2022-05-11T11:41:55.846Z">
+<meta property="article:modified_time" content="2022-05-11T12:48:24.805Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
@@ -53,7 +55,7 @@
   };
 </script>
 
-  <title>离散对数 & DH & ElGamal | Harry's Blog</title>
+  <title>离散对数 ｜ DH ｜ ElGamal | Harry's Blog</title>
   
 
 
@@ -213,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          离散对数 & DH & ElGamal
+          离散对数 ｜ DH ｜ ElGamal
         </h1>
 
         <div class="post-meta">
@@ -224,7 +226,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-05-11 19:19:44 / 修改时间：19:41:55" itemprop="dateCreated datePublished" datetime="2022-05-11T19:19:44+08:00">2022-05-11</time>
+              <time title="创建时间：2022-05-11 19:19:44 / 修改时间：20:48:24" itemprop="dateCreated datePublished" datetime="2022-05-11T19:19:44+08:00">2022-05-11</time>
             </span>
 
           
@@ -236,7 +238,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.6k</span>
+              <span>7.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -435,6 +437,28 @@
 <p><strong>为与DH协议承上启下，Elgamal加解密过程 相关变量名 是按DH协议命名的</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, bytes_to_long <span class="keyword">as</span> b2n, long_to_bytes <span class="keyword">as</span> n2b</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_t</span>(<span class="params">a, m, n</span>):</span></span><br><span class="line">    _y = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> m &gt; <span class="number">0</span>:</span><br><span class="line">        r = m % <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> r == <span class="number">1</span>:</span><br><span class="line">            _y = (_y * a) % n</span><br><span class="line">        a = a * a % n</span><br><span class="line">        m = m // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> _y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">primitive_root</span>(<span class="params">pi</span>):</span>  <span class="comment"># 找对于模p的有效生成元g</span></span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, pi):</span><br><span class="line">        flag = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, pi):</span><br><span class="line">            <span class="keyword">if</span> find_t(a, i, pi) == <span class="number">1</span> <span class="keyword">and</span> i &lt; pi - <span class="number">1</span>:</span><br><span class="line">                flag = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> flag <span class="keyword">and</span> find_t(a, i, pi) == <span class="number">1</span> <span class="keyword">and</span> i == pi - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">q = getPrime(<span class="number">16</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;素数p :&quot;</span>, q)</span><br><span class="line">g = primitive_root(q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;生成元g是 : &quot;</span>, g)</span><br><span class="line"></span><br><span class="line"><span class="comment"># key generation</span></span><br><span class="line">XA = randint(<span class="number">1</span>, q)</span><br><span class="line">XB = randint(<span class="number">1</span>, q)</span><br><span class="line"></span><br><span class="line">YA = <span class="built_in">pow</span>(g, XA, q)</span><br><span class="line">YB = <span class="built_in">pow</span>(g, XB, q)</span><br><span class="line"></span><br><span class="line">pk = [q, g, YA]  <span class="comment"># 公钥</span></span><br><span class="line">sk = XA  <span class="comment"># 私钥</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># encryption</span></span><br><span class="line">flag = <span class="string">b&quot;f&quot;</span></span><br><span class="line">m = b2n(flag)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="built_in">print</span>(m)</span><br><span class="line"></span><br><span class="line">ci = <span class="built_in">pow</span>(g, XB, q)  <span class="comment"># 密文第一部分</span></span><br><span class="line">ciphertext = m * <span class="built_in">pow</span>(YA, XB, q) % q  <span class="comment"># Bob用自己的密钥XB来加密（密文第二部分）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># decryption</span></span><br><span class="line">mi = ciphertext * invert(<span class="built_in">pow</span>(ci, XA, q), q) % q  <span class="comment"># Alice用自己的密钥XA即可解密</span></span><br><span class="line"><span class="built_in">print</span>(n2b(mi))</span><br></pre></td></tr></table></figure>
 
+<h3 id="Elgamal数字签名"><a href="#Elgamal数字签名" class="headerlink" title="Elgamal数字签名"></a>Elgamal数字签名</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/05/13/crypto-%E5%85%B6%E4%BB%96%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">参考</a></li>
+</ul>
+<h4 id="签名流程"><a href="#签名流程" class="headerlink" title="签名流程"></a>签名流程</h4><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220511200814777.png" alt="Elgamal数字签名"></p>
+<blockquote>
+<p>没看懂签名🤔</p>
+<p>A要发东西，A签名后产生了r,s</p>
+<p>那么也就是其他人利用验证里公式能确定这就是A发的密文，但验证里有m，除A之外的其他人不是不知道m吗？</p>
+<p>那是怎么验证的？</p>
+<p>或许是说，A还得<strong>公布</strong>$g^m$？</p>
+</blockquote>
+<p>看完攻击后，我明白了（说到底是没明白数字签名的意义何在）<strong>签名中的m是公开的</strong></p>
+<p>签名的直接目的不是为了加密、保证安全性，而是让人能确定这m就是你所生成、你所发出的</p>
+<p>至于实际应用层面，我想可以直接把上文中的<strong>m换成</strong>Elgamal加密所得的<strong>密文</strong>，对此签名即可避免中间人攻击</p>
+<h4 id="相关攻击"><a href="#相关攻击" class="headerlink" title="相关攻击"></a>相关攻击</h4><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220511200845472.png" alt="Elgamal数字攻击"></p>
+<p>第一次学习具体的数字签名以及攻击、构造验证，比较迟钝哈哈</p>
+<p>这里构造验证的意义在于，在不知道私钥r（你不是A）的前提下，也能发出你的m、签名，让别人验证后，觉得这就是A发出来的（你就是A）</p>
+<p>但仔细思考，这构造出的m是不由自己控制的，也就是说虽然别人认可这是A发的，但读起来是乱码，构造验证便也没有特别直接的意义（CTF上倒是能拿此出题）</p>
+<p>但，话说回来，如果是人与人之间交互</p>
+<p>另一方验证完后，直接把你当作A了，然后再进行的交流则意义不菲</p>
+<p>（完）</p>
+
     </div>
 
     
@@ -449,7 +473,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://harry0597.com/2022/05/11/%E7%A6%BB%E6%95%A3%C2%B7DH%C2%B7Elgamal/" title="离散对数 &amp; DH &amp; ElGamal">https://harry0597.com/2022/05/11/离散·DH·Elgamal/</a>
+    <a href="https://harry0597.com/2022/05/11/%E7%A6%BB%E6%95%A3%C2%B7DH%C2%B7Elgamal/" title="离散对数 ｜ DH ｜ ElGamal">https://harry0597.com/2022/05/11/离散·DH·Elgamal/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -536,7 +560,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%8F%82%E8%80%83"><span class="nav-number">1.</span> <span class="nav-text">学习参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">引子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%EF%BC%88Discrete-Logarithm%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">离散对数（Discrete Logarithm）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%85%83"><span class="nav-number">2.1.1.</span> <span class="nav-text">生成元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B6"><span class="nav-number">2.1.2.</span> <span class="nav-text">阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9%C2%B6"><span class="nav-number">2.1.3.</span> <span class="nav-text">原根¶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E9%A2%98%E4%BB%A3%E5%85%A5%E3%80%82"><span class="nav-number">2.1.4.</span> <span class="nav-text">以题代入。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2020%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-you-raise-me-up"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">2020网鼎杯-青龙组-you raise me up</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E5%88%86%E8%A7%A3%E9%97%AE%E9%A2%98%EF%BC%88DLP%EF%BC%89"><span class="nav-number">2.1.5.</span> <span class="nav-text">离散对数分解问题（DLP）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE-%EF%BC%88Diffie-Hellman%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">密钥交换协议 （Diffie Hellman）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="nav-number">3.2.</span> <span class="nav-text">中间人攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ElGamal%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">ElGamal加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0-%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">加 \ 解密流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86"><span class="nav-number">4.2.2.</span> <span class="nav-text">解密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E6%AF%94"><span class="nav-number">4.2.3.</span> <span class="nav-text">类比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E6%B5%81%E7%A8%8B"><span class="nav-number">4.2.4.</span> <span class="nav-text">总流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">4.2.5.</span> <span class="nav-text">实现代码</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%8F%82%E8%80%83"><span class="nav-number">1.</span> <span class="nav-text">学习参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">引子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%EF%BC%88Discrete-Logarithm%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">离散对数（Discrete Logarithm）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%85%83"><span class="nav-number">2.1.1.</span> <span class="nav-text">生成元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B6"><span class="nav-number">2.1.2.</span> <span class="nav-text">阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9%C2%B6"><span class="nav-number">2.1.3.</span> <span class="nav-text">原根¶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E9%A2%98%E4%BB%A3%E5%85%A5%E3%80%82"><span class="nav-number">2.1.4.</span> <span class="nav-text">以题代入。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2020%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-you-raise-me-up"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">2020网鼎杯-青龙组-you raise me up</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E5%88%86%E8%A7%A3%E9%97%AE%E9%A2%98%EF%BC%88DLP%EF%BC%89"><span class="nav-number">2.1.5.</span> <span class="nav-text">离散对数分解问题（DLP）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE-%EF%BC%88Diffie-Hellman%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">密钥交换协议 （Diffie Hellman）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="nav-number">3.2.</span> <span class="nav-text">中间人攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ElGamal%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">ElGamal加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0-%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">加 \ 解密流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86"><span class="nav-number">4.2.2.</span> <span class="nav-text">解密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E6%AF%94"><span class="nav-number">4.2.3.</span> <span class="nav-text">类比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E6%B5%81%E7%A8%8B"><span class="nav-number">4.2.4.</span> <span class="nav-text">总流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">4.2.5.</span> <span class="nav-text">实现代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elgamal%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">4.3.</span> <span class="nav-text">Elgamal数字签名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.1.</span> <span class="nav-text">签名流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%94%BB%E5%87%BB"><span class="nav-number">4.3.2.</span> <span class="nav-text">相关攻击</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -618,7 +642,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">481k</span>
+    <span title="站点总字数">494k</span>
 </div>
 
         
