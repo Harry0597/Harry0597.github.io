@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220602231213063.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220602231441172.png">
 <meta property="article:published_time" content="2022-06-04T07:34:17.000Z">
-<meta property="article:modified_time" content="2022-06-04T08:05:54.680Z">
+<meta property="article:modified_time" content="2022-06-04T08:19:24.069Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta property="article:tag" content="Mac OS">
@@ -232,7 +232,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-04 15:34:17 / 修改时间：16:05:54" itemprop="dateCreated datePublished" datetime="2022-06-04T15:34:17+08:00">2022-06-04</time>
+              <time title="创建时间：2022-06-04 15:34:17 / 修改时间：16:19:24" itemprop="dateCreated datePublished" datetime="2022-06-04T15:34:17+08:00">2022-06-04</time>
             </span>
 
           
@@ -428,6 +428,7 @@
 <li><p>网页端的终端执行以下代码，就都看到了！</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">ls</span><br><span class="line">cat exp.py</span><br></pre></td></tr></table></figure>
 <pre><code>（学到了，要把指令同时执行，不然执行完一次cd后，会自动cd回初始目录，白搭👿）
+
 ![芜湖](https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220602184456699.png)
 </code></pre>
 </li>
@@ -438,11 +439,11 @@
 <li><p>开放2022端口</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">  docker run --name try1 -d -idt -p 2022:10001 test1</span><br></pre></td></tr></table></figure></li>
 <li><p>本地测试能否连接服务器端端口</p>
-</li>
-</ul>
 <p>  没反应🤔</p>
 <p>  <code>sudo ufw allow 2022</code> 尝试开放2022端口</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">docker run --name try -d -p 12345:10001 test1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
 </ol>
 <h5 id="ssh登陆"><a href="#ssh登陆" class="headerlink" title="ssh登陆"></a>ssh登陆</h5><p>除了在阿里云官网的控制台发送指令，mac终端也可连接服务器</p>
 <p><code>ssh root@服务器公网IP</code></p>
