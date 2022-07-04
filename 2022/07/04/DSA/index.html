@@ -21,17 +21,22 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="Pondering&#39;ll do you wonders.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Harry&#39;s Blog">
-<meta property="og:url" content="https://harry0597.com/archives/2021/page/2/index.html">
+  <meta name="description" content="DSA数字签名学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DSA">
+<meta property="og:url" content="https://harry0597.com/2022/07/04/DSA/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
-<meta property="og:description" content="Pondering&#39;ll do you wonders.">
+<meta property="og:description" content="DSA数字签名学习">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220701175606336.png">
+<meta property="article:published_time" content="2022-07-04T14:24:45.000Z">
+<meta property="article:modified_time" content="2022-07-04T14:33:12.393Z">
 <meta property="article:author" content="Harry0597">
+<meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220701175606336.png">
 
-<link rel="canonical" href="https://harry0597.com/archives/2021/page/2/">
+<link rel="canonical" href="https://harry0597.com/2022/07/04/DSA/">
 
 
 <script id="page-configurations">
@@ -39,12 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Harry's Blog</title>
+  <title>DSA | Harry's Blog</title>
   
 
 
@@ -184,100 +189,233 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2022/07/04/DSA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_2550.JPG">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DSA
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-04 22:24:45 / 修改时间：22:33:12" itemprop="dateCreated datePublished" datetime="2022-07-04T22:24:45+08:00">2022-07-04</time>
+            </span>
+
+          
+    <span>&emsp;</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
+    <span class="post-meta-item-text">阅读次数：</span>
+    <span id="busuanzi_value_page_pv"></span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">还行! 目前共计 32 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/04/DSA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/04/DSA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+            <div class="post-description">DSA数字签名学习</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>DSA（Digital Signature Algorithm）是Schnorr和ElGamal签名算法的变种，被美国NIST作为DSS(DigitalSignature Standard) 数字签名的标准。  </p>
+<p>DSA是基于整数有限域离散对数难题的。</p>
+</blockquote>
+<blockquote>
+<p>DSA是一种更高级的验证方式，它是一种公开密钥算法，不能用来加密数据，一般用于数字签名和认证。</p>
+<p>发送者使用自己的私钥对文件或消息进行签名，接受者收到消息后使用发送者的公钥来验证签名的真实性，包括数据的完整性以及数据发送者的身份。如果数据和签名不匹配则认为验证失败！数字签名的作用就是校验数据在传输过程中不被修改。</p>
+</blockquote>
+<h2 id="签名过程"><a href="#签名过程" class="headerlink" title="签名过程"></a>签名过程</h2><h3 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a><strong>密钥生成</strong></h3><ol>
+<li><p>选择合适的哈希函数（一般为SHA）<strong>H</strong></p>
+</li>
+<li><p>选择密钥长度<strong>L</strong>与<strong>N</strong></p>
+<ul>
+<li>L最好为64的倍数， $512≤L≤1024$</li>
+<li>$N≤len(H)$</li>
+</ul>
+</li>
+<li><p>选择<strong>N比特位</strong>的<strong>素数q</strong></p>
+</li>
+<li><p>选择<strong>L比特位</strong>的<strong>素数p</strong>且$q | p-1$</p>
+</li>
+<li><p>选择模p下阶为q的最小正整数<strong>g</strong>（$g^q≡1 \mod p$）</p>
+<p>此时，$g≡h^{\frac{p-1}{q}} \mod p, h∈(1,p−1) $</p>
+</li>
+<li><p>选择私钥$x∈(0,q) $，计算$y≡g^x \mod p$</p>
+</li>
+<li><p>公钥: <strong>(p, q, g, y)</strong></p>
+<p>私钥: <strong>x</strong></p>
+</li>
+</ol>
+<h3 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h3><ol>
+<li>选$k≡(0,q)作为临时密钥$</li>
+<li>$r≡(g^k \mod p) \mod q$</li>
+<li>$s≡(H(m)+xr)k^{-1} \mod q$</li>
+<li>签名结果: <strong>(r, s)</strong></li>
+</ol>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ol>
+<li>记$\omega ≡ s^{-1} \mod q$</li>
+<li>记$u_1≡H(m)*\omega \mod q$</li>
+<li>记$u_2≡r*\omega \mod q$</li>
+<li>$v≡(g^{u_1}*y^{u_2} \mod p) \mod q$</li>
+<li>若<strong>v=r</strong>，验证成功</li>
+</ol>
+<h3 id="正确性证明"><a href="#正确性证明" class="headerlink" title="正确性证明"></a>正确性证明</h3><blockquote>
+<p>我推了几次，不够完备，这里参考CTF-Wiki</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220701175606336.png" alt="证明"></p>
+<p>同样的，由于对签名认知过少，这里也试着摸索下它的合理性，以及陷门何在。</p>
+<ul>
+<li><p>由DSA签名过程知，验证需要用到$\omega$也即$s^{-1} \mod q$,而$s$是含有私钥$x$的</p>
+<p>简言之，验证需要正确的私钥$x$，$x$泄漏，身份就被窃取了</p>
+</li>
+<li><p>而不同于ElGamal签名，它（DSA数字签名）算了明文的哈希值</p>
+<p>这就使得验证完身份正确后，还可以得到明文的哈希值，与所给出的比对，就实现了证明<strong>是这个人</strong>要传输<strong>这些信息</strong></p>
+</li>
+</ul>
+<h3 id="相关攻击"><a href="#相关攻击" class="headerlink" title="相关攻击"></a>相关攻击</h3><h4 id="已知-k"><a href="#已知-k" class="headerlink" title="已知 k"></a>已知 k</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>首先，明确k是什么。</p>
+<p>k是临时私钥，也是不可泄漏的！</p>
+<p>否则，有：$x \equiv r^{-1}(ks-H(m)) \bmod q$      </p>
+<p>（<strong>H(m)一般会给出</strong>）</p>
+<p>得到了私钥x，验证可过。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>值得一提，按我的理解，实际场景就算得到了私钥，但就本次签名而言，H(m)已经固定</p>
+<p>所以其意义在于，已知k可以通过本次签名得到x，方便后续签名过程伪造，但对于本次签名内容却不可篡改</p>
+<h4 id="K复用（共享k）"><a href="#K复用（共享k）" class="headerlink" title="K复用（共享k）"></a>K复用（共享k）</h4><h5 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h5><p>在DSA签名时，一次生成的参数L、N、p、q、x、g、y都是可以重复使用的</p>
+<p><strong>但临时私钥k不可以重复使用</strong></p>
+<p>若k重复使用，有：</p>
+<p>$s_1\equiv (H(m_1)+xr)k^{-1} \bmod q$</p>
+<p>$s_2\equiv (H(m_2)+xr)k^{-1} \bmod q$</p>
+<p><strong>已知参数：</strong></p>
+<ul>
+<li>s1、H(m1)、r、q</li>
+<li>s2、H(m2)、r、q</li>
+</ul>
+<p><strong>未知参数：</strong></p>
+<ul>
+<li>$x$</li>
+<li>$k^{-1}$</li>
+</ul>
+<p>则：</p>
+<p>$s_1k \equiv H(m_1)+xr \mod q$</p>
+<p>$s_2k \equiv H(m_2)+xr \mod q$</p>
+<p>上下两式相减，得：</p>
+<p>$k(s_1-s_2) \equiv H(m_1)-H(m_2) \bmod q$</p>
+<h5 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h5><p>k复用（r相同）能将k求出，退化为k已知的问题</p>
+<p>于是可求出私钥x，进而通过验证</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/05/13/crypto-%E5%85%B6%E4%BB%96%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">https://lazzzaro.github.io/2020/05/13/crypto-其他加密算法/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://poppywan.readthedocs.io/en/latest/002-security/028-dsa/">https://poppywan.readthedocs.io/en/latest/002-security/028-dsa/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347025157">https://zhuanlan.zhihu.com/p/347025157</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/signature/dsa/">https://ctf-wiki.org/crypto/signature/dsa/</a></p>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-09T10:43:23+08:00"
-              content="2021-12-09">
-          12-09
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/09/Mac%20Terminal%E5%85%A5%E9%97%A8/" itemprop="url">
-            <span itemprop="name">Mac Terminal入门</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-08T20:28:14+08:00"
-              content="2021-12-08">
-          12-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/08/Crypto%C2%B7RSA%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/" itemprop="url">
-            <span itemprop="name">Crypto·RSA算法入门之原理学习</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-08T19:15:51+08:00"
-              content="2021-12-08">
-          12-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/08/Crypto%C2%B7Py3%E7%BC%96%E7%A0%81/" itemprop="url">
-            <span itemprop="name">Crypto·Py3编码</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Harry0597
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://harry0597.com/2022/07/04/DSA/" title="DSA">https://harry0597.com/2022/07/04/DSA/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
 
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Crypto/" rel="tag"><i class="fa fa-tag"></i> Crypto</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/04/%E5%AF%86%E7%A0%81%E5%87%BA%E9%A2%98%E6%8C%87%E5%8C%97/" rel="prev" title="密码出题指北">
+      <i class="fa fa-chevron-left"></i> 密码出题指北
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/04/2022ACTF%E5%AF%86%E7%A0%81%E5%A4%8D%E7%8E%B0/" rel="next" title="2022ACTF·密码复现">
+      2022ACTF·密码复现 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2021/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span>
-  </nav>
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -324,6 +462,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">签名过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="nav-number">2.1.</span> <span class="nav-text">密钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D"><span class="nav-number">2.2.</span> <span class="nav-text">签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-number">2.3.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number">2.4.</span> <span class="nav-text">正确性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%94%BB%E5%87%BB"><span class="nav-number">2.5.</span> <span class="nav-text">相关攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5-k"><span class="nav-number">2.5.1.</span> <span class="nav-text">已知 k</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#K%E5%A4%8D%E7%94%A8%EF%BC%88%E5%85%B1%E4%BA%ABk%EF%BC%89"><span class="nav-number">2.5.2.</span> <span class="nav-text">K复用（共享k）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-number">2.5.2.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -511,6 +650,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
