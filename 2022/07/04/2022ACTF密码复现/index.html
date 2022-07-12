@@ -29,7 +29,7 @@
 <meta property="og:description" content="如题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-04T14:25:02.000Z">
-<meta property="article:modified_time" content="2022-07-04T14:47:08.449Z">
+<meta property="article:modified_time" content="2022-07-04T14:58:46.509Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Writeup">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-04 22:25:02 / 修改时间：22:47:08" itemprop="dateCreated datePublished" datetime="2022-07-04T22:25:02+08:00">2022-07-04</time>
+              <time title="创建时间：2022-07-04 22:25:02 / 修改时间：22:58:46" itemprop="dateCreated datePublished" datetime="2022-07-04T22:25:02+08:00">2022-07-04</time>
             </span>
 
           
@@ -344,13 +344,13 @@
 <hr>
 <p>接下来，拿到rp、rq后，再观察n的构成</p>
 <p>$pp = p+rp=a^4+rp$,  $qq = q+rq=b^4+rq$</p>
-<p>$n = pp<em>qq = (p</em>q+rq<em>p+rp</em>q+rp<em>rq)$ = $(ab)^4+rq</em>a^4+rp<em>b^4+rp</em>rq$</p>
+<p>$n = pp<em>qq = (p</em>q+rq<em>p+rp</em>q+rp<em>rq) = (ab)^4+rq</em>a^4+rp<em>b^4+rp</em>rq$</p>
 <p><strong>由于a、b与rp、rq的巨大大小差距，对其开开四次方，可得到ab</strong></p>
 <p>$\sqrt[4]{n} = ab$, 对之再四次方，即可得到$pq = (ab)^4$</p>
-<p>于是$rq<em>a^4+rp</em>b^4 = rq<em>p+rp</em>q$ = $n - (ab)^4 - rp*rq$</p>
+<p>于是$rq<em>a^4+rp</em>b^4 = rq<em>p+rp</em>q=n - (ab)^4 - rp*rq$</p>
 <p>一个式子解二元方程，是难题，计算机最好解的是一元方程</p>
 <p>于是我们转化成一元，方法是两边同时乘q（p也行）</p>
-<p>$rq<em>p</em>q+rp<em>q^2 = rq</em>n+rp<em>q^2$ =$(n - (ab)^4 - rp</em>rq)*q$</p>
+<p>$rq<em>p</em>q+rp<em>q^2 = rq</em>n+rp<em>q^2=(n - (ab)^4 - rp</em>rq)*q$</p>
 <p>上式中只有一个未知量q，解出来后再代回来就得到p了</p>
 <p>于是，$pp=p+rp,  qq=q+rq$, 此题结束</p>
 <p>总代码如下</p>
@@ -477,7 +477,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -511,7 +511,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">5</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">6</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -543,7 +543,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">713k</span>
+    <span title="站点总字数">731k</span>
 </div>
 
         
