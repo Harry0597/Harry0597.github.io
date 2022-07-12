@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220513165548541.png">
 <meta property="article:published_time" content="2022-07-04T14:38:27.000Z">
-<meta property="article:modified_time" content="2022-07-04T14:40:06.770Z">
+<meta property="article:modified_time" content="2022-07-12T10:32:25.077Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
@@ -218,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-04 22:38:27 / 修改时间：22:40:06" itemprop="dateCreated datePublished" datetime="2022-07-04T22:38:27+08:00">2022-07-04</time>
+              <time title="创建时间：2022-07-04 22:38:27" itemprop="dateCreated datePublished" datetime="2022-07-04T22:38:27+08:00">2022-07-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-12 18:32:25" itemprop="dateModified" datetime="2022-07-12T18:32:25+08:00">2022-07-12</time>
+              </span>
 
           
     <span>&emsp;</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
@@ -322,7 +328,7 @@
 <li>p、q  is prime</li>
 <li>给了一下值<ul>
 <li>p*q   即n</li>
-<li>$(2021<em>p+501</em>q)^{pq-p-q} \mod n$</li>
+<li>$(2021•p+501•q)^{pq-p-q} \mod n$</li>
 <li>$c = flag^e \mod n$</li>
 <li>e = 0o200001  (十六进制下的65537)</li>
 </ul>
@@ -330,10 +336,10 @@
 </ul>
 <p>一开始觉得怪复杂的，后然看到幂pq-p-q，想到的有威尔逊定理和欧拉定理，显然后者可能有效</p>
 <p>于是观察到$(p-1)*(q-1) = pq-p-q+1$</p>
-<p>尝试构造之，设$A = (2021<em>p+501</em>q)$，$tmp = (2021<em>p+501</em>q)^{pq-p-q} \mod n$则：</p>
+<p>尝试构造之，设$A = (2021•p+501•q)$，$tmp = (2021•p+501•q)^{pq-p-q} \mod n$则：</p>
 <p>$tmp*A = A^{\phi (n)} \mod n = 1 \mod n$</p>
 <p>我是很不情愿尝试拆开来直接爆破的，但前几次做题都有这操作，这里也情不自禁想：</p>
-<p>$tmp<em>A = k</em>n +1$, 所以遍历k使得kn+1能被tmp整除，则爆破出A</p>
+<p>$tmp•A = k•n +1$, 所以遍历k使得kn+1能被tmp整除，则爆破出A</p>
 <p>然后用z3解方程得到p、q</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n, tmp, c = ...</span><br><span class="line">S = Solver()</span><br><span class="line"></span><br><span class="line">e = <span class="number">0o200001</span></span><br><span class="line">k = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    <span class="built_in">print</span>(k)</span><br><span class="line">    <span class="keyword">if</span> (k*n + <span class="number">1</span>) % tmp == <span class="number">0</span>:</span><br><span class="line">        a = (k*n + <span class="number">1</span>) // tmp</span><br><span class="line">        <span class="built_in">print</span>(a)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">        p = Int(<span class="string">&#x27;p&#x27;</span>)</span><br><span class="line">        q = Int(<span class="string">&#x27;q&#x27;</span>)</span><br><span class="line">        S.add(q &gt; <span class="number">0</span>)</span><br><span class="line">        S.add(p &gt; <span class="number">0</span>)</span><br><span class="line">        S.add(<span class="number">2021</span>*p + <span class="number">501</span>*q == a)</span><br><span class="line">        <span class="keyword">if</span> S.check():</span><br><span class="line">            <span class="built_in">print</span>(S.model())</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    k += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
@@ -409,9 +415,9 @@
 <p>不知道p、q就断然不是有限域开方</p>
 <p><strong>e=3,只能对应低e攻击</strong></p>
 <p>再由以上规律，得：</p>
-<p>$m = (flag)<em>16^{2</em>84}$</p>
-<p>$c = m^e \mod n = flag^3 * 16^{2<em>3</em>84}\mod n$</p>
-<p>$c’ = c<em>inv(16^{2</em>3*84}, n) \mod n = flag^3 \mod n $</p>
+<p>$m = (flag)•16^{2•84}$</p>
+<p>$c = m^e \mod n = flag^3 • 16^{2•3•84}\mod n$</p>
+<p>$c’ = c•inv(16^{2•3•84}, n) \mod n = flag^3 \mod n $</p>
 <p>将c改小后，简单的低加密指数即可解！</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">import</span> gmpy2</span><br><span class="line"><span class="built_in">import</span> libnum</span><br><span class="line"><span class="comment"># m越长越不利于爆破出结果</span></span><br><span class="line"></span><br><span class="line">def de(c, e, n):</span><br><span class="line">    <span class="attr">k</span> = <span class="number">0</span></span><br><span class="line">    while True:</span><br><span class="line">        print(k)</span><br><span class="line">        <span class="attr">mm</span> = c + n*k</span><br><span class="line">        result, <span class="attr">flag</span> = gmpy2.iroot(mm, e)</span><br><span class="line">        <span class="keyword">if</span> <span class="attr">True</span> == flag:</span><br><span class="line">            return result</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line"><span class="attr">e</span> = <span class="number">3</span></span><br><span class="line"><span class="attr">n</span> = <span class="number">23570098360097260908266914080954003513706885568390448463720576188146956287111601604870247233822682630020002051748117520481402155749832096007629686239669192722978473890311246293580246256300691145653885805730865515297134808702766299205253761028235483781919393575836334910012714628455073300114978717047912395404034141622115001451888302617428376998024080880564792294546406688814397757714979980790018933407614160131827023349206138480523080173634617167828920519758917549492886733519381497665596997617399404664611446202014908853898043742964782757859701755202188366852773164911994663079171498909577012208742001609095258401847</span></span><br><span class="line"><span class="attr">c</span> = <span class="number">7802816471025387606454709075933309958303134972861203739854774032383575355964299097074709350633475519273512630813578801152996777689686451397201513854823239337669091889776200179028891111154423623765139235199507280104544068425347533121731521700106757148551520759776111224072064131087547685154285120156917449926992033491342535410929828988598182819897435365878832122138552492908774845437576910276499625679469289655841639181182040186931130789588869657335253479416209378458303531995734157105918063227453396477282662136225029972745246845372963076381252679409317314514131852117346576265346926741908194011319430767975281696400</span></span><br><span class="line"><span class="attr">A</span> = <span class="number">16</span>**(<span class="number">6</span>*<span class="number">84</span>)</span><br><span class="line">c *= int(gmpy2.invert(A, n))</span><br><span class="line"><span class="attr">c</span> = c % n  <span class="comment"># 容易忘，c不能比n大</span></span><br><span class="line"><span class="attr">m</span> = de(c,e,n)</span><br><span class="line">print(libnum.n2s(int(m)).decode())</span><br></pre></td></tr></table></figure>
 
@@ -480,7 +486,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"></span><br><span class="line">e1 =  <span class="number">28720970875923431651096339432854172528258265954461865674640550905460254396153781189674547341687577425387833579798322688436040388359600753225864838008717449960738481507237546818409576080342018413998438508242156786918906491731633276138883100372823397583184685654971806498370497526719232024164841910708290088581</span></span><br><span class="line">e2 =  <span class="number">131021266002802786854388653080729140273443902141665778170604465113620346076511262124829371838724811039714548987535108721308165699613894661841484523537507024099679248417817366537529114819815251239300463529072042548335699747397368129995809673969216724195536938971493436488732311727298655252602350061303755611563</span></span><br><span class="line">n =  <span class="number">159077408219654697980513139040067154659570696914750036579069691821723381989448459903137588324720148582015228465959976312274055844998506120677137485805781117564072817251103154968492955749973403646311198170703330345340987100788144707482536112028286039187104750378366564167383729662815980782817121382587188922253</span></span><br><span class="line">c1 =  <span class="number">125774545911886560112703402972153322080506025378797523936708278181480201146872577291738201370911792392950418121767343486509724963000477466590009600240375221563806039364611362947152096656513910712238094956240996452246301471555709823003175801134035094856941903678067489942047840663479442285170087613352040341832</span></span><br><span class="line">c2 =  <span class="number">125874844114757588984441500491946737723620819049276461078841545869549114013042058416210220287667061892072831243333341942699313440553285306436999725802970995457080384300690875762412008576026273931144721166609563493297003298586115510199518494430188305644317422640652955882264990001338974742192006748451975507803</span></span><br><span class="line">phi = <span class="number">159077408219654697980513139040067154659570696914750036579069691821723381989448459903137588324720148582015228465959976312274055844998506120677137485805781092330556185082570865052488981154655643850588559740031994465378408628749828052127213663711396922494795088638471519778995496857305118321851028470398469453660</span></span><br><span class="line">d1 = <span class="built_in">int</span>(gmpy2.invert(e1, phi))</span><br><span class="line">d2 = <span class="built_in">int</span>(gmpy2.invert(e2, phi))</span><br><span class="line"><span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(<span class="built_in">pow</span>(c1, d1, n))).decode() + libnum.n2s(<span class="built_in">int</span>(<span class="built_in">pow</span>(c2, d2, n))).decode())</span><br></pre></td></tr></table></figure>
 
-<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>因为$d = inv(e, phi)$，所以$ed = k<em>\phi + 1$，即：$d = \frac{k</em>\phi +1}{e}$</p>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>因为$d = inv(e, phi)$，所以$ed = k•\phi + 1$，即：$d = \frac{k•\phi +1}{e}$</p>
 <p>而e真的很大（正常就65537），想来d就大不了，即：<strong>低解密指数</strong></p>
 <ul>
 <li>低加密指数广播攻击需要给出e</li>
