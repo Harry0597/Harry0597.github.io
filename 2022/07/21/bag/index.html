@@ -21,19 +21,19 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续...">
+  <meta name="description" content="五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续···">
 <meta property="og:type" content="article">
-<meta property="og:title" content="背包问题">
+<meta property="og:title" content="CTF·背包问题相关">
 <meta property="og:url" content="https://harry0597.com/2022/07/21/bag/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
-<meta property="og:description" content="五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续...">
+<meta property="og:description" content="五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续···">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/hqdefault.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/Ralph_Merkle.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/Martin-Hellman.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/7HwAdyNEGqDKLat.png">
 <meta property="article:published_time" content="2022-07-21T14:44:47.000Z">
-<meta property="article:modified_time" content="2022-07-21T14:51:42.532Z">
+<meta property="article:modified_time" content="2022-07-22T06:50:54.616Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
@@ -52,7 +52,7 @@
   };
 </script>
 
-  <title>背包问题 | Harry's Blog</title>
+  <title>CTF·背包问题相关 | Harry's Blog</title>
   
 
 
@@ -212,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          背包问题
+          CTF·背包问题相关
         </h1>
 
         <div class="post-meta">
@@ -221,10 +221,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-21 22:44:47 / 修改时间：22:51:42" itemprop="dateCreated datePublished" datetime="2022-07-21T22:44:47+08:00">2022-07-21</time>
+              <time title="创建时间：2022-07-21 22:44:47" itemprop="dateCreated datePublished" datetime="2022-07-21T22:44:47+08:00">2022-07-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-22 14:50:54" itemprop="dateModified" datetime="2022-07-22T14:50:54+08:00">2022-07-22</time>
+              </span>
 
           
     <span>&emsp;</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
@@ -258,7 +264,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>3 分钟</span>
             </span>
-            <div class="post-description">五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续...</div>
+            <div class="post-description">五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续···</div>
 
         </div>
       </header>
@@ -271,7 +277,7 @@
       
         <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/hqdefault.jpg" alt="背包"></p>
 <p>背包加密基于背包问题。</p>
-<p>而背包问题，是指设有一个可以载重W的背包，在有 n 个重量分别为 a1,a2,…,an的物品情况下，如何在不重复选择的前提下将物品装入背包且正好使其满载的问题。</p>
+<p>而背包问题，是指设有一个可以载重S的背包，在有 n 个重量分别为 a1,a2,…,an的物品情况下，如何在不重复选择的前提下将物品装入背包且正好使其满载的问题。</p>
 <p>数学表述如下：<br>$$<br>x_1a_1+x_2a_2+···+x_na_n=S, x_i \in (0,1),a_i&gt;0<br>$$<br>实际上，我们可以将明文转换成数字，并将其二进制01码从高位到低位依次作$x_i$.</p>
 <p>公布$a_i$、$S$这样就实现了,利用背包问题来简单加密明文。</p>
 <p>此时，若要破解出$x_i$,爆破攻击的时间复杂度是$O(2^n)$，非常困难也非常安全，但没有意义。</p>
@@ -282,7 +288,7 @@
 <p>答案是：有。</p>
 <p>这里讲的<strong>超递增序列</strong>即是。</p>
 <p>超递增序列是每一个元素都大于或等于之前所有元素之和的序列，即：<br>$$<br>r_i ≥ r_1 + r_2 + r_3 + ··· + r_{i-1}<br>$$<br>也即:<br>$$<br>r_i ≥ 2 •r_{i-1}<br>$$</p>
-<p>当明文与<strong>超递增序列</strong>依次相乘再求和时<br>$$<br>x_1r_1+x_2r_2+···+x_nr_n=S, x_i \in (0,1),r_i&gt;0<br>$$<br><strong>我们可以通过依次比较W与序列中最大的元素大小关系，来确定该元素性质。</strong></p>
+<p>当明文与<strong>超递增序列</strong>依次相乘再求和时<br>$$<br>x_1r_1+x_2r_2+···+x_nr_n=S, x_i \in (0,1),r_i&gt;0<br>$$<br><strong>我们可以通过依次比较S与序列中最大的元素大小关系，来确定该元素性质。</strong></p>
 <p>例如，若$S &gt; r_n$,则$r_n$必然存在于等式左边，即$x_n=1$</p>
 <p>因为哪怕$r_n$的所有元素都存在于等式左边，它们的和也小于$r_n$.所以$S$若要大于$r_n$，$r_n$就必须存在。</p>
 <p>接下来，令$S = S - r_n$，再比较$S$与$r_{n-1}$，同理可得$x_{n-1}$</p>
@@ -341,7 +347,7 @@
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sage</span></span><br><span class="line"><span class="attr">import</span> <span class="string">libnum</span></span><br><span class="line"><span class="attr">M</span> = <span class="string">[]</span></span><br><span class="line"><span class="attr">S</span> = <span class="string"></span></span><br><span class="line"><span class="attr">n</span> = <span class="string">len(M)</span></span><br><span class="line"><span class="attr">Mat</span> = <span class="string">Matrix.identity(n)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">last_row</span> = <span class="string">[0 for x in M]</span></span><br><span class="line"><span class="attr">M_last_row</span> = <span class="string">Matrix(ZZ, 1, len(last_row), last_row)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">last_col</span> = <span class="string">M[:]</span></span><br><span class="line"><span class="attr">last_col.append(S)</span></span><br><span class="line"><span class="attr">M_last_col</span> = <span class="string">Matrix(ZZ, len(last_col), 1, last_col)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Mat</span> = <span class="string">Mat.stack(M_last_row)</span></span><br><span class="line"><span class="attr">Mat</span> = <span class="string">Mat.augment(M_last_col)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">X</span> = <span class="string">Mat.LLL()</span></span><br><span class="line"><span class="comment"># print(X)</span></span><br><span class="line"><span class="attr">for</span> <span class="string">t in X:</span></span><br><span class="line">    <span class="attr">tmp</span> = <span class="string">t[:-1]</span></span><br><span class="line">    <span class="attr">ans</span> = <span class="string">[str(abs(k)) for k in tmp]</span></span><br><span class="line">    <span class="attr">try</span>:<span class="string"></span></span><br><span class="line">        <span class="attr">flag</span> = <span class="string">int(&#x27;&#x27;.join(ans), 2)</span></span><br><span class="line">        <span class="attr">print(libnum.n2s(flag))</span></span><br><span class="line">    <span class="attr">except</span>:<span class="string"></span></span><br><span class="line">        <span class="attr">pass</span></span><br><span class="line"><span class="attr">print(&#x27;0ver&#x27;)</span></span><br></pre></td></tr></table></figure>
 
 <p>进一步原理，详见参考<a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/05/13/crypto-%E5%85%B6%E4%BB%96%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#Merkle-Hellman%E8%83%8C%E5%8C%85%E5%8A%A0%E5%AF%86%EF%BC%88Knapsack%EF%BC%89">[2]</a>&amp;<a target="_blank" rel="noopener" href="https://jayxv.github.io/2020/06/08/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bknapsack/">[3]</a></p>
-<h3 id="子集积问题"><a href="#子集积问题" class="headerlink" title="子集积问题"></a>子集积问题</h3><p>以上所述的背包问题也叫子集和问题，易懂，关于子集的和的问题。</p>
+<h3 id="子集积问题"><a href="#子集积问题" class="headerlink" title="子集积问题"></a>子集积问题</h3><p>以上所述的背包问题也叫子集和问题，即：关于子集的和的问题。</p>
 <p>子集积问题，想办法退化为子集和问题即可解。</p>
 <p>详见参考<a target="_blank" rel="noopener" href="https://jayxv.github.io/2020/06/08/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bknapsack/">[3]</a></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/asymmetric/knapsack/knapsack/">https://ctf-wiki.org/crypto/asymmetric/knapsack/knapsack/</a></p>
@@ -362,7 +368,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://harry0597.com/2022/07/21/bag/" title="背包问题">https://harry0597.com/2022/07/21/bag/</a>
+    <a href="https://harry0597.com/2022/07/21/bag/" title="CTF·背包问题相关">https://harry0597.com/2022/07/21/bag/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -382,8 +388,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/18/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%A4%8D%E7%8E%B0/" rel="prev" title="2022蓝帽杯复现（RSA私钥文件学习）">
-      <i class="fa fa-chevron-left"></i> 2022蓝帽杯复现（RSA私钥文件学习）
+    <a href="/2022/07/18/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%A4%8D%E7%8E%B0/" rel="prev" title="RSA私钥文件学习（2022蓝帽杯复现）">
+      <i class="fa fa-chevron-left"></i> RSA私钥文件学习（2022蓝帽杯复现）
     </a></div>
       <div class="post-nav-item"></div>
     </div>
