@@ -35,8 +35,11 @@
 <meta property="og:image" content="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1">
 <meta property="og:image" content="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcX0BNK3pjcJhOngJrWUCYRnMOVF6TX5VQtOFZpfj4j7lrwiGG5km*zBr83hbBQqmiRKC4Dt3NeJPCMS0Wihvlrg!/b&bo=OAQLBQAAAAADV0A!&rf=viewer_4">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220812195658654.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220812195610919.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220812195455627.png">
 <meta property="article:published_time" content="2021-12-09T02:43:23.000Z">
-<meta property="article:modified_time" content="2022-06-04T07:38:26.843Z">
+<meta property="article:modified_time" content="2022-08-12T17:36:01.991Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Mac OS">
 <meta name="twitter:card" content="summary">
@@ -232,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-04 15:38:26" itemprop="dateModified" datetime="2022-06-04T15:38:26+08:00">2022-06-04</time>
+                <time title="修改时间：2022-08-13 01:36:01" itemprop="dateModified" datetime="2022-08-13T01:36:01+08:00">2022-08-13</time>
               </span>
 
           
@@ -258,14 +261,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
             <div class="post-description">基础的、简单的MacOS Terminal初探与学习。</div>
 
@@ -329,6 +332,86 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner -w 80 0HB</span><br></pre></td></tr></table></figure>
 
 <p><img src="http://m.qpic.cn/psc?/V11bsrVH039Qrc/45NBuzDIW489QBoVep5mcX0BNK3pjcJhOngJrWUCYRnMOVF6TX5VQtOFZpfj4j7lrwiGG5km*zBr83hbBQqmiRKC4Dt3NeJPCMS0Wihvlrg!/b&bo=OAQLBQAAAAADV0A!&rf=viewer_4" alt="ae"></p>
+<h2 id="改名"><a href="#改名" class="headerlink" title="改名"></a>改名</h2><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220812195658654.png" alt="改名前"></p>
+<p>因为时常需要写些wp等东西，再加上后面果子默认的主机名实在太长了</p>
+<p>对着市面上老旧的教程，研究了好一会，发现都不全面完善，现总结、补充如下</p>
+<p>本机配置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220812195610919.png" alt="配置"></p>
+<ol>
+<li><p>修改@后的主机名</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/6b1823090e721afa58e15998.html">https://jingyan.baidu.com/article/6b1823090e721afa58e15998.html</a></p>
+<p>通过修改共享里的配置，打到目的</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuchuo/article/details/79967956">https://blog.csdn.net/liuchuo/article/details/79967956</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo scutil —<span class="built_in">set</span> ComputerName Caliburn</span><br></pre></td></tr></table></figure>
+<p>通过scutil指令修改</p>
+</li>
+</ul>
+</li>
+<li><p>修改@前的用户名</p>
+<p>这颇为费劲，要了命了</p>
+<ul>
+<li><p>尝试了<code>sudo scutil —set HostName  0HB</code>,<strong>没效果</strong></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_28878287/article/details/118269694">https://blog.csdn.net/weixin_28878287/article/details/118269694</a></p>
+<p>尝试了改了管理员的用户名，<strong>无果</strong></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/63137511/answer/1347552071">https://www.zhihu.com/question/63137511/answer/1347552071</a></p>
+<p>直接动手修改/etc/bashrc的配置，也没效果</p>
+<p>要放弃了，etc文件下逛了下，看到了zshrc</p>
+<p>突然记起来，mac os终端改成zsh了🥲</p>
+<p>于是,有如下操作</p>
+<ul>
+<li><p><code>sudo su</code> root权限才能改配置文件</p>
+</li>
+<li><p><code>vim /private/etc/zshrc</code>  修改文件内容</p>
+<ul>
+<li><p>按<code>i</code>开始编辑</p>
+</li>
+<li><p>修改文件里以下内容</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Default prompt</span></span><br><span class="line"><span class="attr">PS1</span>=<span class="string">&quot;0HB@%m %1~ %# &quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>按<code>ESC</code>,再<code>:</code>输入<code>wq!</code>，即：保存修改退出</p>
+</li>
+</ul>
+</li>
+<li><p><strong>重启终端</strong> 或 <code>source /private/etc/zshrc</code></p>
+<p>后者不需要重启终端，执行即可，但可能会出现<code>0HB@%m %1~ %</code>的情况，重启终端后正常显示<code>0HB@Caliburn ~ % </code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改路径</p>
+<p>本该告一段落，但尝试修改终端@前的用户名时，无意间找到了修改路径里/User后用户名的方法</p>
+<p>又想着想来写wp时，为了隐私，需要改路径名，太有用了，特此记录</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_35811978/article/details/96569707">https://blog.csdn.net/sinat_35811978/article/details/96569707</a></p>
+<p>文章写的很清楚，大体思路为以下几点</p>
+<ul>
+<li>创建另一个admin用户</li>
+<li>利用这个admin用户，改了原文件夹名</li>
+<li>改原用户名与改的文件夹名一致</li>
+<li>修改对于文件夹路径</li>
+</ul>
+</li>
+</ul>
+<p>效果: <code>/Users/0HB/Desktop/星盟招新</code></p>
+<p><strong>缺点：终端里的配置可能会丢失，比如conda、python</strong>、<strong>clear失效</strong></p>
+<ul>
+<li><p>clear报错</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29695701/article/details/90715653">https://blog.csdn.net/qq_29695701/article/details/90715653</a></p>
+</li>
+<li><p>conda、sage</p>
+<p>改路径，改不完！</p>
+<p>直接删了重下，发现各种报错，利用<a target="_blank" rel="noopener" href="https://doc.sagemath.org/html/en/installation/conda.html#sec-installation-conda-develop">官网介绍的mamba</a>教程在<a target="_blank" rel="noopener" href="https://github.com/conda-forge/miniforge#mambaforge">仓库</a>利用sh文件下载sage</p>
+<p>打开方式不变</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>最后来一张终端效果图，Caliburn-石中剑。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220812195455627.png" alt="改名后"></p>
 
     </div>
 
@@ -430,7 +513,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-Terminal-basics-tutorial"><span class="nav-number">1.</span> <span class="nav-text">Mac Terminal basics tutorial</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Code-form"><span class="nav-number">1.1.</span> <span class="nav-text">·Code form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Basic-code"><span class="nav-number">1.2.</span> <span class="nav-text">·Basic code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%EF%BD%9C-Print"><span class="nav-number">1.2.1.</span> <span class="nav-text">echo ｜ Print</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-file"><span class="nav-number">1.2.2.</span> <span class="nav-text">About file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear-%EF%BD%9C-Clear-screen"><span class="nav-number">1.2.3.</span> <span class="nav-text">clear  ｜ Clear screen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sudo-Get-administrator-privileges"><span class="nav-number">1.2.4.</span> <span class="nav-text">sudo | Get administrator privileges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#man-XXX-Learn-the-useage-of-XXX"><span class="nav-number">1.2.5.</span> <span class="nav-text">man XXX | Learn the useage of XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">1.2.7.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caffeinate-Keep-mac-work"><span class="nav-number">1.2.8.</span> <span class="nav-text">caffeinate | Keep mac work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#killall-XXX-Kill-XXX"><span class="nav-number">1.2.9.</span> <span class="nav-text">killall XXX | Kill XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#defaults"><span class="nav-number">1.2.10.</span> <span class="nav-text">defaults</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amazing-echo"><span class="nav-number">1.2.11.</span> <span class="nav-text">amazing echo</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-Terminal-basics-tutorial"><span class="nav-number">1.</span> <span class="nav-text">Mac Terminal basics tutorial</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Code-form"><span class="nav-number">1.1.</span> <span class="nav-text">·Code form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Basic-code"><span class="nav-number">1.2.</span> <span class="nav-text">·Basic code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%EF%BD%9C-Print"><span class="nav-number">1.2.1.</span> <span class="nav-text">echo ｜ Print</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-file"><span class="nav-number">1.2.2.</span> <span class="nav-text">About file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear-%EF%BD%9C-Clear-screen"><span class="nav-number">1.2.3.</span> <span class="nav-text">clear  ｜ Clear screen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sudo-Get-administrator-privileges"><span class="nav-number">1.2.4.</span> <span class="nav-text">sudo | Get administrator privileges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#man-XXX-Learn-the-useage-of-XXX"><span class="nav-number">1.2.5.</span> <span class="nav-text">man XXX | Learn the useage of XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">1.2.7.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caffeinate-Keep-mac-work"><span class="nav-number">1.2.8.</span> <span class="nav-text">caffeinate | Keep mac work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#killall-XXX-Kill-XXX"><span class="nav-number">1.2.9.</span> <span class="nav-text">killall XXX | Kill XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#defaults"><span class="nav-number">1.2.10.</span> <span class="nav-text">defaults</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amazing-echo"><span class="nav-number">1.2.11.</span> <span class="nav-text">amazing echo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%90%8D"><span class="nav-number">1.3.</span> <span class="nav-text">改名</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -446,7 +529,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -480,7 +563,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">6</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">6</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -512,7 +595,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">872k</span>
+    <span title="站点总字数">894k</span>
 </div>
 
         
