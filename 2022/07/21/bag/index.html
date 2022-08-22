@@ -21,20 +21,25 @@
     var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="总结大一上学期在网络安全实验室的收获与不足，对将到来的假期及以后的密码学习进行规划。">
+  <meta name="description" content="五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续···">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【置顶】Crypto学习总结与规划">
-<meta property="og:url" content="https://harry0597.com/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/index.html">
+<meta property="og:title" content="CTF·背包问题相关">
+<meta property="og:url" content="https://harry0597.com/2022/07/21/bag/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
-<meta property="og:description" content="总结大一上学期在网络安全实验室的收获与不足，对将到来的假期及以后的密码学习进行规划。">
+<meta property="og:description" content="五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续···">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-23T14:27:25.000Z">
-<meta property="article:modified_time" content="2022-07-12T12:48:37.604Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/hqdefault.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/Ralph_Merkle.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/Martin-Hellman.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/7HwAdyNEGqDKLat.png">
+<meta property="article:published_time" content="2022-07-21T14:44:47.000Z">
+<meta property="article:modified_time" content="2022-07-25T07:57:02.236Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/hqdefault.jpg">
 
-<link rel="canonical" href="https://harry0597.com/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/">
+<link rel="canonical" href="https://harry0597.com/2022/07/21/bag/">
 
 
 <script id="page-configurations">
@@ -47,7 +52,7 @@
   };
 </script>
 
-  <title>【置顶】Crypto学习总结与规划 | Harry's Blog</title>
+  <title>CTF·背包问题相关 | Harry's Blog</title>
   
 
 
@@ -194,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2022/07/21/bag/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_2550.JPG">
@@ -207,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【置顶】Crypto学习总结与规划
+          CTF·背包问题相关
         </h1>
 
         <div class="post-meta">
@@ -217,14 +222,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-23 22:27:25" itemprop="dateCreated datePublished" datetime="2021-12-23T22:27:25+08:00">2021-12-23</time>
+              <time title="创建时间：2022-07-21 22:44:47" itemprop="dateCreated datePublished" datetime="2022-07-21T22:44:47+08:00">2022-07-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-12 20:48:37" itemprop="dateModified" datetime="2022-07-12T20:48:37+08:00">2022-07-12</time>
+                <time title="修改时间：2022-07-25 15:57:02" itemprop="dateModified" datetime="2022-07-25T15:57:02+08:00">2022-07-25</time>
               </span>
 
           
@@ -239,8 +244,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/07/21/bag/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/21/bag/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -250,16 +255,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
-            <div class="post-description">总结大一上学期在网络安全实验室的收获与不足，对将到来的假期及以后的密码学习进行规划。</div>
+            <div class="post-description">五月出的迎新赛bag一题，现补充背景知识，其中LLL求解进一步原理解释待续···</div>
 
         </div>
       </header>
@@ -270,66 +275,84 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="自我总结"><a href="#自我总结" class="headerlink" title="自我总结"></a>自我总结</h1><h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>这一学期在实验室学到了很多…</p>
+        <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/hqdefault.jpg" alt="背包"></p>
+<p>背包加密基于背包问题。</p>
+<p>而背包问题，是指设有一个可以载重S的背包，在有 n 个重量分别为 a1,a2,…,an的物品情况下，如何在不重复选择的前提下将物品装入背包且正好使其满载的问题。</p>
+<p>数学表述如下：<br>$$<br>x_1a_1+x_2a_2+···+x_na_n=S, x_i \in (0,1),a_i&gt;0<br>$$<br>实际上，我们可以将明文转换成数字，并将其二进制01码从高位到低位依次作$x_i$.</p>
+<p>公布$a_i$、$S$这样就实现了,利用背包问题来简单加密明文。</p>
+<p>此时，若要破解出$x_i$,爆破攻击的时间复杂度是$O(2^n)$，非常困难也非常安全，但没有意义。</p>
+<p>因为加密的目的，是让指定的人（同时有公私钥的人）能快速解密，而只有公钥的人则无法快速解密。</p>
+<p>如上所述的加密方式，没有这么一种「私钥」能让拥有者快速解出明文$x_i$</p>
+<h2 id="超递增序列"><a href="#超递增序列" class="headerlink" title="超递增序列"></a>超递增序列</h2><p>在讲改进后基于背包问题的背包加密之前，先谈谈超递增序列。</p>
+<p>上文说到「若要破解出$x_i$,爆破攻击的时间复杂度是$O(2^n)$，非常困难」，那么，是否有特殊情况可以快速求出序列X(即$x_i$组成的数列)呢？</p>
+<p>答案是：有。</p>
+<p>这里讲的<strong>超递增序列</strong>即是。</p>
+<p>超递增序列是每一个元素都大于或等于之前所有元素之和的序列，即：<br>$$<br>r_i ≥ r_1 + r_2 + r_3 + ··· + r_{i-1}<br>$$<br>也即:<br>$$<br>r_i ≥ 2 •r_{i-1}<br>$$</p>
+<p>当明文与<strong>超递增序列</strong>依次相乘再求和时<br>$$<br>x_1r_1+x_2r_2+···+x_nr_n=S, x_i \in (0,1),r_i&gt;0<br>$$<br><strong>我们可以通过依次比较S与序列中最大的元素大小关系，来确定该元素性质。</strong></p>
+<p>例如，若$S &gt; r_n$,则$r_n$必然存在于等式左边，即$x_n=1$</p>
+<p>因为哪怕小于$r_n$的所有元素都存在于等式左边，它们的和也小于$r_n$.所以$S$若要大于$r_n$，$r_n$就必须存在。</p>
+<p>接下来，令$S = S - r_n$，再比较$S$与$r_{n-1}$，同理可得$x_{n-1}$</p>
+<p>循环以上步骤，直到确定序列$X$所有元素。</p>
+<p>如此一来，我们知道若用<strong>超递增序列加密明文</strong>，是非常容易可破解出明文的。</p>
+<h2 id="背包加密"><a href="#背包加密" class="headerlink" title="背包加密"></a>背包加密</h2><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/Ralph_Merkle.png" alt="Ralph C. Merkle"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/Martin-Hellman.jpg" alt="Martin Edward Hellman"></p>
+<blockquote>
+<p>1977年，Merkle与Hellman合作设计了背包加密算法，该算法提出后密码学界提出了很多背包型加密算法。</p>
+</blockquote>
+<p>正如前文所言，背包问题显然不是一个加密体系，若加密所用序列并不特殊，求$x_i$对所有人都很困难。</p>
+<p>于是Merkle–Hellman背包加密算法诞生，其流程如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/7HwAdyNEGqDKLat.png" alt="总流程"></p>
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><ol start="0">
+<li><p><strong>明文</strong></p>
 <ul>
-<li>什么是CTF</li>
-<li>CTF·Crypto</li>
-<li>Markdown</li>
-<li>TCP/IP</li>
-<li>个人博客</li>
-<li>……</li>
+<li><p>明文字符串转数字</p>
+</li>
+<li><p>明文数字转二进制</p>
+</li>
+<li><p>生成明文序列$x=(x_1,x_2,x_3,···,x_n), x_i \in (0,1)$</p>
+<p>$x_i$为明文数字二进制下每一位</p>
+</li>
 </ul>
-<p>在我看来，到目前为止最大的收获反倒不是具体涨了多少知识，而是多了一种<strong>可能性</strong>，一种<strong>氛围</strong>。</p>
-<p>不只是停留在好奇、观望的层面，实验室的存在，让我有了学习任何知识的可能与决心。</p>
-<p>通过每次例会复盘每次学习，通过讨论、学习、打比赛（受虐阶段）大家凝聚起来，实验室提供的优秀学习环境衍生出的良好氛围让我受益匪浅，能够持续的学习下去。</p>
-<h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><h3 id="学习方面"><a href="#学习方面" class="headerlink" title="学习方面"></a>学习方面</h3><ol>
-<li><strong>方向</strong>混乱，对整个知识体系没有概念。</li>
-<li>学习现代密码进度缓慢，<strong>安排</strong>不合理。</li>
-<li>对当下CTF<strong>比赛所需</strong>要的能力、知识没有清晰的了解、明确的规划</li>
+</li>
+<li><p><strong>私钥</strong></p>
+<p>生成<strong>超递增序列</strong>$r=(r_1,r_2,r_3,···,r_n)$做私钥序列</p>
+</li>
+<li><p><strong>公钥</strong></p>
+<ul>
+<li>生成模数B，满足$B&gt;\sum\limits_{i=1}^{n}a_i$, 即$B&gt;2r_n$</li>
+<li>生成乘数A，满足$gcd(A,B)=1$</li>
+<li>生成公钥序列$M=(M_1,M_2,M_3,···,M_n)$，其中$M_i ≡ Ar_i \mod B$</li>
+</ul>
+</li>
+<li><p><strong>密文</strong></p>
+<p>生成密文$S = x•M = \sum \limits_{i=1}^{n}x_iM_i$</p>
+</li>
 </ol>
-<h3 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h3><ol>
-<li><strong>小组学习制度</strong>没有落实下来，与大家少了交流学习的机会</li>
-<li>长期<strong>茫然</strong>导致学习CTF的欲望衰退</li>
-<li>正儿八经的CTF比赛<strong>没什么产出</strong></li>
+<p>公布序列M, 乘数A, 模数B, 密文S</p>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><ol>
+<li>计算A关于模B的逆元$A^{-1}$</li>
+<li>计算$S’ \equiv A^{-1}S \equiv A^{-1}\sum_{i=1}^{n}x_iM_i\equiv A^{-1}\sum_{i=1}^{n}x_iAr_i\equiv \sum_{i=1}^{n}x_ir_i \mod B$</li>
+<li>利用超递增序列$r$的性质，求解出明文二进制</li>
+<li>明文二进制转数字，再转字符串   </li>
 </ol>
-<h2 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h2><blockquote>
-<p>昨日，听了前CTFer、现网安从业者Xenny的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MB4y1K78r">学习经历</a>，有以下启发。</p>
-<script src="/js/youtube-autoresizer.js"></script>
-</blockquote>
-<iframe width="800" height="450" src="https://www.bilibili.com/video/BV1MB4y1K78r" frameborder="0" allowfullscreen></iframe>
+<p>如上流程，公、私钥拥有者可以计算出$S’$，然后利用超递增序列$r$轻易求解出明文</p>
+<p>仅有公钥者，计算出$S’$后，因为没有序列$r$便无法利用超递增序列的性质求解</p>
+<p>只能看向这个等式<br>$$<br>S = x•M = \sum \limits_{i=1}^{n}x_iM_i<br>$$<br>而若<strong>正常选择好</strong>乘数$A$、序列$r$，模B后的序列$M$各元素（$M_i ≡ Ar_i \mod B$）将丧失原大小顺序性质。</p>
+<p>换言之，攻击者将面临的是上文中背包问题里复杂度为$O(2^n)$的难题，这保障了背包加密的安全性。</p>
+<p>但近些年来，自从有关<strong>LLL</strong>的论文发表后，基于背包的密码系统出现了<strong>致命的漏洞</strong>。</p>
+<h2 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h2><h3 id="参数不当"><a href="#参数不当" class="headerlink" title="参数不当"></a>参数不当</h3><p>正如前文所讲，若乘数$A$、序列$r$大小不当则可能使得乘积过小，即：$Ar_i \mod B = Ar_i$</p>
+<p>那么公钥序列$M$就是肉眼可见的超递增序列了，直接利用性质可求出明文。</p>
+<h3 id="背包问题通解"><a href="#背包问题通解" class="headerlink" title="背包问题通解"></a>背包问题通解</h3><p><strong>当密度$d = \cfrac{len(M)}{\log_2(max(M_i))}&lt;0.9408$时，LLL算法能通杀这类背包问题。</strong></p>
+<p>用公钥序列$M=(M_1,M_2,M_3,···,M_n)$、密文S构造格子<br>$$<br>\left(\begin {array}{c} x_1 \newline \vdots \newline x_{n-1} \newline x_n \newline 0 \end{array} \right) =\left(\begin {array}{c} 1 &amp; 0 &amp; \cdots &amp; 0 &amp; M_1 \newline 0 &amp; 1 &amp; \cdots &amp; 0 &amp; M_2 \newline \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \newline 0 &amp; 0 &amp; \cdots &amp; 1 &amp; M_n \newline 0 &amp; 0 &amp; \cdots &amp; 0 &amp; S \end{array} \right)<br>$$<br>用LLL求右边格子的最短正交基，即为左边的明文$x$</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sage</span></span><br><span class="line"><span class="attr">import</span> <span class="string">libnum</span></span><br><span class="line"><span class="attr">M</span> = <span class="string">[]</span></span><br><span class="line"><span class="attr">S</span> = <span class="string"></span></span><br><span class="line"><span class="attr">n</span> = <span class="string">len(M)</span></span><br><span class="line"><span class="attr">Mat</span> = <span class="string">Matrix.identity(n)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">last_row</span> = <span class="string">[0 for x in M]</span></span><br><span class="line"><span class="attr">M_last_row</span> = <span class="string">Matrix(ZZ, 1, len(last_row), last_row)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">last_col</span> = <span class="string">M[:]</span></span><br><span class="line"><span class="attr">last_col.append(S)</span></span><br><span class="line"><span class="attr">M_last_col</span> = <span class="string">Matrix(ZZ, len(last_col), 1, last_col)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Mat</span> = <span class="string">Mat.stack(M_last_row)</span></span><br><span class="line"><span class="attr">Mat</span> = <span class="string">Mat.augment(M_last_col)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">X</span> = <span class="string">Mat.LLL()</span></span><br><span class="line"><span class="comment"># print(X)</span></span><br><span class="line"><span class="attr">for</span> <span class="string">t in X:</span></span><br><span class="line">    <span class="attr">tmp</span> = <span class="string">t[:-1]</span></span><br><span class="line">    <span class="attr">ans</span> = <span class="string">[str(abs(k)) for k in tmp]</span></span><br><span class="line">    <span class="attr">try</span>:<span class="string"></span></span><br><span class="line">        <span class="attr">flag</span> = <span class="string">int(&#x27;&#x27;.join(ans), 2)</span></span><br><span class="line">        <span class="attr">print(libnum.n2s(flag))</span></span><br><span class="line">    <span class="attr">except</span>:<span class="string"></span></span><br><span class="line">        <span class="attr">pass</span></span><br><span class="line"><span class="attr">print(&#x27;0ver&#x27;)</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="思想层面——定位"><a href="#思想层面——定位" class="headerlink" title="思想层面——定位"></a>思想层面——定位</h3><h4 id="定位团队"><a href="#定位团队" class="headerlink" title="定位团队"></a>定位团队</h4><p>从意识上开始有正确认知，调动主观能动性。</p>
-<p>定位学校的CTF团队的位置。</p>
-<p>是有着科学安排、严格训练的CTF强校的强队，还是将成未成的团队？</p>
-<p>自然，前者只需要跟着学习、训练就够。但倘若是后者，就得更多思考，对自己要有更多的要求、计划。</p>
-<h4 id="定位自己"><a href="#定位自己" class="headerlink" title="定位自己"></a>定位自己</h4><p>知识永远有新的。</p>
-<p>这要求我们定位出自己的位置。清晰的了解到自己的知识、能力在哪一个阶段，能解出什么题。</p>
-<p>若是随意的、漫无目的的学，知识永远不会成体系。</p>
-<h4 id="定位他人"><a href="#定位他人" class="headerlink" title="定位他人"></a>定位他人</h4><p>一个原则，<strong>个人发展大于团队发展。</strong></p>
-<p>怪矛盾的一件事情</p>
-<p>大意是：</p>
-<p>自己可以因为热爱而为CTF全力以赴、牺牲些什么，但不能把自己的追求强加给别人。</p>
-<p>尊重他人的选择。</p>
-<h3 id="执行层面——积累"><a href="#执行层面——积累" class="headerlink" title="执行层面——积累"></a>执行层面——积累</h3><blockquote>
-<p>同时针对<strong>寒假</strong>与未来<strong>在校的CTF学习</strong></p>
-</blockquote>
-<h4 id="积累原理"><a href="#积累原理" class="headerlink" title="积累原理"></a>积累原理</h4><p>勤奋<strong>抓底层逻辑</strong></p>
-<p>对于新鲜事物的学习，不以利用为最终目标，要知其所以然，多解释为什么。</p>
-<p>这样，才能做到量变引起质变，才能有所突破。</p>
-<h4 id="积累内容"><a href="#积累内容" class="headerlink" title="积累内容"></a>积累内容</h4><p>找到方向一致的伙伴，成立方向定位足够准确的小组，<strong>落实小组学习</strong>。</p>
-<p>小组定好学习目标，每周进行出题交互，交换思路。</p>
-<p>Github开仓库/BBS，对每周每月的小组学习内容进行存贮。</p>
-<p>最后所有方向的小组学习内容汇总，方便组员复习，后人学习。</p>
-<p>每一学期复盘会清楚地知道学了些什么，有什么可以改进的地方。</p>
-<h4 id="积累经验"><a href="#积累经验" class="headerlink" title="积累经验"></a>积累经验</h4><p>积极参与各大赛事，<strong>做题认认真真地做</strong>，复盘必不可少。</p>
-<p> 关于复盘，要求个人写出详细的Wp，，最后与各大博客的、官方的对比学习，针对弱题目，再对此进行复盘。</p>
-<h1 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h1><h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><p>《数论》</p>
-<p>《近世代数基础》</p>
-<h2 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h2><p>《CTF特训营》</p>
-<p>《密码学原理与应用》</p>
-<p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/introduction/">CTF·Wiki·Crypto</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36289177/answer/70140709">一个月入门密码训练</a></p>
-<p>（完）</p>
+<p>进一步原理，详见参考<a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/05/13/crypto-%E5%85%B6%E4%BB%96%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#Merkle-Hellman%E8%83%8C%E5%8C%85%E5%8A%A0%E5%AF%86%EF%BC%88Knapsack%EF%BC%89">[2]</a>&amp;<a target="_blank" rel="noopener" href="https://jayxv.github.io/2020/06/08/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bknapsack/">[3]</a></p>
+<h3 id="子集积问题"><a href="#子集积问题" class="headerlink" title="子集积问题"></a>子集积问题</h3><p>以上所述的背包问题也叫子集和问题，即：关于子集的和的问题。</p>
+<p>子集积问题，想办法退化为子集和问题即可解。</p>
+<p>详见参考<a target="_blank" rel="noopener" href="https://jayxv.github.io/2020/06/08/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bknapsack/">[3]</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/asymmetric/knapsack/knapsack/">https://ctf-wiki.org/crypto/asymmetric/knapsack/knapsack/</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/05/13/crypto-%E5%85%B6%E4%BB%96%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#Merkle-Hellman%E8%83%8C%E5%8C%85%E5%8A%A0%E5%AF%86%EF%BC%88Knapsack%EF%BC%89">https://lazzzaro.github.io/2020/05/13/crypto-其他加密算法/#Merkle-Hellman背包加密（Knapsack）</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://jayxv.github.io/2020/06/08/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bknapsack/">https://jayxv.github.io/2020/06/08/密码学学习笔记之knapsack/</a></p>
 
     </div>
 
@@ -345,7 +368,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://harry0597.com/2021/12/23/Crypto%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%8E%E8%A7%84%E5%88%92/" title="【置顶】Crypto学习总结与规划">https://harry0597.com/2021/12/23/Crypto学习总结与规划/</a>
+    <a href="https://harry0597.com/2022/07/21/bag/" title="CTF·背包问题相关">https://harry0597.com/2022/07/21/bag/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -365,12 +388,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/21/%E6%9C%BA%E6%A2%B0%E5%88%B6%E5%9B%BE%E6%8B%BE%E9%81%97/" rel="prev" title="机械制图拾遗">
-      <i class="fa fa-chevron-left"></i> 机械制图拾遗
+    <a href="/2022/07/18/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%A4%8D%E7%8E%B0/" rel="prev" title="RSA私钥文件学习（2022蓝帽杯复现）">
+      <i class="fa fa-chevron-left"></i> RSA私钥文件学习（2022蓝帽杯复现）
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/30/%E5%AF%92%E5%81%87%E4%BF%AE%E7%82%BC%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="寒假修炼记（一）">
-      寒假修炼记（一） <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/28/2022DASCTF7/" rel="next" title="DASCTF2022.07赋能赛·Crypto">
+      DASCTF2022.07赋能赛·Crypto <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -431,7 +454,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">自我总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E8%8E%B7"><span class="nav-number">1.1.</span> <span class="nav-text">收获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%B6%B3"><span class="nav-number">1.2.</span> <span class="nav-text">不足</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%96%B9%E9%9D%A2"><span class="nav-number">1.2.1.</span> <span class="nav-text">学习方面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">更多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%92"><span class="nav-number">1.3.</span> <span class="nav-text">规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E6%83%B3%E5%B1%82%E9%9D%A2%E2%80%94%E2%80%94%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.3.1.</span> <span class="nav-text">思想层面——定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E5%9B%A2%E9%98%9F"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">定位团队</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E8%87%AA%E5%B7%B1"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">定位自己</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E4%BB%96%E4%BA%BA"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">定位他人</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%B1%82%E9%9D%A2%E2%80%94%E2%80%94%E7%A7%AF%E7%B4%AF"><span class="nav-number">1.3.2.</span> <span class="nav-text">执行层面——积累</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%AF%E7%B4%AF%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">积累原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%AF%E7%B4%AF%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">积累内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%AF%E7%B4%AF%E7%BB%8F%E9%AA%8C"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">积累经验</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">具体内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6"><span class="nav-number">2.1.</span> <span class="nav-text">数学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">密码</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97"><span class="nav-number">1.1.</span> <span class="nav-text">超递增序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E5%8A%A0%E5%AF%86"><span class="nav-number">1.2.</span> <span class="nav-text">背包加密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%BB%E5%87%BB"><span class="nav-number">1.3.</span> <span class="nav-text">攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%B8%8D%E5%BD%93"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%80%9A%E8%A7%A3"><span class="nav-number">1.3.2.</span> <span class="nav-text">背包问题通解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%9B%86%E7%A7%AF%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.3.</span> <span class="nav-text">子集积问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -619,6 +642,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
