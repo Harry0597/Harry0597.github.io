@@ -284,7 +284,9 @@
 </li>
 <li><p>priv.pem</p>
 <p>改后缀为txt</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA <span class="keyword">PRIVATE</span> <span class="keyword">KEY</span>-----</span><br><span class="line">MIICXgIBAAKBgQDXFSUGqpzsBeUzXWtG9UkUB8MZn9UQkfH2Aw03YrngP0nJ3NwH</span><br><span class="line">UFTgzBSLl0tBhUvZO07haiqHbuYgBegO+Aa3qjtksb+bH6dz41PQzbn/l4Pd1fXm</span><br><span class="line">dJmtEPNh6TjQC4KmpMQqBTXF52cheY6GtFzUuNA7DX51wr6HZqHoQ73GQQIDAQAB</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yQvOzxy6szWFheigQdGxAkEA4wFss2CcHWQ8FnQ5w7k4uIH0I38khg07HLhaYm1c</span><br><span class="line">zUcmlk4PgnDWxN+ev+vMU45O5eGntzaO3lHsaukX9461mA==</span><br><span class="line">-----<span class="keyword">END</span> RSA <span class="keyword">PRIVATE</span> <span class="keyword">KEY</span>-----</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA <span class="keyword">PRIVATE</span> <span class="keyword">KEY</span>-----</span><br><span class="line">MIICXgIBAAKBgQDXFSUGqpzsBeUzXWtG9UkUB8MZn9UQkfH2Aw03YrngP0nJ3NwH</span><br><span class="line">UFTgzBSLl0tBhUvZO07haiqHbuYgBegO+Aa3qjtksb+bH6dz41PQzbn/l4Pd1fXm</span><br><span class="line">dJmtEPNh6TjQC4KmpMQqBTXF52cheY6GtFzUuNA7DX51wr6HZqHoQ73GQQIDAQAB</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yQvOzxy6szWFheigQdGxAkEA4wFss2CcHWQ8FnQ5w7k4uIH0I38khg07HLhaYm1c</span><br><span class="line">zUcmlk4PgnDWxN+ev+vMU45O5eGntzaO3lHsaukX9461mA==</span><br><span class="line">-----<span class="keyword">END</span> RSA <span class="keyword">PRIVATE</span> <span class="keyword">KEY</span>-----</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <h3 id="pem·hex下结构："><a href="#pem·hex下结构：" class="headerlink" title="pem·hex下结构："></a>pem·hex下结构：</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RSAPrivateKey ::= <span class="keyword">SEQUENCE</span> &#123;</span><br><span class="line"><span class="keyword">version</span> <span class="keyword">Version</span>,</span><br><span class="line">modulus <span class="type">INTEGER</span>, <span class="comment">-- n</span></span><br><span class="line">publicExponent <span class="type">INTEGER</span>, <span class="comment">-- e</span></span><br><span class="line">privateExponent <span class="type">INTEGER</span>, <span class="comment">-- d</span></span><br><span class="line">prime1 <span class="type">INTEGER</span>, <span class="comment">-- p</span></span><br><span class="line">prime2 <span class="type">INTEGER</span>, <span class="comment">-- q</span></span><br><span class="line">exponent1 <span class="type">INTEGER</span>, <span class="comment">-- d mod (p-1)</span></span><br><span class="line">exponent2 <span class="type">INTEGER</span>, <span class="comment">-- d mod (q-1)</span></span><br><span class="line">coefficient <span class="type">INTEGER</span>, <span class="comment">-- (inverse of q) mod p</span></span><br><span class="line">otherPrimeInfos OtherPrimeInfos OPTIONAL</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -461,7 +463,7 @@
 <h4 id="RSA-PEM-私钥文件"><a href="#RSA-PEM-私钥文件" class="headerlink" title="RSA PEM 私钥文件"></a>RSA PEM 私钥文件</h4><ol>
 <li><p>对RSA各参数使用<strong>TLV方法</strong></p>
 <ul>
-<li><p>参数<strong>第一个字节</strong>（这里是<code>9c</code>）<strong>超过<code>0x80</code><strong>就需要高位</strong>补充<code>00</code></strong></p>
+<li><p>参数<strong>第一个字节</strong>（这里是<code>9c</code>）<strong>超过<code>0x80</code></strong>就需要高位<strong>补充<code>00</code></strong></p>
 </li>
 <li><p>计算其<strong>「长度」</strong></p>
 <p>若长度大于<code>80</code>则<strong>辅助参数</strong>存在</p>
@@ -478,7 +480,7 @@
 </li>
 </ul>
 </li>
-<li><p>加<strong>私钥判断数据</strong>，<code> 02 01 00</code> +<code> 各参数TLV后的数据拼接</code></p>
+<li><p>加<strong>私钥判断数据</strong>，<code>02 01 00</code> +<code>各参数TLV后的数据拼接</code></p>
 </li>
 <li><p>加<strong>文件总长数据</strong>，将第2步的结果用TLV方法（前缀为<code>30</code>）</p>
 </li>
@@ -489,8 +491,9 @@
 </li>
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>私钥、公钥文件的人工读取</p>
-</li>
+<li>私钥、公钥文件的人工读取</li>
+</ul>
+<ul>
 <li><p>十六进制泄漏低位不影响计算</p>
 <p>十进制砍掉高位，我接受的来，十六进制当时确实是迷茫</p>
 </li>

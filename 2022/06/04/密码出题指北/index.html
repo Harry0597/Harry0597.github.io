@@ -291,7 +291,7 @@
 </ul>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220601233310224.png" alt="M1 MacBook Pro"></p>
 <h3 id="Docker-for-mac"><a href="#Docker-for-mac" class="headerlink" title="Docker for mac"></a>Docker for mac</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lxh_worldpeace/article/details/105454114?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165409563716782391831587%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165409563716782391831587&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-105454114-null-null.142%5Ev11%5Econtrol,157%5Ev12%5Enew_style&utm_term=mac+docker&spm=1018.2226.3001.4187">Mac系统docker安装配置及基本使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lxh_worldpeace/article/details/105454114?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165409563716782391831587%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165409563716782391831587&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-105454114-null-null.142^v11^control,157^v12^new_style&utm_term=mac+docker&spm=1018.2226.3001.4187">Mac系统docker安装配置及基本使用</a></li>
 </ul>
 <p>（或许win才是主流，说到底配起来也大同小异。而win可以参考的可太多了，不差这一篇）</p>
 <p>跟着👆链接走</p>
@@ -299,12 +299,10 @@
 <li><p>安装<a target="_blank" rel="noopener" href="https://hub.docker.com/editions/community/docker-ce-desktop-mac/">Docker</a></p>
 </li>
 <li><p>换<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/undefined/instances/mirrors">阿里源</a>，需要注册账号先（这一步可忽略）</p>
-<p>（<a target="_blank" rel="noopener" href="https://tdll0jog.mirror.aliyuncs.com)/">https://tdll0jog.mirror.aliyuncs.com）</a></p>
+<p>（<a target="_blank" rel="noopener" href="https://tdll0jog.mirror.aliyuncs.com）">https://tdll0jog.mirror.aliyuncs.com）</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220601231956011.png" alt="step1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220601232027015.png" alt="step2"></p>
 </li>
-</ol>
-<p>  <img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220601231956011.png" alt="step1"></p>
-<p>  <img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220601232027015.png" alt="step2"></p>
-<ol start="3">
 <li><p>注册<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker iD</a>,登陆</p>
 <p>这里实测，发现用了第2步的阿里，就登陆不上了</p>
 <p>索性先不换源了，把代理关了</p>
@@ -321,18 +319,36 @@
 <li><p><code>docker pull nginx:xxx</code> 获取指定版本的nginx镜像</p>
 <p><code>docker pull nginx</code>         获取最新版本的nginx镜像</p>
 </li>
-<li><p>创建并启动容器（可以使用<a target="_blank" rel="noopener" href="http://localhost:8080/%E8%AE%BF%E9%97%AEdocker%E5%AE%B9%E5%99%A8%EF%BC%89">http://localhost:8080/访问docker容器）</a></p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># -d 后台运行</span></span><br><span class="line"><span class="meta"># -p 8080:80 宿主机的8080端口映射到docker内部的80端口</span></span><br><span class="line"><span class="meta"># --name docker-nginx 启动后的容器名称为docker-nginx</span></span><br><span class="line">docker run -d -p <span class="number">8080</span>:<span class="number">80</span> --name docker-nginx nginx</span><br></pre></td></tr></table></figure></li>
+<li><p>创建并启动容器（可以使用<a target="_blank" rel="noopener" href="http://localhost:8080/访问docker容器）">http://localhost:8080/访问docker容器）</a></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># -d 后台运行</span></span><br><span class="line"><span class="meta"># -p 8080:80 宿主机的8080端口映射到docker内部的80端口</span></span><br><span class="line"><span class="meta"># --name docker-nginx 启动后的容器名称为docker-nginx</span></span><br><span class="line">docker run -d -p <span class="number">8080</span>:<span class="number">80</span> --name docker-nginx nginx</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
 <li><p>查看容器</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">docker <span class="built_in">ps</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器 包括正在运行和已经停止运行的</span></span><br><span class="line">docker <span class="built_in">ps</span> <span class="literal">-a</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">docker <span class="built_in">ps</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器 包括正在运行和已经停止运行的</span></span><br><span class="line">docker <span class="built_in">ps</span> <span class="literal">-a</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <ul>
 <li><p>停止容器</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 通过id直接关闭容器</span></span><br><span class="line"><span class="meta"># docker kill a0fbf4519279</span></span><br><span class="line"><span class="meta"># 通过容器名称直接关闭容器</span></span><br><span class="line">docker kill docker-nginx</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="meta"># 通过id直接容器 默认等待十秒 超时强制关闭</span></span><br><span class="line"><span class="meta"># docker stop a0fbf4519279</span></span><br><span class="line"><span class="meta"># 通过容器名称关闭容器 默认等待十秒 超时强制关闭  等价于 docker stop -t=10 docker-nginx</span></span><br><span class="line">docker stop docker-nginx</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 通过id直接关闭容器</span></span><br><span class="line"><span class="meta"># docker kill a0fbf4519279</span></span><br><span class="line"><span class="meta"># 通过容器名称直接关闭容器</span></span><br><span class="line">docker kill docker-nginx</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="meta"># 通过id直接容器 默认等待十秒 超时强制关闭</span></span><br><span class="line"><span class="meta"># docker stop a0fbf4519279</span></span><br><span class="line"><span class="meta"># 通过容器名称关闭容器 默认等待十秒 超时强制关闭  等价于 docker stop -t=10 docker-nginx</span></span><br><span class="line">docker stop docker-nginx</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <ul>
 <li><p>启动停止的容器</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 启动容器可通过容器id或者容器名称</span></span><br><span class="line"><span class="meta"># 通过容器名称启动容器，如果已启动则忽略</span></span><br><span class="line">docker start docker-nginx</span><br><span class="line"> </span><br><span class="line"><span class="meta"># 通过容器名称重新启动容器，如果未启动则直接启动，如果已启动则关闭再启动</span></span><br><span class="line"><span class="meta"># docker restart docker-nginx</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 启动容器可通过容器id或者容器名称</span></span><br><span class="line"><span class="meta"># 通过容器名称启动容器，如果已启动则忽略</span></span><br><span class="line">docker start docker-nginx</span><br><span class="line"> </span><br><span class="line"><span class="meta"># 通过容器名称重新启动容器，如果未启动则直接启动，如果已启动则关闭再启动</span></span><br><span class="line"><span class="meta"># docker restart docker-nginx</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <h2 id="开启一道CTF密码题"><a href="#开启一道CTF密码题" class="headerlink" title="开启一道CTF密码题"></a>开启一道CTF密码题</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://4xwi11.github.io/posts/921543e1/#more">https://4xwi11.github.io/posts/921543e1/#more</a></li>
@@ -429,19 +445,24 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">ls</span><br><span class="line">cat exp.py</span><br></pre></td></tr></table></figure>
 <pre><code>（学到了，要把指令同时执行，不然执行完一次cd后，会自动cd回初始目录，白搭👿）
 
-![芜湖](https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220602184456699.png)
-</code></pre>
-</li>
+![芜湖](https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20220602184456699.png)</code></pre></li>
 <li><p>跟着本地的教程再走一遍</p>
 <ul>
 <li><p>建立镜像</p>
-   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">docker build . -t test1</span><br></pre></td></tr></table></figure></li>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">docker build . -t test1</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>开放2022端口</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">  docker run --name try1 -d -idt -p 2022:10001 test1</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">  docker run --name try1 -d -idt -p 2022:10001 test1</span><br></pre></td></tr></table></figure>
+
+<ul>
 <li><p>本地测试能否连接服务器端端口</p>
-<p>  没反应🤔</p>
-<p>  <code>sudo ufw allow 2022</code> 尝试开放2022端口</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">docker run --name try -d -p 12345:10001 test1</span><br></pre></td></tr></table></figure></li>
+<p> 没反应🤔</p>
+<p> <code>sudo ufw allow 2022</code> 尝试开放2022端口</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> CryptoTest</span><br><span class="line">docker run --name try -d -p 12345:10001 test1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -481,7 +502,7 @@
 <p> <strong>原因</strong>：<strong>在我们启动了Docker后，我们再对防火墙firewalld进行操作，就会发生上述报错</strong>，</p>
 </blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/shz_123/article/details/123023614?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165418055716781667832978%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165418055716781667832978&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-123023614-null-null.142%5Ev11%5Econtrol,157%5Ev13%5Enew_3&utm_term=docker:+Error+response+from+daemon:+driver+failed+programming+external+connectivity+on+endpoint+&spm=1018.2226.3001.4187">报错类型</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/shz_123/article/details/123023614?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165418055716781667832978%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165418055716781667832978&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-123023614-null-null.142^v11^control,157^v13^new_3&utm_term=docker%3A+Error+response+from+daemon%3A+driver+failed+programming+external+connectivity+on+endpoint+&spm=1018.2226.3001.4187">报错类型</a></li>
 </ul>
 <p><code>systemctl restart docker</code>  </p>
 <p> <strong>重启docker服务及可重新生成自定义链DOCKER</strong></p>

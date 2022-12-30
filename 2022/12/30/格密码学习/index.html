@@ -316,7 +316,7 @@
 <p><strong>当且仅当两组格基满足$B_2=B_1U$（U为幺模矩阵）时，两组格基等价</strong></p>
 <p>于是，我们原问题等价于：$B_1^{-1}B_2$是否为幺模矩阵。得解。</p>
 <h2 id="格基本区域"><a href="#格基本区域" class="headerlink" title="格基本区域"></a>格基本区域</h2><p>格的基本区域可用基础平行多面体表示。</p>
-<h3 id="基础平行多面体-｜-FUNDAMENTAL-PARALLELEPIPED"><a href="#基础平行多面体-｜-FUNDAMENTAL-PARALLELEPIPED" class="headerlink" title="基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED"></a>基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED</h3><p>给定格基，基础平行多面体$P(B) = {a_1v_1,a_2v_2,\dots, a_nv_n | a_i\in[0,1) }$    （注意：<strong>左闭右开</strong>）</p>
+<h3 id="基础平行多面体-｜-FUNDAMENTAL-PARALLELEPIPED"><a href="#基础平行多面体-｜-FUNDAMENTAL-PARALLELEPIPED" class="headerlink" title="基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED"></a>基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED</h3><p>给定格基，基础平行多面体$P(B) = \{a_1v_1,a_2v_2,\dots, a_nv_n | a_i\in[0,1) \}$    （注意：<strong>左闭右开</strong>）</p>
 <p>可理解为<strong>格中最小重复单元</strong>。</p>
 <p>从二维格上理解，就是如下红色区域：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130234835554.png" alt="fundamental parallelepiped"></p>
@@ -345,7 +345,7 @@
 <p>也即：<strong>可用格基行列式值衡量格点密度（反相关）</strong></p>
 </li>
 </ul>
-<h2 id="延展空间｜span"><a href="#延展空间｜span" class="headerlink" title="延展空间｜span"></a>延展空间｜span</h2><p>我们称格 $L(B)$ 中基向量的所有线性组合所形成的集合为这组基向量所张成的延展空间(span)<br>$$<br>\mathop{span}(L(B)) = \mathop{span}(B)= {a_1v_1,a_2v_2,\dots, a_nv_n | a_i\in R }<br>$$<br>不妨思考如下问题</p>
+<h2 id="延展空间｜span"><a href="#延展空间｜span" class="headerlink" title="延展空间｜span"></a>延展空间｜span</h2><p>我们称格 $L(B)$ 中基向量的所有线性组合所形成的集合为这组基向量所张成的延展空间(span)<br>$$<br>\mathop{span}(L(B)) = \mathop{span}(B)= \{a_1v_1,a_2v_2,\dots, a_nv_n | a_i\in R \}<br>$$<br>不妨思考如下问题</p>
 <blockquote>
 <p>所有格的延展空间都是整个n维空间吗？</p>
 </blockquote>
@@ -364,7 +364,7 @@
 <h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><h4 id="lambda-i-L"><a href="#lambda-i-L" class="headerlink" title="$\lambda_i(L)$"></a>$\lambda_i(L)$</h4><p>假设存在最小值$r$，使得能在半径为$r$的球内找到$i$个格点，且它们的延展空间为整个$i$维空间，则称这个$r$为$\lambda_i(L)$.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221203083702386.png" alt="span"></p>
 <p><strong>最重要的，得知道$\lambda_1(L)$指的是格L最短非零向量的长度。</strong></p>
-<h2 id="施密特正交化｜Gram-Schmidt-Orthogonalization"><a href="#施密特正交化｜Gram-Schmidt-Orthogonalization" class="headerlink" title="施密特正交化｜Gram-Schmidt Orthogonalization"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A0%BC%E6%8B%89%E5%A7%86-%E6%96%BD%E5%AF%86%E7%89%B9%E6%AD%A3%E4%BA%A4%E5%8C%96">施密特正交化｜Gram-Schmidt Orthogonalization</a></h2><p>施密特正交化是线性代数中将一组基转化为正交基的运算过程.</p>
+<h2 id="施密特正交化｜Gram-Schmidt-Orthogonalization"><a href="#施密特正交化｜Gram-Schmidt-Orthogonalization" class="headerlink" title="施密特正交化｜Gram-Schmidt Orthogonalization"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/格拉姆-施密特正交化">施密特正交化｜Gram-Schmidt Orthogonalization</a></h2><p>施密特正交化是线性代数中将一组基转化为正交基的运算过程.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201015752015.png" alt="GSO"></p>
 <p>具体如下：</p>
 <ol>
@@ -373,7 +373,7 @@
 <li><p>计算，得到正交基$\widetilde{b_1},\widetilde{b_2},…,\widetilde{b_n}$</p>
 </li>
 </ol>
-<p>$$<br>   \widetilde{b_1}=b_1\ \widetilde{b_2}=b_2-\mu_{2,1}\widetilde{b_1},\mu_{2,1}={&lt;b_2,\widetilde{b_1}&gt;\over &lt;\widetilde{b_1},\widetilde{b_1}&gt;}\ \vdots\ \widetilde{b_i}=b_i-\sum^{i-1}\limits_{j=1}\mu_{i,j}\widetilde{b_j},\mu_{i,j}={&lt;b_i,\widetilde{b_j}&gt;\over &lt;\widetilde{b_j},\widetilde{b_j}&gt;}<br>$$</p>
+<p>$$<br>   \widetilde{b_1}=b_1\\ \widetilde{b_2}=b_2-\mu_{2,1}\widetilde{b_1},\mu_{2,1}={&lt;b_2,\widetilde{b_1}&gt;\over &lt;\widetilde{b_1},\widetilde{b_1}&gt;}\\ \vdots\\ \widetilde{b_i}=b_i-\sum^{i-1}\limits_{j=1}\mu_{i,j}\widetilde{b_j},\mu_{i,j}={&lt;b_i,\widetilde{b_j}&gt;\over &lt;\widetilde{b_j},\widetilde{b_j}&gt;}<br>$$</p>
 <p>   注：</p>
 <ul>
 <li>$&lt;b_i, \widetilde{b_j}&gt;$表示$b_i$与$b_j$内积</li>
@@ -398,7 +398,7 @@
 </li>
 </ol>
 <h2 id="闵可夫斯基定理｜Minkowski’s-theorem"><a href="#闵可夫斯基定理｜Minkowski’s-theorem" class="headerlink" title="闵可夫斯基定理｜Minkowski’s theorem"></a>闵可夫斯基定理｜Minkowski’s theorem</h2><p>正如前文所述，通过QR分解，我们求得了$\lambda_1$下界(也即一个格中最短非零向量的长度下限).</p>
-<p>而接下来所介绍的闵可夫斯基定理，将揭示出**$\lambda_1$上界**.</p>
+<p>而接下来所介绍的闵可夫斯基定理，将揭示出<strong>$\lambda_1$上界</strong>.</p>
 <p>在学习闵可夫斯基定理之前，让我们先来了解Blichfeld定理.</p>
 <h3 id="Blichfeld定理-｜-Blichfeld’s-theorem"><a href="#Blichfeld定理-｜-Blichfeld’s-theorem" class="headerlink" title="Blichfeld定理 ｜ Blichfeld’s theorem"></a>Blichfeld定理 ｜ Blichfeld’s theorem</h3><p>对于任意格$L$和一个大于格$L$基本区域体积的集合$S$，一定存在$z_1,z_2 \in S$, 满足$z_1-z_2 \in L$</p>
 <p>抽象的定理可以用直观图像来阐释，如下：</p>
@@ -412,7 +412,7 @@
 <p>2.S的空间关于原点对称</p>
 <p>3.如果S体积足够大，不仅要大于行列式，还要大于2^n乘行列式</p>
 <p><strong>Proof</strong></p>
-<p>​    对于$\frac{S}{2}={x:2x\in S}$，因为$vol(S)&gt;2^ndet(Λ)$，所以$vol(\frac{S}{2})=2^{-n}vol(S)&gt;det(Λ)$</p>
+<p>​    对于$\frac{S}{2}=\{x:2x\in S\}$，因为$vol(S)&gt;2^ndet(Λ)$，所以$vol(\frac{S}{2})=2^{-n}vol(S)&gt;det(Λ)$</p>
 <p>​    由Blichfeld定理，得：$\exists z_1、z_2 \in \frac{S}2{}$, 满足$z_1-z_2 \in Λ$. </p>
 <p>​    又因为$2z_1、2z_2、-2z_2(对称性) \in S$,  所以:$\frac{2z_1-2z_2}{2} = z_1-z_2 \in S$</p>
 <p>​    也即：S上存在<strong>一点</strong>（$2z_1、-2z_2$的中点）在Λ上</p>

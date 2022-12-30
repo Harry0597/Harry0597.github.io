@@ -298,15 +298,17 @@
 <p><img src="https://cdn.sspai.com/2018/07/05/8d0427a0705812a7d1e7611041f0e9b6.gif" alt="拖入快速提取路径"></p>
 <p>!:  u can <strong>drug</strong> it into Terminal to get  the file path directly. </p>
 <p>· <strong>ls</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -R </span><br><span class="line"><span class="comment"># List all subfolders</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -R </span><br><span class="line"><span class="comment"># List all subfolders</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><h3 id="clear-｜-Clear-screen"><a href="#clear-｜-Clear-screen" class="headerlink" title="clear  ｜ Clear screen"></a>clear  ｜ Clear screen</h3></li>
 <li><h3 id="sudo-Get-administrator-privileges"><a href="#sudo-Get-administrator-privileges" class="headerlink" title="sudo | Get administrator privileges"></a>sudo | Get administrator privileges</h3></li>
 <li><h3 id="man-XXX-Learn-the-useage-of-XXX"><a href="#man-XXX-Learn-the-useage-of-XXX" class="headerlink" title="man XXX | Learn the useage of XXX"></a>man XXX | Learn the useage of XXX</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.sspai.com/2018/07/05/0cf24c3eea3cda8441e4d4565cfc7dde.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" alt="man"></h3><p>!: Press <strong>q</strong> to exit</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3></li>
+<h3 id="-1"><a href="#-1" class="headerlink" title=" "></a> </h3></li>
 <li><h3 id="caffeinate-Keep-mac-work"><a href="#caffeinate-Keep-mac-work" class="headerlink" title="caffeinate | Keep mac work"></a>caffeinate | Keep mac work</h3><p><img src="https://cdn.sspai.com/2018/07/05/492e9c629f9a436bf5eb901dcff1faec.png" alt="img"></p>
 <p>!: Press <strong>^Control -C</strong> to stop</p>
 <span id="more"></span></li>
-<li><h3 id="killall-XXX-Kill-XXX"><a href="#killall-XXX-Kill-XXX" class="headerlink" title="killall XXX | Kill XXX"></a>killall XXX | Kill XXX</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall WeChat </span><br></pre></td></tr></table></figure></li>
+<li><h3 id="killall-XXX-Kill-XXX"><a href="#killall-XXX-Kill-XXX" class="headerlink" title="killall XXX | Kill XXX"></a>killall XXX | Kill XXX</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall WeChat </span><br></pre></td></tr></table></figure>
+</li>
 <li><h3 id="defaults"><a href="#defaults" class="headerlink" title="defaults"></a>defaults</h3><p>· Screencapture type</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.screencapture <span class="built_in">type</span> jpg</span><br><span class="line"><span class="comment"># -&gt; JPEG</span></span><br></pre></td></tr></table></figure>
 
@@ -327,6 +329,8 @@
 
 <p><img src="https://cdn.sspai.com/2018/07/05/00a801ba4720b85c9723002cc81e3c39.jpg" alt="img"></p>
 </li>
+</ol>
+<ol start="4">
 <li><h3 id="amazing-echo"><a href="#amazing-echo" class="headerlink" title="amazing echo"></a>amazing echo</h3></li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner -w 80 0HB</span><br></pre></td></tr></table></figure>
@@ -370,13 +374,14 @@
 <li><p>按<code>i</code>开始编辑</p>
 </li>
 <li><p>修改文件里以下内容</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Default prompt</span></span><br><span class="line"><span class="attr">PS1</span>=<span class="string">&quot;0HB@%m %1~ %# &quot;</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Default prompt</span></span><br><span class="line"><span class="attr">PS1</span>=<span class="string">&quot;0HB@%m %1~ %# &quot;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>按<code>ESC</code>,再<code>:</code>输入<code>wq!</code>，即：保存修改退出</p>
 </li>
 </ul>
 </li>
 <li><p><strong>重启终端</strong> 或 <code>source /private/etc/zshrc</code></p>
-<p>后者不需要重启终端，执行即可，但可能会出现<code>0HB@%m %1~ %</code>的情况，重启终端后正常显示<code>0HB@Caliburn ~ % </code></p>
+<p>后者不需要重启终端，执行即可，但可能会出现<code>0HB@%m %1~ %</code>的情况，重启终端后正常显示<code>0HB@Caliburn ~ %</code></p>
 </li>
 </ul>
 </li>
@@ -513,7 +518,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-Terminal-basics-tutorial"><span class="nav-number">1.</span> <span class="nav-text">Mac Terminal basics tutorial</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Code-form"><span class="nav-number">1.1.</span> <span class="nav-text">·Code form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Basic-code"><span class="nav-number">1.2.</span> <span class="nav-text">·Basic code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%EF%BD%9C-Print"><span class="nav-number">1.2.1.</span> <span class="nav-text">echo ｜ Print</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-file"><span class="nav-number">1.2.2.</span> <span class="nav-text">About file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear-%EF%BD%9C-Clear-screen"><span class="nav-number">1.2.3.</span> <span class="nav-text">clear  ｜ Clear screen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sudo-Get-administrator-privileges"><span class="nav-number">1.2.4.</span> <span class="nav-text">sudo | Get administrator privileges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#man-XXX-Learn-the-useage-of-XXX"><span class="nav-number">1.2.5.</span> <span class="nav-text">man XXX | Learn the useage of XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">1.2.7.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caffeinate-Keep-mac-work"><span class="nav-number">1.2.8.</span> <span class="nav-text">caffeinate | Keep mac work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#killall-XXX-Kill-XXX"><span class="nav-number">1.2.9.</span> <span class="nav-text">killall XXX | Kill XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#defaults"><span class="nav-number">1.2.10.</span> <span class="nav-text">defaults</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amazing-echo"><span class="nav-number">1.2.11.</span> <span class="nav-text">amazing echo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%90%8D"><span class="nav-number">1.3.</span> <span class="nav-text">改名</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-Terminal-basics-tutorial"><span class="nav-number">1.</span> <span class="nav-text">Mac Terminal basics tutorial</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Code-form"><span class="nav-number">1.1.</span> <span class="nav-text">·Code form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%C2%B7Basic-code"><span class="nav-number">1.2.</span> <span class="nav-text">·Basic code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%EF%BD%9C-Print"><span class="nav-number">1.2.1.</span> <span class="nav-text">echo ｜ Print</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-file"><span class="nav-number">1.2.2.</span> <span class="nav-text">About file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear-%EF%BD%9C-Clear-screen"><span class="nav-number">1.2.3.</span> <span class="nav-text">clear  ｜ Clear screen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sudo-Get-administrator-privileges"><span class="nav-number">1.2.4.</span> <span class="nav-text">sudo | Get administrator privileges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#man-XXX-Learn-the-useage-of-XXX"><span class="nav-number">1.2.5.</span> <span class="nav-text">man XXX | Learn the useage of XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">1.2.7.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caffeinate-Keep-mac-work"><span class="nav-number">1.2.8.</span> <span class="nav-text">caffeinate | Keep mac work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#killall-XXX-Kill-XXX"><span class="nav-number">1.2.9.</span> <span class="nav-text">killall XXX | Kill XXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#defaults"><span class="nav-number">1.2.10.</span> <span class="nav-text">defaults</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amazing-echo"><span class="nav-number">1.2.11.</span> <span class="nav-text">amazing echo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%90%8D"><span class="nav-number">1.3.</span> <span class="nav-text">改名</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
