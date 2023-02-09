@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="200x200" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon32.ico">
+  <link rel="icon" type="image/ico" sizes="16x16" href="/images/favicon16.ico">
+  <link rel="mask-icon" href="/images/hackerrank.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harry0597.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="格｜Lattice 学习笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="格密码学习">
+<meta property="og:url" content="https://harry0597.com/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="格｜Lattice 学习笔记.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221115221257017.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130231915760.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130234835554.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130235421587.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130235555130.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201002510635.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221203083702386.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201015752015.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201021555854.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221203081933090.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221227165711736.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221227171054166.png">
+<meta property="article:published_time" content="2022-12-30T12:16:56.000Z">
+<meta property="article:modified_time" content="2023-02-09T14:07:02.861Z">
+<meta property="article:author" content="Harry0597">
+<meta property="article:tag" content="Crypto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221115221257017.png">
+
+<link rel="canonical" href="https://harry0597.com/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>格密码学习 | Harry's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Harry's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">温故知新</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Harry0597" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harry0597.com/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_2550.JPG">
+      <meta itemprop="name" content="Harry0597">
+      <meta itemprop="description" content="Pondering'll do you wonders.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          格密码学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-30 20:16:56" itemprop="dateCreated datePublished" datetime="2022-12-30T20:16:56+08:00">2022-12-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-09 22:07:02" itemprop="dateModified" datetime="2023-02-09T22:07:02+08:00">2023-02-09</time>
+              </span>
+
+          
+    <span>&emsp;</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
+    <span class="post-meta-item-text">阅读次数：</span>
+    <span id="busuanzi_value_page_pv"></span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">格｜Lattice 学习笔记.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="格｜Lattice"><a href="#格｜Lattice" class="headerlink" title="格｜Lattice"></a>格｜Lattice</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>线性无关基向量$v_1, v_2, v_3, .. ., v_n$的所有整系数线性组合所形成的$n$维离散空间。</p>
+</blockquote>
+<p>给定n维空间中一组<strong>线性无关</strong>向量，其<strong>整系数</strong>组合构成的集合称为格。</p>
+<p>格上的点排布呈周期性规律。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221115221257017.png" alt="2-dimension Lattice"></p>
+<p>这里需要明确，<strong>不同的格基可能表示的是同一个格</strong>, 如下:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130231915760.png" alt="image-20221130231915760"></p>
+<h2 id="为什么学格"><a href="#为什么学格" class="headerlink" title="为什么学格"></a>为什么学格</h2><p>为什么要学习，乃至于到致力于研究格的地步呢？</p>
+<p>答案显而易见，因为格是困难的，好用的。</p>
+<h3 id="困难"><a href="#困难" class="headerlink" title="困难"></a>困难</h3><p>先说困难性，准确说，应该是<strong>基于格基的数学问题是困难的</strong>，以至于可利用之构造抵抗量子计算机攻击的密码体系。</p>
+<p>最直观的体会其困难性，有如下例子：</p>
+<blockquote>
+<p>在二维格中找到格上一点，稍作移动使其离开格，给出这个不在格上的点，问原来的点位置几何？</p>
+</blockquote>
+<p>这是好想象、也容易解决的问题，并不困难。</p>
+<p>但实际上，当维度变到两三百的时候，就无法想象更难解决了。</p>
+<h3 id="好用"><a href="#好用" class="headerlink" title="好用"></a>好用</h3><p>首先，得明确：在一定程度上，我们利用成熟的算法，能解决一些格难题。</p>
+<p>那么，若我们能把其他难题<strong>规约</strong>到格难题上，再解决这个难题，就能破解原难题。</p>
+<p>其次，还可以利用格来进行<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/100312449">安全性证明</a>。</p>
+<h2 id="格基等价变换"><a href="#格基等价变换" class="headerlink" title="格基等价变换"></a>格基等价变换</h2><p>这里，若有线性代数的基础，想必是好理解的，<a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">若无则需来学学</a>。</p>
+<p>现，设我们有格基$v_1, v_2, v_3, .. ., v_n$，若进行如下<strong>初等变化</strong>(不改变行列式的值)，则新格基所生格与原来一样。</p>
+<ol>
+<li><p>列向量交换：$v_i &lt;——&gt; v_j$</p>
+</li>
+<li><p>向量取反：$v_i &lt;—— -v_i$</p>
+</li>
+<li><p>整系数线性组合：$v_i &lt;—— v_i + k·v_j$</p>
+</li>
+</ol>
+<p>而以上操作，总能被简洁的总结为：<strong>格基矩阵右乘一个幺模矩阵</strong>（一种整数矩阵，其行列式的值为+1或-1，且幺模矩阵的逆还是幺模矩阵）</p>
+<p>这有什么用呢？不妨考虑如下问题</p>
+<blockquote>
+<p>任给两组格基，问它们所生成的格是否一致？</p>
+</blockquote>
+<p>不难想到，有如下定理：</p>
+<p><strong>当且仅当两组格基满足$B_2=B_1U$（U为幺模矩阵）时，两组格基等价</strong></p>
+<p>于是，我们原问题等价于：$B_1^{-1}B_2$是否为幺模矩阵。得解。</p>
+<h2 id="格基本区域"><a href="#格基本区域" class="headerlink" title="格基本区域"></a>格基本区域</h2><p>格的基本区域可用基础平行多面体表示。</p>
+<h3 id="基础平行多面体-｜-FUNDAMENTAL-PARALLELEPIPED"><a href="#基础平行多面体-｜-FUNDAMENTAL-PARALLELEPIPED" class="headerlink" title="基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED"></a>基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED</h3><p>给定格基，基础平行多面体$P(B) = \{a_1v_1,a_2v_2,\dots, a_nv_n | a_i\in[0,1) \}$    （注意：<strong>左闭右开</strong>）</p>
+<p>可理解为<strong>格中最小重复单元</strong>。</p>
+<p>从二维格上理解，就是如下红色区域：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130234835554.png" alt="fundamental parallelepiped"></p>
+<p>显而易见，重复堆叠如上基础平行多面体，我们能找到所有的格点。</p>
+<p>不仅如此，若我们在空间中任取一点k，我们都能将它映射到基础平行多面体中一个点上。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130235421587.png" alt="点k"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221130235555130.png" alt="映射"></p>
+<p>如上操作可归纳为：</p>
+<p>$k=a_{1}v_{1}+…+a_{n}v_{n}$</p>
+<p>映射：$k \mod P(B)=(a_1 \mod1)v_{1}+…+(a_{n} \mod 1)v_{n}$</p>
+<p>那么，现在不妨考虑如下问题</p>
+<blockquote>
+<p>任意给定 空间中一点k 与 格的基础平行多面体P(B)，问点k是否在格上？</p>
+</blockquote>
+<p>有如上铺垫，不难想到，当$k \mod P(B)=(a_1 \mod1)v_{1}+…+(a_{n} \mod 1)v_{n}=0$，也即k映射到原点时，点k才在格上。</p>
+<p>格的基本区域可用基础平行多面体表示。显然，格的基本区域并不唯一，以二维格为例，形状可以千奇百怪，但基础平行多面体的面积（更高维度则是体积）需一致。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201002510635.png" alt="基本区域不唯一"></p>
+<h3 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h3><p>需要知道，行列式本质是数（标量），一种经过运算后所得到的数。</p>
+<p>而这种运算的实际意义是：<strong>基向量构成的多面体的体积，也即基本区域的体积。</strong></p>
+<p>于是，便自然有了些推论：</p>
+<ul>
+<li><p>若多组格基生成的格都一致，那么这些格基所构成的行列式值都相等</p>
+<p>$$|det（BU)| = |det(B)det(U)|=|det(B)|$$</p>
+</li>
+<li><p>考虑格的密度问题，当格基行列式值越小，则格点比较密集，密度较大</p>
+<p>也即：<strong>可用格基行列式值衡量格点密度（反相关）</strong></p>
+</li>
+</ul>
+<h2 id="延展空间｜span"><a href="#延展空间｜span" class="headerlink" title="延展空间｜span"></a>延展空间｜span</h2><p>我们称格 $L(B)$ 中基向量的所有线性组合所形成的集合为这组基向量所张成的延展空间(span)<br>$$<br>\mathop{span}(L(B)) = \mathop{span}(B)= \{a_1v_1,a_2v_2,\dots, a_nv_n | a_i\in R \}<br>$$<br>不妨思考如下问题</p>
+<blockquote>
+<p>所有格的延展空间都是整个n维空间吗？</p>
+</blockquote>
+<p>答案是显然的，<strong>不</strong>。</p>
+<p>只有满秩格（秩的概念详见线性代数，这里满秩可简单理解为格基行列式的行数等于列数）的延展空间是整个n维空间。</p>
+<p>此外，需注意辨析延展空间(SPAN)与基本区域(FUNDAMENTAL PARALLELEPIPED)的差异。</p>
+<h2 id="连续极小-successive-minima"><a href="#连续极小-successive-minima" class="headerlink" title="连续极小|successive minima"></a><strong>连续极小</strong>|successive minima</h2><p><strong>Successive minima</strong>，<strong>逐次最小长度</strong>，也可以叫为<strong>连续极小</strong>。</p>
+<p>在学习这个概念之前，不妨先尝试回答如下问题</p>
+<blockquote>
+<p>给定一个格，问其中最短向量的长度为？</p>
+</blockquote>
+<p>或许一想到高维度的格，你就会觉得这个问题是难求解的。</p>
+<p>但事实上，咬文嚼字后，其实你可以回答<strong>0</strong>，因为原点本身一定是格点，而最短向量长度则一定是0了。</p>
+<p>但显然，这个命题除了提醒你该仔细起来外，没什么意义。</p>
+<p>因此，在讨论最短向量时，我们一般找的是<strong>最短非零向量</strong>，而其长度一般用欧几里得范数表示。</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><h4 id="lambda-i-L"><a href="#lambda-i-L" class="headerlink" title="$\lambda_i(L)$"></a>$\lambda_i(L)$</h4><p>假设存在最小值$r$，使得能在半径为$r$的球内找到$i$个格点，且它们的延展空间为整个$i$维空间，则称这个$r$为$\lambda_i(L)$.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221203083702386.png" alt="span"></p>
+<p><strong>最重要的，得知道$\lambda_1(L)$指的是格L最短非零向量的长度。</strong></p>
+<h2 id="施密特正交化｜Gram-Schmidt-Orthogonalization"><a href="#施密特正交化｜Gram-Schmidt-Orthogonalization" class="headerlink" title="施密特正交化｜Gram-Schmidt Orthogonalization"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/格拉姆-施密特正交化">施密特正交化｜Gram-Schmidt Orthogonalization</a></h2><p>施密特正交化是线性代数中将一组基转化为正交基的运算过程.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201015752015.png" alt="GSO"></p>
+<p>具体如下：</p>
+<ol>
+<li><p>给定一组 n 个线性无关向量 $b_1,b_2,…,b_n$</p>
+</li>
+<li><p>计算，得到正交基$\widetilde{b_1},\widetilde{b_2},…,\widetilde{b_n}$</p>
+</li>
+</ol>
+<p>$$<br>   \widetilde{b_1}=b_1\\ \widetilde{b_2}=b_2-\mu_{2,1}\widetilde{b_1},\mu_{2,1}={&lt;b_2,\widetilde{b_1}&gt;\over &lt;\widetilde{b_1},\widetilde{b_1}&gt;}\\ \vdots\\ \widetilde{b_i}=b_i-\sum^{i-1}\limits_{j=1}\mu_{i,j}\widetilde{b_j},\mu_{i,j}={&lt;b_i,\widetilde{b_j}&gt;\over &lt;\widetilde{b_j},\widetilde{b_j}&gt;}<br>$$</p>
+<p>   注：</p>
+<ul>
+<li>$&lt;b_i, \widetilde{b_j}&gt;$表示$b_i$与$b_j$内积</li>
+<li>$\mathop{pro}_{\widetilde{b_j}}{b_i}={&lt;b_i,\widetilde{b_j}&gt;\over &lt;\widetilde{b_j},\widetilde{b_j}&gt;}\widetilde{b_j}$, 表示$b_i$在$\widetilde{b_j}$上投影</li>
+</ul>
+<p>此外，还可以进一步求出标准正交基：$\widetilde{b_1}/||\widetilde{b_1}||,\widetilde{b_2}/||\widetilde{b_2}||,…,\widetilde{b_n}/||\widetilde{b_n}||$</p>
+<p>值得一提，施密特正交化能将基正交化，但并不能直接应用于格基，因为正交化过程中系数并没限制为整数，也就是 格基 施密特正交化后的结果很可能不在格上</p>
+<h3 id="QR分解｜QR-decomposition"><a href="#QR分解｜QR-decomposition" class="headerlink" title="QR分解｜QR decomposition"></a>QR分解｜QR decomposition</h3><p>QR分解是施密特正交化的应用</p>
+<p>对于格而言，先对格基间接施密特正交化（涉及系数四舍五入取整）后，得到近似正交基$\widetilde{b_1},\widetilde{b_2},…,\widetilde{b_n}$，然后构造如下矩阵</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221201021555854.png" alt="QR decomposition"></p>
+<p>  本质上，QR分解形式的矩阵是格基的另一种矩阵表示法，上图中每个列向量都是格基</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><ol>
+<li><p>因为QR分解矩阵是上三角，所以格基为$b_1,b_2,…,b_n$的格基本区域（行列式）就等于$||\widetilde{b_1}||,||\widetilde{b_2}||,…,||\widetilde{b_n}||$的乘积。</p>
+</li>
+<li><p>$\lambda_1(L)&gt;=\mathop{min}(||\widetilde{b_i}||)$</p>
+<p>$Proof：$</p>
+<p>最短非零向量能由这n组向量线性组合表示，而当最右下角的$||\widetilde{b_n}||$不为零（格的基本区域不为0，保证了这一点）时，纵使其上所有数都消为0，仍有$(0,0,…,\widetilde{b_n})$,也即：组出来的向量欧几里得长度一定大于等于$||\widetilde{b_n}||$</p>
+<p>所以最为理想的，当$||\widetilde{b_n}||=\mathop{min}(||\widetilde{b_i}||)$时，$\lambda_1(L)$最短可能是$\mathop{min}(||\widetilde{b_i})||$，其余情况一律大于之</p>
+<p>（更严谨的证明如下）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221203081933090.png" alt="image-20221203081933090"></p>
+<p><strong>总之，我们得到了$\lambda_1$下界</strong>。</p>
+</li>
+</ol>
+<h2 id="闵可夫斯基定理｜Minkowski’s-theorem"><a href="#闵可夫斯基定理｜Minkowski’s-theorem" class="headerlink" title="闵可夫斯基定理｜Minkowski’s theorem"></a>闵可夫斯基定理｜Minkowski’s theorem</h2><p>正如前文所述，通过QR分解，我们求得了$\lambda_1$下界(也即一个格中最短非零向量的长度下限).</p>
+<p>而接下来所介绍的闵可夫斯基定理，将揭示出<strong>$\lambda_1$上界</strong>.</p>
+<p>在学习闵可夫斯基定理之前，让我们先来了解Blichfeld定理.</p>
+<h3 id="Blichfeld定理-｜-Blichfeld’s-theorem"><a href="#Blichfeld定理-｜-Blichfeld’s-theorem" class="headerlink" title="Blichfeld定理 ｜ Blichfeld’s theorem"></a>Blichfeld定理 ｜ Blichfeld’s theorem</h3><p>对于任意格$L$和一个大于格$L$基本区域体积的集合$S$，一定存在$z_1,z_2 \in S$, 满足$z_1-z_2 \in L$</p>
+<p>抽象的定理可以用直观图像来阐释，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221227165711736.png" alt="Blichfeld1"></p>
+<p>如上，讲座中选取了袋鼠🦘形状的集合S，因为单个S的面积大于基础区域，所以当S平铺在每个格点上时将会有重叠区域（袋鼠头尾相碰）.</p>
+<p>显然，当两个格点相减所构成的向量（上图中红箭头）在格上。也易知，这个向量不会长于一个袋鼠最长的长度，也就是说：通过平移，我们总能在一个S的重叠区域中找到这个在格上的<strong>向量</strong>，如下图中蓝色箭头.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221227171054166.png" alt="Blichfeld2"></p>
+<h3 id="MINKOWSKI凸体定理｜MINKOWSKI’S-CONVEX-BODY-THEOREM"><a href="#MINKOWSKI凸体定理｜MINKOWSKI’S-CONVEX-BODY-THEOREM" class="headerlink" title="MINKOWSKI凸体定理｜MINKOWSKI’S CONVEX BODY THEOREM"></a>MINKOWSKI凸体定理｜MINKOWSKI’S CONVEX BODY THEOREM</h3><p>设 Λ 为秩 n 的全秩格(满格)。对于任何<strong>中心对称凸集 S</strong> ，如果 $vol(S)&gt;2^ndet(Λ)$ 则 S 包含一个非零格点。</p>
+<p>直白说来，就是在格上任取一个集合满足如下条件的S，则S必然包含一个<strong>非零格点</strong>。</p>
+<p>1.S是一个凸集合（否则总能巧妙的避开些点）</p>
+<p>2.S的空间关于原点对称</p>
+<p>3.如果S体积足够大，不仅要大于行列式，还要大于2^n乘行列式</p>
+<p><strong>Proof</strong></p>
+<p>​    对于$\frac{S}{2}=\{x:2x\in S\}$，因为$vol(S)&gt;2^ndet(Λ)$，所以$vol(\frac{S}{2})=2^{-n}vol(S)&gt;det(Λ)$</p>
+<p>​    由Blichfeld定理，得：$\exists z_1、z_2 \in \frac{S}2{}$, 满足$z_1-z_2 \in Λ$. </p>
+<p>​    又因为$2z_1、2z_2、-2z_2(对称性) \in S$,  所以:$\frac{2z_1-2z_2}{2} = z_1-z_2 \in S$</p>
+<p>​    也即：S上存在<strong>一点</strong>（$2z_1、-2z_2$的中点）在Λ上</p>
+<p>（证明思路可以多过几遍，注意体会Blichfeld定理中<strong>有向量在格上</strong> 和 MINKOWSKI凸体定理中<strong>有非零格点在格上</strong>差异）</p>
+<h3 id="MINKOWSKI第一定理｜MINKOWSKI’S-FIRST-THEOREM"><a href="#MINKOWSKI第一定理｜MINKOWSKI’S-FIRST-THEOREM" class="headerlink" title="MINKOWSKI第一定理｜MINKOWSKI’S FIRST THEOREM"></a>MINKOWSKI第一定理｜MINKOWSKI’S FIRST THEOREM</h3><p>$$<br>\lambda_1(Λ) \leq \sqrt{n} * \sqrt[n]{det(Λ)}<br>$$</p>
+<p>挺重要的推论，这确定了格中最短非零向量的上界，这十分有助于我们寻找与验证最短非零向量。</p>
+<h3 id="MINKOWSKI第二定理｜MINKOWSKI’S-SECOND-THEOREM"><a href="#MINKOWSKI第二定理｜MINKOWSKI’S-SECOND-THEOREM" class="headerlink" title="MINKOWSKI第二定理｜MINKOWSKI’S SECOND THEOREM"></a>MINKOWSKI第二定理｜MINKOWSKI’S SECOND THEOREM</h3><p>$$<br>(\prod_{i=1}^{n} \lambda_i(Λ))^{\frac{1}{n}} \le \sqrt{n} * \sqrt[n]{det(Λ)}<br>$$</p>
+<p>只做了解，不做介绍。</p>
+<h2 id="困难问题"><a href="#困难问题" class="headerlink" title="困难问题"></a>困难问题</h2><p>区分、了解、学习格中困难问题很有必要。</p>
+<p>首先，得会区分。</p>
+<p>通过前文的讲述，我们能归纳出格中<strong>容易问题</strong>如下：</p>
+<p>1.已知基和一个向量v，验证v是否在格L中</p>
+<p>2.给定两组格基，判断两者生成的格是否等价</p>
+<p>区分出容易问题后，我们接着来认识以下困难问题。</p>
+<h3 id="SVP｜shortest-vector-problem"><a href="#SVP｜shortest-vector-problem" class="headerlink" title="SVP｜shortest vector problem"></a>SVP｜shortest vector problem</h3><p><strong>最短向量问题</strong>：给定一个基为$B$的Lattice $L(B)$，找到一个这个基构成的格点，使得这个点距离0坐标点的距离最近.</p>
+<h3 id="SIVP（shortest-independent-vector-problem）"><a href="#SIVP（shortest-independent-vector-problem）" class="headerlink" title="SIVP（shortest independent vector problem）"></a>SIVP（shortest independent vector problem）</h3><p><strong>最短独立向量问题</strong>：给定一个Lattice $L(B)$，找到n个线性独立的向量$x_1,…,x_n$并且这些向量的长度都要小于等于最长的最短向量$\lambda_n$.</p>
+<h3 id="CVP（closed-vector-problem）"><a href="#CVP（closed-vector-problem）" class="headerlink" title="CVP（closed vector problem）"></a>CVP（closed vector problem）</h3><p><strong>最近向量问题：</strong>给定连续空间中任意的一个点$t$，找到距离点$t$最近的格点.</p>
+<hr>
+<p>为了进一步体会、理解，这里介绍基于格的GGH加密体系</p>
+<h2 id="GGH"><a href="#GGH" class="headerlink" title="GGH"></a><a target="_blank" rel="noopener" href="https://kel.bz/post/lattices/">GGH</a></h2><blockquote>
+<p>已死亡。</p>
+</blockquote>
+<p>GGH的陷门在于求解CVP的困难性。</p>
+<p>给定点$w$，若再给出正交性好的短基，能高效地用利用<strong>Babai’s Closest Vector algorithm</strong>求解CVP</p>
+<h3 id="Babai’s-Closest-Vector-algorithm"><a href="#Babai’s-Closest-Vector-algorithm" class="headerlink" title="Babai’s Closest Vector algorithm"></a>Babai’s Closest Vector algorithm</h3><h4 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h4><p>给定点w，基向量组为$[v_1, .., v_n]$, 算法的思路是在实数范围内找到$T$满足$w = t_1v_1+…+t_n*v_n$</p>
+<p>然后对$T$中各元素四舍五入，来找到格上最靠近w点的向量$T’*basis$.</p>
+<h4 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h4><p>要求给的格基<strong>短</strong>且<strong>正交性好（接近正交基）</strong>，都满足的话能非常高效准确地求解.</p>
+<p>而对于正交性差的格基，求解出来的结果基本是错误的.</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://gist.github.com/kelbyludwig/201d08e3e8e9a4f3764f366398f12a47</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">babai</span>(<span class="params">w, basis</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    babai will approximate the closest lattice point formed by the supplied basis</span></span><br><span class="line"><span class="string">    to the supplied vector w. babai only works well when given a &quot;good&quot; basis.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    W = Matrix(RR, w)</span><br><span class="line">    BR = basis.change_ring(RR) </span><br><span class="line">    T = BR.solve_left(W)</span><br><span class="line">    C = vector(ZZ, [<span class="built_in">round</span>(t) <span class="keyword">for</span> t <span class="keyword">in</span> T[<span class="number">0</span>]])</span><br><span class="line">    <span class="keyword">return</span> C*basis</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>结合LLL后, Babai的最近平面算法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def babai(<span class="selector-tag">A</span>, w):</span><br><span class="line">    A = A.<span class="built_in">LLL</span>()</span><br><span class="line">    G = A.<span class="built_in">gram_schmidt</span>()[<span class="number">0</span>]</span><br><span class="line">    t = w</span><br><span class="line">    for i in <span class="built_in">reversed</span>(<span class="built_in">range</span>(A.<span class="built_in">nrows</span>())):</span><br><span class="line">        c = ((t * G[i]) / (G[i] * G[i])).<span class="built_in">round</span>()</span><br><span class="line">        t -= A[i] * c</span><br><span class="line">    return w - t</span><br></pre></td></tr></table></figure>
+
+<h3 id="正交性"><a href="#正交性" class="headerlink" title="正交性"></a>正交性</h3><p>我称格基接近最短正交基的程度为正交性，参考<a target="_blank" rel="noopener" href="https://gist.github.com/kelbyludwig">kelbyludwig</a>的博客，可利用<strong>hadamard ratio</strong>来衡量正交性，详细如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hadamard_ratio</span>(<span class="params">basis</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    hadamard_ratio returns the hadamard ratio of the supplied basis. the hadamard</span></span><br><span class="line"><span class="string">    ratio is a number between 0 and 1 that quantifies the orthogonality of the</span></span><br><span class="line"><span class="string">    baiss. The higher the hadamard ratio, the more orthogonal (read: better) the</span></span><br><span class="line"><span class="string">    basis.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(basis.rows()) != <span class="built_in">len</span>(basis.columns()):</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">&quot;no non-square matrices allowed&quot;</span>)</span><br><span class="line">    BR = basis.change_ring(RR)</span><br><span class="line">    d = BR.determinant()</span><br><span class="line">    ls = [v.norm() <span class="keyword">for</span> v <span class="keyword">in</span> BR]</span><br><span class="line">    l = reduce(<span class="keyword">lambda</span> x,y: <span class="number">1.0</span>*x*y, ls)</span><br><span class="line">    <span class="keyword">return</span> (d/l)**(<span class="number">1.0</span>/<span class="number">3.0</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="GGH加解密"><a href="#GGH加解密" class="headerlink" title="GGH加解密"></a>GGH加解密</h3><h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><p>具体的，GGH加密过程如下：</p>
+<ol>
+<li>随机生成一个hadamard ratio高的格基s，作为私钥</li>
+<li>将s乘随机生成的幺模矩阵，得到hadamard ratio低的格基B，作为公钥</li>
+<li>将消息转换为向量$m$，再置入格中的点p($p=m*B$)</li>
+<li>生成每个元素随机为<strong>±sigma（sigma默认为3，得较小）</strong>的扰动向量e</li>
+<li>计算$c = p + e$，c作为密文</li>
+</ol>
+<p>本质上，GGH加密就是把格中的信息向量给微移了，使得这个点不在格上了</p>
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><p>对应的，GGH解密过程如下：</p>
+<ol>
+<li>有私钥s、密文c，利用Babai算法求出格上距离c最近的向量p</li>
+<li>$m = p/B$，解出明文m</li>
+</ol>
+<p>精妙绝伦，因为无论格基B还是s，所对应的格都是相同的（所以对s的cvp结果等效于对B的cvp结果）</p>
+<p>但利用s的正交性好可求解cvp的特点，把s做私钥，w做公钥实现陷门的构造。</p>
+<h3 id="Nyguen’s-Attack"><a href="#Nyguen’s-Attack" class="headerlink" title="Nyguen’s Attack"></a>Nyguen’s Attack</h3><p>GGH公开没几年，发明者们为了证明其安全性在网上组织了挑战，并给了5组加密后的密文与公钥</p>
+<p>Nyguen实现了攻击，把五组密文都给破解了，GGH发明者之一直呼：”今其亡矣！”</p>
+<p>之前博客有说，LLL把背包打穿了个大口，而Nyguen’s Attack则直接<strong>杀死了GGH</strong></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a target="_blank" rel="noopener" href="https://space.bilibili.com/5277360/video">https://space.bilibili.com/5277360/video</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="http://www.zimablue.life/2022/05/04/Lattice-Lesson1/">http://www.zimablue.life/2022/05/04/Lattice-Lesson1/</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1312093478458458112">https://www.zhihu.com/column/c_1312093478458458112</a></p>
+<p>[4] <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/161622928">https://zhuanlan.zhihu.com/p/161622928</a></p>
+<p>[5] <a target="_blank" rel="noopener" href="https://kel.bz/post/lattices/">https://kel.bz/post/lattices/</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Harry0597
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://harry0597.com/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/" title="格密码学习">https://harry0597.com/2022/12/30/格密码学习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Crypto/" rel="tag"><i class="fa fa-tag"></i> Crypto</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/24/2022wmctf/" rel="prev" title="2022wmctf">
+      <i class="fa fa-chevron-left"></i> 2022wmctf
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/30/%E6%A0%BC%E5%AF%86%E7%A0%81%E5%BA%94%E7%94%A8/" rel="next" title="格密码应用">
+      格密码应用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%BC%EF%BD%9CLattice"><span class="nav-number">1.</span> <span class="nav-text">格｜Lattice</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E6%A0%BC"><span class="nav-number">1.2.</span> <span class="nav-text">为什么学格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%B0%E9%9A%BE"><span class="nav-number">1.2.1.</span> <span class="nav-text">困难</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%BD%E7%94%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">好用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%9F%BA%E7%AD%89%E4%BB%B7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">格基等价变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%9F%BA%E6%9C%AC%E5%8C%BA%E5%9F%9F"><span class="nav-number">1.4.</span> <span class="nav-text">格基本区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%B9%B3%E8%A1%8C%E5%A4%9A%E9%9D%A2%E4%BD%93-%EF%BD%9C-FUNDAMENTAL-PARALLELEPIPED"><span class="nav-number">1.4.1.</span> <span class="nav-text">基础平行多面体 ｜ FUNDAMENTAL PARALLELEPIPED</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">行列式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E5%B1%95%E7%A9%BA%E9%97%B4%EF%BD%9Cspan"><span class="nav-number">1.5.</span> <span class="nav-text">延展空间｜span</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E6%9E%81%E5%B0%8F-successive-minima"><span class="nav-number">1.6.</span> <span class="nav-text">连续极小|successive minima</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lambda-i-L"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">$\lambda_i(L)$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%BD%E5%AF%86%E7%89%B9%E6%AD%A3%E4%BA%A4%E5%8C%96%EF%BD%9CGram-Schmidt-Orthogonalization"><span class="nav-number">1.7.</span> <span class="nav-text">施密特正交化｜Gram-Schmidt Orthogonalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QR%E5%88%86%E8%A7%A3%EF%BD%9CQR-decomposition"><span class="nav-number">1.7.1.</span> <span class="nav-text">QR分解｜QR decomposition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%B5%E5%8F%AF%E5%A4%AB%E6%96%AF%E5%9F%BA%E5%AE%9A%E7%90%86%EF%BD%9CMinkowski%E2%80%99s-theorem"><span class="nav-number">1.8.</span> <span class="nav-text">闵可夫斯基定理｜Minkowski’s theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Blichfeld%E5%AE%9A%E7%90%86-%EF%BD%9C-Blichfeld%E2%80%99s-theorem"><span class="nav-number">1.8.1.</span> <span class="nav-text">Blichfeld定理 ｜ Blichfeld’s theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MINKOWSKI%E5%87%B8%E4%BD%93%E5%AE%9A%E7%90%86%EF%BD%9CMINKOWSKI%E2%80%99S-CONVEX-BODY-THEOREM"><span class="nav-number">1.8.2.</span> <span class="nav-text">MINKOWSKI凸体定理｜MINKOWSKI’S CONVEX BODY THEOREM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MINKOWSKI%E7%AC%AC%E4%B8%80%E5%AE%9A%E7%90%86%EF%BD%9CMINKOWSKI%E2%80%99S-FIRST-THEOREM"><span class="nav-number">1.8.3.</span> <span class="nav-text">MINKOWSKI第一定理｜MINKOWSKI’S FIRST THEOREM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MINKOWSKI%E7%AC%AC%E4%BA%8C%E5%AE%9A%E7%90%86%EF%BD%9CMINKOWSKI%E2%80%99S-SECOND-THEOREM"><span class="nav-number">1.8.4.</span> <span class="nav-text">MINKOWSKI第二定理｜MINKOWSKI’S SECOND THEOREM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%B0%E9%9A%BE%E9%97%AE%E9%A2%98"><span class="nav-number">1.9.</span> <span class="nav-text">困难问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SVP%EF%BD%9Cshortest-vector-problem"><span class="nav-number">1.9.1.</span> <span class="nav-text">SVP｜shortest vector problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SIVP%EF%BC%88shortest-independent-vector-problem%EF%BC%89"><span class="nav-number">1.9.2.</span> <span class="nav-text">SIVP（shortest independent vector problem）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVP%EF%BC%88closed-vector-problem%EF%BC%89"><span class="nav-number">1.9.3.</span> <span class="nav-text">CVP（closed vector problem）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GGH"><span class="nav-number">1.10.</span> <span class="nav-text">GGH</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Babai%E2%80%99s-Closest-Vector-algorithm"><span class="nav-number">1.10.1.</span> <span class="nav-text">Babai’s Closest Vector algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">大体思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.10.1.2.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.10.1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%80%A7"><span class="nav-number">1.10.2.</span> <span class="nav-text">正交性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GGH%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="nav-number">1.10.3.</span> <span class="nav-text">GGH加解密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86"><span class="nav-number">1.10.3.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86"><span class="nav-number">1.10.3.2.</span> <span class="nav-text">解密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nyguen%E2%80%99s-Attack"><span class="nav-number">1.10.4.</span> <span class="nav-text">Nyguen’s Attack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.11.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harry0597"
+      src="/images/IMG_2550.JPG">
+  <p class="site-author-name" itemprop="name">Harry0597</p>
+  <div class="site-description" itemprop="description">Pondering'll do you wonders.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:1915885792@qq.com" title="E-Mail → mailto:1915885792@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">6</span></li></ul>
+              </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harry0597</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">1m</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'SdJfKJYPhm2sNuw1OsouUSUC-MdYXbMMI',
+      appKey     : '4pmiJGkm87YwJe40oBXXWYKM',
+      placeholder: "评论，让思维碰撞",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : 'https://SdJfKJYP.api.lncldglobal.com'
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
