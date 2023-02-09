@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221230032346949.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Harry0597/Imag@master/uPic/image-20221230182818252.png">
 <meta property="article:published_time" content="2022-12-30T12:17:03.000Z">
-<meta property="article:modified_time" content="2022-12-30T14:11:58.017Z">
+<meta property="article:modified_time" content="2023-02-09T13:23:39.289Z">
 <meta property="article:author" content="Harry0597">
 <meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
@@ -220,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-30 20:17:03 / 修改时间：22:11:58" itemprop="dateCreated datePublished" datetime="2022-12-30T20:17:03+08:00">2022-12-30</time>
+              <time title="创建时间：2022-12-30 20:17:03" itemprop="dateCreated datePublished" datetime="2022-12-30T20:17:03+08:00">2022-12-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-09 21:23:39" itemprop="dateModified" datetime="2023-02-09T21:23:39+08:00">2023-02-09</time>
+              </span>
 
           
     <span>&emsp;</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
@@ -273,7 +279,7 @@
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
 <p>复现此题的契机是学习huangx师傅格密码中相关内容[1] 时所撞见，就此记录.</p>
 </blockquote>
-<p>读题后，知题目给出了LCG中$a、b、m$与迭代20次的结果第高位，然后取第21次结果高位与第22次结果低64位组成key，第23次结果组成了iv，且给出了AES加密后密文.</p>
+<p>读题后，知题目给出了LCG中$a、b、m$与20次迭代过程中每次结果的高位，然后取第21次结果高位与第22次结果低64位组成key，第23次结果组成了iv，且给出了AES加密后密文.</p>
 <p>不难想到，要求解此题，只需恢复出任意一次迭代结果。换句话说，就是需要求出至少一组的低64位数据，就能恢复出所有数据了.</p>
 <p>设低位为$d_i$, 给出的高位数据记为$s_i=s_i&lt;&lt;64$</p>
 <p>为解决这个问题，我们看向如下迭代过程:<br>$$<br>\begin{aligned} s_1+d_1 &amp;= a•seed+b \mod m \\ s_2+d_2 &amp;= a•(s_1+d_1)+b \mod m \\ &amp;\vdots \\ s_n+d_n&amp;=a•(s_{n-1}+d_{n-1})+b \mod m\end{aligned}<br>$$<br>有：<br>$$<br>\begin{aligned} s_2 + d_2  &amp;= a(s_1+d_1)+b -km \\ d_2  &amp;= as_1+b-s_2 +ad_1-km \\ 记 C&amp;=as_1+b-s_2 \\ d_2  &amp;= ad_1-km+C\end{aligned}<br>$$<br>这里将杂七杂八的已知量总和一起记为C，是极有意义的.</p>
@@ -370,7 +376,7 @@
 </ol>
 <p>故此，有如下矩阵运算:<br>$$<br>challenge_{39\times 40} \times key_{40\times 1} = response_{39\times 1}<br>$$<br>而原题中，利用Sage求出的特解恰好就是key,可用来求解密文.</p>
 <p>Sage求解代码如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"></span><br><span class="line">p = <span class="number">21652247421304131782679331804390761485569</span></span><br><span class="line">I = Integers(p)</span><br><span class="line"></span><br><span class="line">Cs = []</span><br><span class="line">ct = <span class="string">&#x27;&#x27;</span></span><br><span class="line">ct=<span class="string">b&#x27;&#x27;</span>.fromhex(ct)</span><br><span class="line"></span><br><span class="line">C = Matrix(I,Cs)</span><br><span class="line">R = vector(I,Rs)</span><br><span class="line">key = C.solve_right(R)  <span class="comment"># 输出特解</span></span><br><span class="line">key=<span class="built_in">list</span>(key)</span><br><span class="line"><span class="built_in">print</span>(key)</span><br><span class="line"></span><br><span class="line">cipher = AES.new(sha256(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, key)).encode(<span class="string">&#x27;utf-8&#x27;</span>)).digest(),AES.MODE_CFB,<span class="string">b&#x27;\0&#x27;</span>*<span class="number">16</span>)</span><br><span class="line">flag = cipher.decrypt(ct)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"></span><br><span class="line">p = <span class="number">21652247421304131782679331804390761485569</span></span><br><span class="line">I = Integers(p)</span><br><span class="line"></span><br><span class="line">Cs = []</span><br><span class="line">Rs = []</span><br><span class="line">ct = <span class="string">&#x27;&#x27;</span></span><br><span class="line">ct=<span class="string">b&#x27;&#x27;</span>.fromhex(ct)</span><br><span class="line"></span><br><span class="line">C = Matrix(I,Cs)</span><br><span class="line">R = vector(I,Rs)</span><br><span class="line">key = C.solve_right(R)  <span class="comment"># 输出特解</span></span><br><span class="line">key=<span class="built_in">list</span>(key)</span><br><span class="line"><span class="built_in">print</span>(key)</span><br><span class="line"></span><br><span class="line">cipher = AES.new(sha256(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, key)).encode(<span class="string">&#x27;utf-8&#x27;</span>)).digest(),AES.MODE_CFB,<span class="string">b&#x27;\0&#x27;</span>*<span class="number">16</span>)</span><br><span class="line">flag = cipher.decrypt(ct)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
 
 <p><strong>更多</strong></p>
 <p>就出题而言，为了达到<strong>利用Sage求出的特解恰好就是key</strong>效果，出题人当是在利用sage等工具求得特解后，反代入题目源码中，生成密文.</p>
@@ -498,7 +504,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -532,7 +538,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">6</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CS/" rel="tag">CS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-OS/" rel="tag">Mac OS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/" rel="tag">Misc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Writeup/" rel="tag">Writeup</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82/" rel="tag">杂</a><span class="tag-list-count">6</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -555,7 +561,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
